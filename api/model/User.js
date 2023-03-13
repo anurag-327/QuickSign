@@ -18,7 +18,14 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    profile:{type:String}
+    profile:{type:String},
+    type:{
+        type:String,
+        default:"user"
+    },
+    access:[{
+        company:{type:mongoose.Schema.Types.ObjectId,ref:"Organization"}
+    }]
 },{
     timestamps:true
 })

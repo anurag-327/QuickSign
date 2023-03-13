@@ -16,6 +16,7 @@ import avatar from "../assets/companylogo.jfif";
 const RegisterOrganization = () => {
   const navigate = useNavigate();
   const [toggleEye, setToggleEye] = useState(false);
+  const [sucessPage, setSucessPage] = useState(false);
   const [loading, setLoading] = useState(false);
   const [profile,setProfile]=useState("")
   // getting query parameter
@@ -54,9 +55,10 @@ const RegisterOrganization = () => {
       const data = await response.json();
       if (response.status === 201 && data) {
         setLoading(false);
-        setToken(data.token);
+        // setToken(data.token,type);
         toast.success("Registration successfull");
-        navigate("/home");
+        setSucessPage(true)
+        // navigate("/home");
       } else {
         setLoading(false);
         toast.error(`${data.message}`);
@@ -69,8 +71,10 @@ const RegisterOrganization = () => {
       setProfile(base64)
   }
   return (
-    <div className="w-[50%]  h-[100vh] sm:w-[100%] overflow-scroll flex flex-col justify-center items-center">
-      <Toaster position="top-center" reverseOrder />
+    <>
+    {
+      !sucessPage?(<div className="w-[50%]  h-[100vh] sm:w-[100%] overflow-scroll flex flex-col justify-center items-center">
+        <Toaster position="top-center" reverseOrder />
       <div className="w-[350px] mt-20 ">
         <form
           onSubmit={(e) => {
@@ -195,7 +199,18 @@ const RegisterOrganization = () => {
           </div>
         </form>
       </div>
-    </div>
+    </div>):(<div className="w-[50%]  h-[100vh] sm:w-[100%] overflow-scroll flex flex-col justify-center items-center">
+          <span className="text-2xl font-bold">Successfully Registered Organization 👍..</span>
+          <span className="mt-5">You will be able to access your dashboard once we verify you..</span>
+          <span className="text-sm">Verification Time : 1-2 Working Days</span>
+          <a rel="noopener noreferrer" href="/" className="px-8 py-3 font-semibold rounded mt-5 bg-violet-400 dark:text-gray-900">Back to homepage</a>
+          <span className="text-sm mt-3">In case of any issue Contact us at : <a className="font-bold text-blue-500" href="mailto:anuragsrivastav0027@gmail.com">anuragsrivastav0027@gmail.com</a></span>
+		
+</div>)
+    }
+    
+    
+    </>
   );
 }
 

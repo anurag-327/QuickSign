@@ -3,11 +3,21 @@ import LoginBanner from "../components/LoginBanner";
 import Logo from "../assets/Logo.png"
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import { getToken } from "../helper/tokenHandler";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate=useNavigate();
+  useEffect(()=>
+  {
+    if(getToken())
+    {
+      navigate("/home")
+    }
+  })
   return (
     <section className="flex sm:flex-col   gap-1 justify-center items-center">
       <LoginBanner/>
-      <div className="w-[50%] sm:w-[100%] sm:h-[70vh] h-[100vh] flex flex-col gap-10  justify-center items-center">
+      <div className="w-[50%] sm:w-[100%]  sm:h-[70vh] h-[100vh] flex flex-col gap-10  justify-center items-center">
          <div className=" flex flex-col justify-center items-center">
              <img className="sm:w-[150px]" src={Logo} alt="Logo"/>
          </div>

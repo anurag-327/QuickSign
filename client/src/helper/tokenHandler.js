@@ -1,7 +1,12 @@
 import ls from "localstorage-slim" 
-export function setToken(token)
+export function setToken(token,type)
 {
-    ls.set('quick_sign',token,{ttl:86400})
+    const value={
+        token:token,
+        type:type
+    }
+    console.log(value)
+    ls.set('quick_sign',value,{ttl:86400})
 }
 export function getToken()
 {

@@ -7,13 +7,20 @@ import Home from "./pages/Home"
 import Error from './pages/Error'
 import Register from "./pages/Register"
 import Index from "./pages/Index"
-
+import Contact from "./pages/Contact"
+import Admin from './Admin/Admin'
+import RecoverAccount from "./pages/RecoverAccount"
+import ContextAPI from './Context/ContextAPI'
+import AdminContextAPI from './Context/AdminContext'
 function App() {
-  const [count, setCount] = useState(0)
   const router=createBrowserRouter([
     {
     path:"/",
     element:<Index />
+  },
+    {
+    path:"/contact",
+    element:<Contact />
   },
     {
     path:"/auth/login",
@@ -24,8 +31,16 @@ function App() {
     element:<Register />
   },
     {
+    path:"/auth/recover",
+    element:<RecoverAccount/>
+  },
+    {
     path:"/home",
-    element:<Home />
+    element:<ContextAPI><Home /></ContextAPI>
+  },
+    {
+    path:"/admin",
+    element:<AdminContextAPI><Admin /></AdminContextAPI>
   },
   {
     path:"*",

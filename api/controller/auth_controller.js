@@ -5,7 +5,7 @@ const jwt=require("jsonwebtoken")
 // Controller for register
 module.exports.register=async(req,res) => 
 {
-    const {name,email,phonenumber,password}=req.body;
+    const {name,email,phonenumber,password,profile}=req.body;
     try{
         const user= await User.findOne({email:email});
 
@@ -20,7 +20,7 @@ module.exports.register=async(req,res) =>
                 phonenumber:phonenumber,
                 email:email,
                 password:CryptoJS.AES.encrypt(password,process.env.CRYPTOJS_SEC_KEY).toString(),
-                // profile:profile || ''
+                profile:profile || ''
             })
             const result=await newuser.save();
             if(result)
@@ -62,7 +62,38 @@ module.exports.login=async(req,res) =>
     } 
 }
 
-
+module.exports.resetPassword=async (req,res)=>
+{
+    try{
+        const {password,_id}=req.body;
+        const user= await User.findByIdAndUpdate(_id,{password:CryptoJS.AES.encrypt(password,process.env.CRYPTOJS_SEC_KEY).toString(),},{new:true})
+        if(user)
+        {
+            return res.status(200).json({status:200,message:"success"}); 
+        }
+    }catch(err)
+    {
+        return res.status(500).json({status:500,message:err.message}); 
+    } 
+}
+module.exports.verifyEmail=async (req,res)=>
+{
+    try{
+        const {email}=req.query;
+        const user= await User.findOne({email:email}).select("_id email");
+        if(user)
+        {
+            return res.status(200).json(user);
+        }
+        else
+        {
+            return res.status(404).json({status:404,message:"User doesnot exist"});
+        }
+    }catch(err)
+    {
+        return res.status(500).json({status:500,message:err.message}); 
+    } 
+}
 
 
 const tokengenerator = (_id) =>

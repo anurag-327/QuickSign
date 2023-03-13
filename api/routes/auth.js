@@ -6,5 +6,8 @@ const {verifyToken}=require("../controller/verifyToken")
 router.post("/register",auth_controller.register)
 // route to handle login
 router.post("/login",auth_controller.login);
-
+// route to update data
+router.put("/resetpassword",auth_controller.resetPassword)
+// route to verify Email
+router.get("/verifyemail",auth_controller.verifyEmail)
 module.exports=router

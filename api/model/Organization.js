@@ -27,6 +27,10 @@ const OrganizationSchema=new mongoose.Schema({
         type:String,
         default:"organization"
     },
+    status:{
+        type:String,
+        default:"pending"
+    },
     profile:{type:String},
     link:{
         type:String,

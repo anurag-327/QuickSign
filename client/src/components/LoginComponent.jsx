@@ -31,6 +31,7 @@ const LoginComponent = () =>
     
     const data = new FormData(e.target);
     let { email, password } = Object.fromEntries(data.entries());
+    // console.log(check)
     if (valiateLogin(email, password) === true) {
         setLoading(true)
       let options = {
@@ -45,19 +46,26 @@ const LoginComponent = () =>
       if (response.status === 200 && data) {
         setLoading(false)
         console.log(data)
-        setToken(data.token);
+        setToken(data.token,type);
         toast.success("Login successfull");
         navigate("/home");
       } else {
-        // setLoading(false)
+        setLoading(false)
         toast.error(`${data.message}`);
-        
       }
     }
   }
+  useEffect(()=>
+  {
+    if(getToken())
+    {
+      navigate("/home")
+    }
+  })
   return (
     <div className="  w-[50%]  sm:w-[100%] h-[100vh] flex flex-col gap-8 sm:justify-around justify-center items-center">
       <Toaster position="top-center" reverseOrder />
+    
       <div className=" flex flex-col justify-center items-center">
         <img className="w-[200px]" src={Logo} />
         <h1 className="text-3xl font-bold text-violet-700">Hello Again!</h1>
@@ -74,7 +82,7 @@ const LoginComponent = () =>
             <div>
               <input
                 type="email"
-                autoComplete="off"
+                
                 autoCorrect="off"
                 className="username  border-2 w-full rounded-md p-2  outline-none"
                 name="email"
@@ -97,10 +105,10 @@ const LoginComponent = () =>
                 color="#000000"
               />
             </div>
-            <div className="checkboxfield">
-              <input type="checkbox" className="" defaultChecked />
+            {/* <div className="checkboxfield">
+              <input name="check" type="checkbox" className="" defaultChecked />
               <label className=" ml-1">Remember Me</label>
-            </div>
+            </div> */}
 
             <div className="text-center  rounded-lg text-white p-1">
                 {
@@ -112,7 +120,7 @@ const LoginComponent = () =>
               
             </div>
             <div className="text-center  font-bold text-blue-500">
-              <Link to="/auth">Forgot Password</Link>
+              <Link to={`/auth/recover?type=${type}`}>Forgot Password</Link>
             </div>
             <div id="loginfooter" className="  text-center mt-4 ">
               <span className="msg">
