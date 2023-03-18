@@ -1,7 +1,7 @@
 import { User } from 'phosphor-react'
 import React,{useContext} from 'react'
 import { UserContext } from '../Context/ContextAPI'
-import avatar from "../assets/logo.png"
+import avatar from "../assets/Logo.png"
 const OrganizationDashboard = () => {
   const {user}=useContext(UserContext)
   return (
