@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CaretDown } from 'phosphor-react'
-import avatar from "../../assets/logo.png"
+import avatar from "../../assets/Logo.png"
 import { AdminContext } from '../../Context/AdminContext'
 import {Check,X} from "phosphor-react"
 const Card = ({item}) => {
