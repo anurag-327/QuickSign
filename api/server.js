@@ -17,6 +17,7 @@ app.use("/api/auth/organization",require("./routes/organization"))
 app.use("/api",require("./routes/user"))
 app.use("/api/organization/auth",require("./routes/organizationauth"))
 app.use("/api/admin",require("./routes/admin"))
+app.use("/auth",require("./routes/OAuth"))
 app.use((req,res,next)=>
 {
     return res.json("No Such route exists!")

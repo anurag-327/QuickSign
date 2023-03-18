@@ -45,7 +45,7 @@ const LoginComponent = () =>
       const data = await response.json();
       if (response.status === 200 && data) {
         setLoading(false)
-        console.log(data)
+        // console.log(data)
         setToken(data.token,type);
         toast.success("Login successfull");
         navigate("/home");

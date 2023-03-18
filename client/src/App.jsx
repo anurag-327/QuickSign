@@ -12,6 +12,7 @@ import Admin from './Admin/Admin'
 import RecoverAccount from "./pages/RecoverAccount"
 import ContextAPI from './Context/ContextAPI'
 import AdminContextAPI from './Context/AdminContext'
+import AuthHome from './auth/Home'
 function App() {
   const router=createBrowserRouter([
     {
@@ -41,6 +42,10 @@ function App() {
     {
     path:"/admin",
     element:<AdminContextAPI><Admin /></AdminContextAPI>
+  },
+    {
+    path:"/auth",
+    element:<AuthHome />
   },
   {
     path:"*",

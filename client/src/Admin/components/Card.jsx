@@ -43,7 +43,7 @@ const Card = ({item}) => {
     <div className='w-[90%] border-2 border-gray-500 bg-gray-50  sm:w-full md:w-full p-2 rounded-md'>
       <div className='flex justify-between items-center group'>
         <div className='flex gap-2 justify-center items-center'>
-            <img className='w-[50px] h=[50px] rounded-full' src={item.profile || avatar} alt="logo" />
+            <img className='w-[50px] h-[50px] rounded-full' src={item.profile || avatar} alt="logo" />
             <h2 className='text-2xl font-bold'>{item.name}</h2>
         </div>
         <CaretDown onClick={()=> setDrawer(!drawer)} size={34} color="#000000" className='cursor-pointer' weight="bold" />
@@ -55,6 +55,7 @@ const Card = ({item}) => {
         <span><span className='font-bold text-lg'>Address:</span> {item.address}</span>
         <span><span className='font-bold text-lg'>Type:</span> {item.type}</span>
         <span><span className='font-bold text-lg'>Status:</span> {item.status}</span>
+        <span className='text-blue-600 '><span className='font-bold text-lg  text-black'>Link:</span> {item.link}</span>
         {
           currentPage==="pending"&&(<div className='flex gap-10 w-full justify-around'><X onClick={()=> deleteOrganization(item._id)} className='cursor-pointer' size={30} color="#000000" weight="bold" /><Check onClick={()=> verifyOrganization(item._id)} className='cursor-pointer' size={30} color="#000000" weight="bold" /></div>)
         }

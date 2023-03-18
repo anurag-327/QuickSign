@@ -45,7 +45,7 @@ module.exports.login=async(req,res) =>
             var decryptedpassword = CryptoJS.AES.decrypt(user.password,process.env.CRYPTOJS_SEC_KEY).toString(CryptoJS.enc.Utf8);
             if(password===decryptedpassword)
             {
-                return res.status(200).json({status:200,token:tokengenerator(user._id)});
+                return res.status(200).json({status:200,token:tokengenerator(user._id),user:user});
             }
             else
             {

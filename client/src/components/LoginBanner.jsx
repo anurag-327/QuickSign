@@ -5,7 +5,7 @@ import Footer from "./Footer.jsx"
 import { Link } from "react-router-dom";
 const LoginBanner = () => {
   return (
-    <div className="bg-yellow-300  sm:w-[100%] justify-evenly gap-10 flex flex-col items-center text-black relative w-[50%] h-[100vh]">
+    <div className="bg-yellow-300 sm:hidden sm:w-[100%] justify-evenly gap-10 flex flex-col items-center text-black relative w-[50%] h-[100vh]">
       
       <div className="text-5xl text-blue-600  mt-10 w-full text-center font-bold">QUICK SIGN</div>
       <div className="relative flex justify-evenly w-full item-center">

@@ -22,6 +22,7 @@ module.exports.register=async(req,res) =>
                 link:link,
                 profile:profile || '',
                 password:CryptoJS.AES.encrypt(password,process.env.CRYPTOJS_SEC_KEY).toString(),
+                
             })
             const result=await neworg.save();
             if(result)
@@ -98,7 +99,7 @@ module.exports.verifyEmail=async (req,res)=>
 module.exports.getOrganization=async(req,res)=>
 {
     try{
-        const user=await Organization.findById(req.user._id).select("-password -updatedAt");
+        const user=await Organization.findOne({_id:req.user._id,status:"verified"}).select("-password -updatedAt");
         if(user)
         {
             return res.status(200).json(user);
@@ -116,7 +117,7 @@ module.exports.verifyOrganization=async(req,res)=>
 {
     try{
         const {_id}=req.body;
-        const user=await Organization.findByIdAndUpdate(_id,{status:"verified"},{new:true});
+        const user=await Organization.findByIdAndUpdate(_id,{status:"verified",API_KEY:tokengeneratorcopy(_id)},{new:true});
         if(user)
         {
             return res.status(200).json(user);
@@ -153,4 +154,8 @@ module.exports.deleteOrganization=async(req,res)=>
 const tokengenerator = (_id,name,email) =>
 {
     return jwt.sign({_id:_id,name:name,email:email},process.env.JWT_SEC_KEY);
+}
+const tokengeneratorcopy = (_id) =>
+{
+    return jwt.sign({_id:_id},process.env.JWT_SEC_KEY);
 }

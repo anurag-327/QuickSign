@@ -1,5 +1,5 @@
 const router=require("express").Router(); 
-const auth_controller=require("../controller/auth_controller.js")
+const auth_controller=require("../controller/user_auth.js")
 const {verifyToken}=require("../controller/verifyToken")
 
 // route to handle registration

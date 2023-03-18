@@ -28,6 +28,9 @@ const OrganizationDashboard = () => {
             <div className="text-center my-1">
                 <a className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium" target="_blank" href={user.link}>{user.link}</a>
             </div>
+            <div>
+                <span>API_KEY={user.API_KEY}</span>
+            </div>
 
         </div>
     </div>

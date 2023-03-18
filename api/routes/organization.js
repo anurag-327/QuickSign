@@ -1,5 +1,5 @@
 const router=require("express").Router();
-const organization_controller=require("../controller/organization")
+const organization_controller=require("../controller/organization_auth")
 const {verifyToken}=require("../controller/verifyToken")
 // route to register as organization
 router.post("/register",organization_controller.register)
