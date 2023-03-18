@@ -1,5 +1,5 @@
 import React from 'react'
-import avatar from "../assets/logo.png"
+import avatar from "../assets/Logo.png"
 const CompanyCard = ({item}) => {
   return (
    
