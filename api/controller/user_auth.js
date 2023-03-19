@@ -5,8 +5,9 @@ const jwt=require("jsonwebtoken")
 // Controller for register
 module.exports.register=async(req,res) => 
 {
-    const {name,email,phonenumber,password,profile}=req.body;
     try{
+        const {name,email,phonenumber,password,profile}=req.body;
+        // console.log(req.body)
         const user= await User.findOne({email:email});
 
         if(user)
@@ -30,6 +31,7 @@ module.exports.register=async(req,res) =>
         }
     }catch(err) 
     {
+        console.log(err.message)
         return res.status(500).json({status:500,message:err.message});
     }
 }

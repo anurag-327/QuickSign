@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { valiateLogin } from "../helper/validate";
-import { getToken, setToken } from "../helper/tokenHandler";
 import { Eye, ArrowRight } from "phosphor-react";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
