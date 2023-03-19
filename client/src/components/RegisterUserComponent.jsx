@@ -58,6 +58,7 @@ const RegisterUserComponent = () => {
         toast.success("Registration successfull");
         navigate("/home");
       } else {
+        console.log(data)
         setLoading(false);
         toast.error(`${data.message}`);
       }

@@ -31,7 +31,6 @@ module.exports.register=async(req,res) =>
         }
     }catch(err) 
     {
-        console.log(err.message)
         return res.status(500).json({status:500,message:err.message});
     }
 }
