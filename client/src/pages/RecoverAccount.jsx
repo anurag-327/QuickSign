@@ -8,7 +8,7 @@ import { Eye } from "phosphor-react";
 import { useSearchParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
-
+import { BASE_URL } from "../base";
 const RecoverAccount = () => {
   const navigate=useNavigate();
   const [searchParams] = useSearchParams();
@@ -34,7 +34,7 @@ const RecoverAccount = () => {
     setmsg("")
     if (verifyEmail(email) == true) {
       setLoading(true)
-      const res= await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/${type}/verifyemail?email=${email}`) 
+      const res= await fetch(`${BASE_URL}/api/auth/${type}/verifyemail?email=${email}`) 
       const data=await res.json();
       if(res.status==200)
       {
@@ -94,7 +94,7 @@ const RecoverAccount = () => {
         },
         body: JSON.stringify({ _id:accountdeatils._id, password: password }),
       }
-      const res= await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/${type}/resetpassword`,options) 
+      const res= await fetch(`${BASE_URL}/api/auth/${type}/resetpassword`,options) 
         const data2=await res.json();
         if(res.status==200)
         {

@@ -1,6 +1,7 @@
 import React,{useState,useEffect,useContext, createContext} from 'react'
 export const  UserContext=createContext();
 import { getToken } from '../helper/tokenHandler'
+import { BASE_URL } from '../base';
 export default function ContextAPI({children}) {
    
     const [user,setUser]=useState();
@@ -20,7 +21,7 @@ export default function ContextAPI({children}) {
                          "authorization":`Bearer ${token.token}`
                      },
                  }
-                 const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/getuser`, options);
+                 const response = await fetch(`${BASE_URL}/api/getuser`, options);
                  const data = await response.json();
                  if(response.status===200 && data)
                  {
@@ -32,6 +33,7 @@ export default function ContextAPI({children}) {
 
             else if(token.type==="organization")
             {
+                // console.log("org")
                 ( async function()
             {
                 
@@ -41,10 +43,11 @@ export default function ContextAPI({children}) {
                      "authorization":`Bearer ${token.token}`
                  },
              }
-             const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/getorganization`, options);
+             const response = await fetch(`${BASE_URL}/api/getorganization`, options);
              const data = await response.json();
              if(response.status===200 && data)
              {
+                console.log(response)
                  setUser(data)
              }
             

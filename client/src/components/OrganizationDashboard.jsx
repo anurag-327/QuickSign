@@ -4,6 +4,7 @@ import { UserContext } from '../Context/ContextAPI'
 import avatar from "../assets/Logo.png"
 const OrganizationDashboard = () => {
   const {user}=useContext(UserContext)
+  console.log(user)
   return (
     <div className="flex items-center mt-20 justify-center border-2 border-gray-400 rounded-md">
 

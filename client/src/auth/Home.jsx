@@ -3,6 +3,7 @@ import LoginComponent from './LoginComponent'
 import { useSearchParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import Loader from '../components/Loader'
+import { BASE_URL } from '../base'
 const Home = () => {
     const [pageloading,setPageLoading]=useState(false);
     const [searchParams] = useSearchParams();
@@ -26,7 +27,7 @@ const Home = () => {
                      "authorization":`Bearer ${state}`
                  },
              }
-             const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/getorganization`, options);
+             const response = await fetch(`${BASE_URL}/api/getorganization`, options);
              const data = await response.json();
              if(response.status===200 && data)
              {

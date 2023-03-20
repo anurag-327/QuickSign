@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useContext,createContext} from 'react'
 export const AdminContext=createContext();
+import { BASE_URL } from '../base';
 const AdminContextAPI = ({children}) => {
     const [admin,setAdmin]=useState();
     const [pendingOrganizations,setPendingOrganizations]=useState([]);
@@ -13,7 +14,7 @@ const AdminContextAPI = ({children}) => {
                  let options={
                      method:"GET",
                  }
-                 const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/getorganizations`, options);
+                 const response = await fetch(`${BASE_URL}/api/admin/getorganizations`, options);
                  const data = await response.json();
                  if(response.status===200 && data)
                  {

@@ -11,7 +11,7 @@ import { Eye } from "phosphor-react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Loader from "./Loader";
-
+import { BASE_URL } from "../base";
 const LoginComponent = () => 
 {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const LoginComponent = () =>
         },
         body: JSON.stringify({ email: email, password: password }),
       };
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/${type}/login`, options);
+      const response = await fetch(`${BASE_URL}/api/auth/${type}/login`, options);
       const data = await response.json();
       if (response.status === 200 && data) {
         setLoading(false)

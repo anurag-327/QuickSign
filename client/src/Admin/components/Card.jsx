@@ -3,6 +3,7 @@ import { CaretDown } from 'phosphor-react'
 import avatar from "../../assets/Logo.png"
 import { AdminContext } from '../../Context/AdminContext'
 import {Check,X} from "phosphor-react"
+import { BASE_URL } from '../../base'
 const Card = ({item}) => {
   const {admin,currentPage,setAdmin,pendingOrganizations,setPendingOrganizations,setOrganizations,organizations}=useContext(AdminContext)
   const [drawer,setDrawer]=useState(false)
@@ -15,7 +16,7 @@ const Card = ({item}) => {
       },
       body: JSON.stringify({ _id: _id }),
     }
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/deleteorganization`, options);
+    const response = await fetch(`${BASE_URL}/api/admin/deleteorganization`, options);
     const data = await response.json();
     if(response.status===200 )
     {
@@ -31,7 +32,7 @@ const Card = ({item}) => {
       },
       body: JSON.stringify({ _id: _id }),
     }
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/admin/verifyorganization`, options);
+    const response = await fetch(`${BASE_URL}/api/admin/verifyorganization`, options);
     const data = await response.json();
     if(response.status===200 && data)
     {

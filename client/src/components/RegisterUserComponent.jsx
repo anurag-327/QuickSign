@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Loader from "./Loader";
 import avatar from "../assets/companylogo.jfif";
+import { BASE_URL } from "../base";
 const RegisterUserComponent = () => {
 
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const RegisterUserComponent = () => {
           profile:profile
         }),
       };
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/${type}/register`, options);
+      const response = await fetch(`${BASE_URL}/api/auth/${type}/register`, options);
       const data = await response.json();
       if (response.status === 201 && data) {
         setLoading(false);

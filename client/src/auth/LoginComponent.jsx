@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { valiateLogin } from "../helper/validate";
 import { Eye, ArrowRight } from "phosphor-react";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../base";
 import Loader from "../components/Loader";
 const LoginComponent = ({ organization }) => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const LoginComponent = ({ organization }) => {
         body: JSON.stringify({ email: email, password: password }),
       };
       const response = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/auth`,
+        `${BASE_URL}/auth`,
         options
       );
       const data = await response.json();
