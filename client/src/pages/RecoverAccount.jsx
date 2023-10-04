@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../base";
+import {Swap,CodesandboxLogo} from "phosphor-react"
 const RecoverAccount = () => {
   const navigate=useNavigate();
   const [searchParams] = useSearchParams();
@@ -29,7 +30,7 @@ const RecoverAccount = () => {
   const [userOTP, setUserOTP] = useState();
   const [loading, setLoading] = useState(false);
   const [accountdeatils,setAccountDetails]=useState()
-  
+
   async function handleSendOTP() {
     setmsg("")
     if (verifyEmail(email) == true) {
@@ -120,14 +121,14 @@ const RecoverAccount = () => {
     
   }
   return (
-    <div className="w-[100%] h-[80vh] text-center  flex  justify-center items-center">
+    <div className="w-[100%] h-[100vh] text-center bg-[#111010] flex  justify-center items-center">
       <Toaster position="top-center" reverseOrder />
       <div className="w-[350px]">
         <div>
-          <div className=" flex flex-col justify-center items-center">
-            <img className="w-[100px]" src={Logo} />
-          </div>
-          <h2 className="my-5 text-xl font-bold text-red-400">
+        <div className=" flex flex-col justify-center items-center">
+             <CodesandboxLogo size={100} color="#ffffff" weight="light" />
+         </div>
+          <h2 className="my-5 text-xl font-bold text-white">
             Recover your Account
           </h2>
         </div>

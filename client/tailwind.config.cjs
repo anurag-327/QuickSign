@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif']
+      }
+    },
     screens: {
       'sm': {'min': '0px', 'max': '600px'},
       'md': {'min': '601px', 'max': '1023px'},

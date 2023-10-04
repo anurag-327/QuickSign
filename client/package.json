@@ -11,6 +11,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.13",
     "localstorage-slim": "^2.4.0",
+    "phosphor-icons": "^1.4.2",
     "phosphor-react": "^1.4.1",
     "postcss": "^8.4.21",
     "react": "^18.2.0",

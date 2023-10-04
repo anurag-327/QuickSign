@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Loader from "./Loader";
 import { BASE_URL } from "../base";
+import {Swap,CodesandboxLogo} from "phosphor-react"
 const LoginComponent = () => 
 {
   const navigate = useNavigate();
@@ -67,9 +68,9 @@ const LoginComponent = () =>
       <Toaster position="top-center" reverseOrder />
     
       <div className=" flex flex-col justify-center items-center">
-        <img className="w-[200px]" src={Logo} />
-        <h1 className="text-3xl font-bold text-violet-700">Hello Again!</h1>
-      </div>
+             <CodesandboxLogo size={100} color="#ffffff" weight="light" />
+             <h1 className="text-3xl font-bold text-white">Hello Again!</h1>
+         </div>
       <div className="w-[350px] ">
         <form
           onSubmit={(e) => {
@@ -82,9 +83,8 @@ const LoginComponent = () =>
             <div>
               <input
                 type="email"
-                
                 autoCorrect="off"
-                className="username  border-2 w-full rounded-md p-2  outline-none"
+                className="username  w-full overflow-hidden rounded-md p-2  outline-none"
                 name="email"
                 placeholder="Email"
               />
@@ -119,11 +119,11 @@ const LoginComponent = () =>
              
               
             </div>
-            <div className="text-center  font-bold text-blue-500">
+            <div className="text-center mt-4  font-bold text-white underline">
               <Link to={`/auth/recover?type=${type}`}>Forgot Password</Link>
             </div>
-            <div id="loginfooter" className="  text-center mt-4 ">
-              <span className="msg">
+            <div id="loginfooter" className="  text-center mt-1 ">
+              <span className="msg text-white">
                 Not a member?{" "}
                 <Link
                   to={`/auth/register?type=${type}`}

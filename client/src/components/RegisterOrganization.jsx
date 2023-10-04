@@ -13,6 +13,7 @@ import Footer from "./Footer";
 import Loader from "./Loader";
 import avatar from "../assets/companylogo.jfif";
 import { BASE_URL } from "../base";
+import {Swap,CodesandboxLogo} from "phosphor-react"
 const RegisterOrganization = () => {
   const navigate = useNavigate();
   const [toggleEye, setToggleEye] = useState(false);
@@ -84,15 +85,13 @@ const RegisterOrganization = () => {
           method="post"
         >
           <div className="flex flex-col mt-10 gap-3 w-full signupsection  ">
-            <div className=" flex flex-col justify-center items-center">
-              <img className="w-[60px]" src={Logo} />
-              <h1 className="text-3xl font-bold text-violet-700">
-                Register Organization
-              </h1>
-            </div>
-            <div className=" ">
+          <div className=" flex flex-col justify-center items-center">
+             <CodesandboxLogo size={100} color="#ffffff" weight="light" />
+             <h1 className="text-3xl font-bold text-white">Register here!</h1>
+         </div>
+            <div className="mx-auto ">
                     <label className="" htmlFor='profile'>
-                         <img  src={profile || avatar }  className='  w-[100px] h-[100px] object-cover border cursor-pointer border-gray-800 rounded-full m-auto ' alt="profile"/>
+                         <img  src={profile || avatar }  className='  w-[100px] h-[100px] mx-auto object-cover border cursor-pointer border-gray-800 rounded-full m-auto ' alt="profile"/>
                     </label>
                     <input onChange={uploadprofile} className='hidden' id="profile" name="profile" type="file"></input>
                     <p className=" text-center text-blue-600 font-semibold ">drop organization logo here</p>
