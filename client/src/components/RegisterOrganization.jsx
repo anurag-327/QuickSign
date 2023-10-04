@@ -73,7 +73,7 @@ const RegisterOrganization = () => {
   return (
     <>
     {
-      !sucessPage?(<div className="w-[50%]  h-[100vh] sm:w-[100%] overflow-scroll flex flex-col justify-center items-center">
+      !sucessPage?(<div className="w-[50%]  h-[100vh] sm:w-[100%] flex flex-col justify-center items-center">
         <Toaster position="top-center" reverseOrder />
       <div className="w-[350px] mt-20 ">
         <form
@@ -199,7 +199,7 @@ const RegisterOrganization = () => {
           </div>
         </form>
       </div>
-    </div>):(<div className="w-[50%]  h-[100vh] sm:w-[100%] overflow-scroll flex flex-col justify-center items-center">
+    </div>):(<div className="w-[50%]  h-[100vh] sm:w-[100%] flex flex-col justify-center items-center">
           <span className="text-2xl font-bold">Successfully Registered Organization 👍..</span>
           <span className="mt-5">You will be able to access your dashboard once we verify you..</span>
           <span className="text-sm">Verification Time : 1-2 Working Days</span>
