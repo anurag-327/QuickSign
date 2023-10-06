@@ -51,7 +51,7 @@ function App() {
     element:<AuthHome />
   },
     {
-    path:"/documentation",
+    path:"/docs",
     element:<Documentation />
   },
   {
