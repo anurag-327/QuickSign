@@ -10,7 +10,7 @@ const Header = () => {
       <div className='flex float-right sm:float-right mr-3 sm:mr-1  gap-8 sm:gap-3 text-lg'>
         <a className='hover:underline hover:text-blue-200' href="/">Home</a>
         <a className='hover:underline hover:text-blue-200' href="/contact">Contact Us</a>
-        <a className='hover:underline hover:text-blue-200' href="/docs">Docs</a>
+        <a className='hover:underline hover:text-blue-200' href="https://quicksign-doc.vercel.app/">Docs</a>
       </div>
     </nav>
   )
