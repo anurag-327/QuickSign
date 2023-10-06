@@ -92,7 +92,7 @@ const LoginComponent = () =>
              <CodesandboxLogo size={100} color="#ffffff" weight="light" />
              <h1 className="text-3xl sm:text-xl mt-2 font-bold font-mono text-white">Hello Again!</h1>
          </div>
-      <div className="w-[380px] mx-auto sm:w-[94%] ">
+      <div className="w-[380px] mx-auto sm:w-[97%] ">
         <form
           onSubmit={(e) => {
             e.preventDefault();
