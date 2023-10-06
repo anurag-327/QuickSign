@@ -113,7 +113,7 @@ const LoginComponent = ({ organization }) => {
 
   return (
     organization && (
-      <div className="  w-[420px] bg-[#333] p-4 sm:w-full font-poppins sm:h-auto   border  border-gray-300  rounded-2xl  flex flex-col gap-4 sm:justify-start  justify-around items-center">
+      <div className="  w-[420px] bg-[#333] p-4 sm:w-[95%] font-poppins sm:h-auto   border  border-gray-300  rounded-2xl  flex flex-col gap-4 sm:justify-start  justify-around items-center">
         <Toaster position="top-center" reverseOrder />
              
         <div className="flex justify-center gap-3 items-center">
@@ -128,7 +128,7 @@ const LoginComponent = ({ organization }) => {
         </div>
         <div className="text-center">
           <h2 className="text-2xl spa font-semibold">Authorise account...</h2>
-          <h2 className="text-sm -mt-4">to continue to{" "}
+          <h2 className="text-sm">to continue to{" "}
             <a href={organization.link} rel="noopener noreferrer" target="blank" className="text-green-500 text-lg font-semibold">
               {organization.name}
             </a>{" "}
