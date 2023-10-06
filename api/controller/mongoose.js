@@ -5,7 +5,7 @@ mongoose.set("strictQuery", false);
 
 mongoose.connect(process.env.MONGO_URl)
 .then(()=>console.log("Database connected successully"))
-.catch(err => console.log("error setting up database"))
+.catch(err => console.log("error setting up database",err))
 
 
 
