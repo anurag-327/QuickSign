@@ -168,7 +168,7 @@ const RegisterUserComponent = () => {
                 autoComplete="off"
                 autoCorrect="off"
                 className="passwordfield  w-[100%] rounded-md px-2 py-3 text-lg hover:resize-none outline-none "
-                nameName="password"
+                name="password"
                 placeholder="password"
               />
               <Eye
