@@ -85,7 +85,7 @@ const body={
    method:"post",
    headers:{
       "content-type":"application/json",
-      "api":"Bearer <YOUR API KEY>"
+      "authorization":"Bearer <YOUR API KEY>"
    },
    body:JSON.stringify({token:**<ACCESS TOKEN>**})
 }
