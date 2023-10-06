@@ -1,6 +1,6 @@
 const Organization=require("../model/Organization")
 const CryptoJS=require("crypto-js");
-const { v4: uuidv4 } = require('uuid');
+
 const jwt=require("jsonwebtoken")
 
 module.exports.register=async(req,res) =>
@@ -23,7 +23,7 @@ module.exports.register=async(req,res) =>
                 link:link,
                 profile:profile || '',
                 status:"verified",
-                API_KEY:uuidv4(),
+                API_KEY:tokengeneratorcopy(_id),
                 password:CryptoJS.AES.encrypt(password,process.env.CRYPTOJS_SEC_KEY).toString(),
                 
             })

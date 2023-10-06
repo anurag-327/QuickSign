@@ -20,7 +20,7 @@ function App() {
   const router=createBrowserRouter([
     {
     path:"/",
-    element:<ContextAPI><Index /></ContextAPI>
+    element:<Index />
   },
     {
     path:"/contact",

@@ -60,7 +60,7 @@ const LoginComponent = ({ organization }) => {
            }
            redirect_url =redirect_url + `?status=true&token=${data.token}`+"&"+s;
            console.log(redirect_url);
-           alert(redirect_url)
+          
            toast.success("Authorisation successfull");
            window.location.href=redirect_url;
         }
