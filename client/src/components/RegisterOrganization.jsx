@@ -86,7 +86,7 @@ const RegisterOrganization = () => {
           }}
           method="post"
         >
-          <div className="flex flex-col mt-10 gap-3 w-full signupsection  ">
+          <div className="flex flex-col mt-10 gap-3 w-full sm:mt-20 signupsection  ">
           <div className=" flex gap-2 justify-center items-center">
              <CodesandboxLogo size={35} color="#ffffff" weight="light" />
              <h1 className="text-3xl font-bold text-white">Register here!</h1>

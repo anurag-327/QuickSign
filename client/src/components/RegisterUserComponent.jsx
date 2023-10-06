@@ -102,7 +102,7 @@ const RegisterUserComponent = () => {
           }}
           method="post"
         >
-          <div className="flex flex-col gap-3 w-full signupsection  ">
+          <div className="flex flex-col gap-3 w-full signupsection sm:mt-4 ">
           <div className=" flex gap-4 justify-center items-center">
              <CodesandboxLogo size={40} color="#ffffff" weight="light" />
              <h1 className="text-3xl font-bold font-mono text-white">Register here!</h1>
