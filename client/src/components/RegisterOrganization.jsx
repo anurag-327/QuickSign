@@ -30,6 +30,7 @@ const RegisterOrganization = () => {
 
   async function handlesignup(e) {
     const data = new FormData(e.target);
+    console
     const { name, email, contact,link,address, password } = Object.fromEntries(
       data.entries()
     );
@@ -56,12 +57,13 @@ const RegisterOrganization = () => {
       const data = await response.json();
       if (response.status === 201 && data) {
         setLoading(false);
-        setToken(data.token,type);
+        // setToken(data.token,type);
         toast.success("Registration successfull");
-        // setSucessPage(true)
-        navigate("/home");
+        setSucessPage(true)
+        // navigate("/home");
       } else {
         setLoading(false);
+        console.log(data.message)
         toast.error(`${data.message}`);
       }
     }
@@ -74,9 +76,9 @@ const RegisterOrganization = () => {
   return (
     <>
     {
-      !sucessPage?(<div className="w-[50%] pb-5 min-h-[100vh] font-poppins sm:w-[100%] flex flex-col justify-center items-center">
+      !sucessPage?(<div className=" pb-5 min-h-[100vh] font-poppins  flex flex-col justify-center items-center">
         <Toaster position="top-center" reverseOrder />
-      <div className="w-[350px]  ">
+      <div className="w-[400px] sm:w-[94%]  ">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -85,108 +87,131 @@ const RegisterOrganization = () => {
           method="post"
         >
           <div className="flex flex-col mt-10 gap-3 w-full signupsection  ">
-          <div className=" flex flex-col justify-center items-center">
-             <CodesandboxLogo size={50} color="#ffffff" weight="light" />
+          <div className=" flex gap-2 justify-center items-center">
+             <CodesandboxLogo size={35} color="#ffffff" weight="light" />
              <h1 className="text-3xl font-bold text-white">Register here!</h1>
          </div>
-            <div className="mx-auto ">
+            <div className="mx-auto mt-3">
                     <label className="" htmlFor='profile'>
-                         <img  src={profile || avatar }  className='  w-[100px] h-[100px] mx-32 object-cover border cursor-pointer border-gray-800 rounded-full m-auto ' alt="profile"/>
+                         <img  src={profile || "http://localhost:5173/public/champagnedark.svg" }  className=' p-3  w-[80px] h-[80px] mx-32 object-cover border cursor-pointer bg-gray-200 rounded-full m-auto ' alt="profile"/>
                     </label>
                     <input onChange={uploadprofile} className='hidden' id="profile" name="profile" type="file"></input>
-                    <p className=" text-center text-white font-semibold ">Drop your organization logo here</p>
+                    <p className=" text-center mt-4 text-white font-semibold ">Drop your Application logo here</p>
             </div>
-            <div className="w-[95%]">
-              <input
-                type="text"
-                required
-                autoComplete="off"
-                autoCorrect="off"
-                className="namefield  border-2 w-full text-lg  rounded-md p-2 outline-none"
-                name="name"
-                placeholder="organization name"
-              />
+            <div className="flex flex-col gap-3 mt-6">
+            <div class="relative bg-white rounded-lg">
+               <input
+                  type="text"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="name"
+                  name="name"
+                  placeholder="QuickSign"
+                   />
+               <label
+                 for="name"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Application Name</label
+               >
             </div>
-            <div className="w-[95%]">
-              <input
-                type="email"
-                autoComplete="off"
-                autoCorrect="off"
-                className="emailfield border-2 w-full text-lg rounded-md p-2  outline-none"
-                name="email"
-                placeholder="email address"
-              />
+
+            <div class="relative  bg-white rounded-lg">
+               <input
+                  type="email"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="email"
+                  placeholder="name@example.com"
+                  name="email" />
+               <label
+                 for="email"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Email address</label
+               >
             </div>
-            <div className="group w-[95%]">
-              <input
-                type="text"
-                autoComplete="off"
-                autoCorrect="off"
-                className="  border-2 w-full text-lg  rounded-md p-2  outline-none"
-                name="contact"
-                placeholder="contact"
-              />
-              <p className="group-focus-within:block hidden text-center  text-sm  msg">contact can be phone number or mail to reach you out in case of emergency</p>
+           
+            <div class="relative  bg-white rounded-lg">
+               <input
+                  type="text"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="contact"
+                  placeholder="+91 XXXX--"
+                  name="contact" />
+               <label
+                 for="contact"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Contact</label
+               >
             </div>
-            <div className="w-[95%]">
-              <input
-                type="text"
-                autoComplete="off"
-                autoCorrect="off"
-                className=" border-2 w-full text-lg  rounded-md p-2  outline-none"
-                name="address"
-                placeholder="address"
-              />
+
+            <div class="relative  bg-white rounded-lg">
+               <input
+                  type="text"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="address"
+                  placeholder="Park Street, UK"
+                  name="address" />
+               <label
+                 for="address"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Address</label
+               >
             </div>
-            <div className="group w-[95%]">
-              <input
-                type="text"
-                autoComplete="off"
-                autoCorrect="off"
-                className=" border-2 w-full text-lg  rounded-md p-2  outline-none"
-                name="link"
-                placeholder="website link"
-              />
-              <p className="group-focus-within:block hidden text-center text-sm  msg">Ex. www.quicksign.com</p>
+            <div class="relative bg-white rounded-lg">
+               <input
+                  type="text"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="link"
+                  placeholder="www.quicksign.com"
+                  name="link" />
+               <label
+                 for="link"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Redirect URI</label
+               >
             </div>
-            <div className="group w-[95%]">
-               <div className=" bg-white relative rounded-md border-2">
+            
+            <div className="group w-[100%] rounded-lg">
+               <div className=" bg-white relative rounded-lg">
                  <input
                   type={toggleEye ? "text" : "password"}
                   autoComplete="off"
                   autoCorrect="off"
-                  className="passwordfield text-lg   w-[100%] rounded-md p-2  hover:resize-none outline-none "
+                  className="passwordfield text-lg placeholder:font-extralight text-neutral-500  w-[100%] rounded-md px-2 py-3  hover:resize-none outline-none "
                   name="password"
-                  placeholder="password"
+                  placeholder="Password"
                  />
                 <Eye
-                  className="cursor-pointer absolute right-0 top-2 bottom-0 "
-                  size={30}
+                  className="cursor-pointer absolute right-2 top-3  "
+                  size={25}
                   onClick={() => setToggleEye(!toggleEye)}
                   color="#000000"
                 />
                </div>
-               <p className="group-focus-within:block hidden text-center  text-sm  msg">must include [a-z], [0-9], [special character]</p>
+               <p className="text-white mt-1 group-focus-within:block hidden text-center  text-sm  msg">must include [a-z], [0-9], [special character]</p>
             </div>
-            
-
-            <div className="checkboxfield">
-              <input type="checkbox" className="" defaultChecked />
-              <label className="text-white cursor-pointer">
+            <div className="checkboxfield flex items-center">
+              <input id="cb" type="checkbox" className="w-5 h-5" defaultChecked />
+              <label for="cb" className="text-white ml-2 cursor-pointer">
                 I accept Terms and Conditions
               </label>
             </div>
+
             <div className="text-center  rounded-lg text-white mt-2 p-1">
               {loading === true ? (
                 <Loader />
               ) : (
-                <button className="signupbutton cursor-pointer w-full block text-white text-lg font-semibold  p-2 bg-blue-700 rounded-md">
+                <button className="signupbutton cursor-pointer w-full block text-white text-lg font-semibold  px-2 py-3 bg-blue-700 rounded-md">
                   Register
                 </button>
               )}
             </div>
-            <div id="loginfooter" className=" mb-20 text-center mt-4 ">
-              <span className="msg">
+
+            <div id="loginfooter" className="  text-center mt-2 ">
+              <span className="msg text-white">
                 Already a member ?{" "}
                 <Link
                   className="font-bold text-blue-500 underline"
@@ -196,6 +221,12 @@ const RegisterOrganization = () => {
                 </Link>
               </span>
             </div>
+
+            </div>
+          
+           
+            
+            
           </div>
         </form>
       </div>

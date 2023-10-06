@@ -61,8 +61,7 @@ function App() {
 ])
   return (
     <RouterProvider router={router}>
-      {/* <Header /> */}
-      <Footer />
+  
     </RouterProvider>
   )
 }

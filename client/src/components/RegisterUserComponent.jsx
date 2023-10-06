@@ -92,9 +92,9 @@ const RegisterUserComponent = () => {
   //     setProfile(base64)
   // }
   return (
-    <div className="w-[50%] h-[98vh] sm:w-[100%] font-poppins flex flex-col justify-center items-center">
+    <div className=" h-[98vh]  font-poppins flex flex-col justify-center items-center">
       <Toaster position="top-center" reverseOrder />
-      <div className="w-[350px] ">
+      <div className="w-[380px] sm:w-[90%] ">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -103,64 +103,88 @@ const RegisterUserComponent = () => {
           method="post"
         >
           <div className="flex flex-col gap-3 w-full signupsection  ">
-          <div className=" flex flex-col justify-center items-center">
-             <CodesandboxLogo size={50} color="#ffffff" weight="light" />
+          <div className=" flex gap-4 justify-center items-center">
+             <CodesandboxLogo size={40} color="#ffffff" weight="light" />
              <h1 className="text-3xl font-bold font-mono text-white">Register here!</h1>
          </div>
-            <div className=" mx-auto">
+            <div className=" mx-auto mt-4">
                     <label className="" htmlFor='profile'>
                          <img  src={profile || avatar }  className='  w-[100px] h-[100px] mx-28 object-cover border cursor-pointer border-gray-800 rounded-full m-auto ' alt="profile"/>
                     </label>
                     <input onChange={uploadprofile} className='hidden' id="profile" name="profile" type="file"></input>
-                    <p className=" text-center text-white font-semibold ">Drop your profile photo here here</p>
+                    <p className=" text-center mt-2 text-white font-semibold ">Drop your profile photo here here</p>
             </div>
-            <div className="w-[95%]">
-              <input
-                type="text"
-                autoCorrect="off"
-                className="namefield  border-2 w-full rounded-md p-2 text-lg outline-none"
-                name="name"
-                placeholder="Name"
-              />
+
+            <div className="flex flex-col gap-3 mt-6">
+
+            <div class="relative bg-white rounded-lg">
+               <input
+                  type="text"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="name"
+                  name="name"
+                  placeholder="QuickSign"
+                   />
+               <label
+                 for="name"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 > Name</label
+               >
             </div>
-            <div className="w-[95%]">
-              <input
-                type="email"
-                autoCorrect="off"
-                className="emailfield border-2 w-full rounded-md p-2 text-lg  outline-none"
-                name="email"
-                placeholder="Email Address"
-              />
+
+            <div class="relative  bg-white rounded-lg">
+               <input
+                  type="email"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="email"
+                  placeholder="name@example.com"
+                  name="email" />
+               <label
+                 for="email"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Email address</label
+               >
             </div>
-            <div className="w-[95%]">
-              <input
-                type="text"
-                autoCorrect="off"
-                className="pnofield w-full rounded-md p-2 text-lg outline-none"
-                name="phonenumber"
-                placeholder="Phone Number"
-              />
+            <div class="relative  bg-white rounded-lg">
+               <input
+                  type="text"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="phonenumber"
+                  placeholder="+91 XXXX"
+                  name="phonenumber" />
+               <label
+                 for="phonenumber"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Phone Number</label
+               >
             </div>
-            <div className="relative rounded-md border-2 w-[95%]">
+            
+            <div className="relative rounded-md border-2 full">
               <input
                 type={toggleEye ? "text" : "password"}
                 autoComplete="off"
                 autoCorrect="off"
-                className="passwordfield  w-[100%] rounded-md p-2 text-lg hover:resize-none outline-none "
+                className="passwordfield  w-[100%] rounded-md px-2 py-3 text-lg hover:resize-none outline-none "
                 name="password"
                 placeholder="password"
               />
               <Eye
-                className="cursor-pointer absolute right-0 top-2"
+                className="cursor-pointer absolute right-2 top-3"
                 size={30}
                 onClick={() => setToggleEye(!toggleEye)}
                 color="#000000"
               />
             </div>
-
-            <div className="checkboxfield">
-              <input type="checkbox" className="" defaultChecked />
-              <label className="text-white cursor-pointer">
+            </div>
+            
+            
+           
+            <div className="checkboxfield flex items-center">
+              <input id="cb" type="checkbox" className="w-5 h-5" defaultChecked />
+              <label for="cb" className="text-white ml-2 cursor-pointer">
                 I accept Terms and Conditions
               </label>
             </div>
@@ -168,13 +192,13 @@ const RegisterUserComponent = () => {
               {loading === true ? (
                 <Loader />
               ) : (
-                <button className="signupbutton w-full block cursor-pointer p-2 text-lg text-white font-semibold bg-blue-700 rounded-md">
+                <button className="signupbutton w-full block cursor-pointer px-2 py-3 text-lg text-white font-semibold bg-blue-700 rounded-md">
                   Register
                 </button>
               )}
             </div>
             <div id="loginfooter" className=" text-center mt-4 ">
-              <span className="msg">
+              <span className="msg text-white">
                 Already a member ?{" "}
                 {
                   redirect_url?(<a

@@ -5,6 +5,7 @@ import LoginBanner from "../components/LoginBanner";
 import RegisterOrganization from "../components/RegisterOrganization";
 import RegisterUserComponent from "../components/RegisterUserComponent"
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 const Login = () => {
     const [searchParams] = useSearchParams(); 
     let type,redirect_url;
@@ -14,7 +15,7 @@ const Login = () => {
       if (param === "type") type = value;
     }
   return (
-    <section className="flex sm:flex-col   gap-1 justify-center items-center">
+    <section className="flex flex-col  justify-center items-center">
       <Toaster position="top-center" reverseOrder />
       <Header />
       
@@ -24,6 +25,7 @@ const Login = () => {
       {
         type==="organization"&&<RegisterOrganization/>
       }
+      <Footer />
     </section>
   );
 };

@@ -6,12 +6,11 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 const Login = () => {
   return (
-    <section className="flex sm:flex-col   gap-1 justify-center items-center">
-      <Header />
+    <section className="flex flex-col   gap-1 justify-center items-center">
       <Toaster position="top-center" reverseOrder />
-      {/* <LoginBanner/> */}
+      <Header />  
       <LoginComponent/>
-      {/* <Footer /> */}
+      <Footer />
     </section>
   );
 };
