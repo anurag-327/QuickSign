@@ -114,15 +114,47 @@ const data=await response.json();
 }**
 ```
 
-# FAQ’s
+## Frequently Asked Questions (FAQs) - QuickSign
 
-- What is OAuth?
-    
-    OAuth is an open-standard protocol that enables applications to securely access resources on behalf of a user. QuickSign's OAuth system allows you to authenticate users without exposing their credentials, providing a seamless and secure user experience.
-    
-- How to register application?
-    
-    By just logging to your github account
+1. What is QuickSign?
+
+   QuickSign is an OAuth 2.0 authentication and authorization platform designed to simplify user access control for applications. It provides secure authentication and authorization flows, allowing applications to protect user data and resources efficiently.
+
+2. How do I get started with QuickSign OAuth?
+
+   To get started with QuickSign OAuth, follow these steps:
+   - Register your application in the QuickSign developer portal.
+   - Obtain your OAuth credentials (Client ID and Client Secret).
+   - Integrate OAuth into your application using our documentation.
+
+3. What OAuth flows does QuickSign support?
+
+   QuickSign OAuth supports various OAuth 2.0 grant types, including:
+   - Authorization Code Grant
+   - Implicit Grant
+   - Client Credentials Grant
+   - Refresh Token Grant
+
+4. How does QuickSign OAuth handle security?
+
+   QuickSign OAuth prioritizes security with measures such as token validation, encryption. Your users' data and resources are protected.
+
+5. Can I customize the authentication flow for my application?
+
+   No, As of Now Quicksign has only few fixed methods availaible.
+
+6. What is the process for managing access tokens?
+
+   QuickSign OAuth provides mechanisms for managing access tokens efficiently. Tokens have expiration times, and you can use refresh tokens to obtain new access tokens without user intervention.
+
+7. How can I access QuickSign OAuth documentation?
+
+   You can access the QuickSign OAuth documentation by visiting [link_to_docs](link_to_docs). Our documentation provides detailed guidance on integrating OAuth into your application.
+
+
+8. How can I contact QuickSign support for assistance?
+
+    If you encounter any issues or have questions about using QuickSign OAuth, please contact our support team at [anuragsrivastav0027@gmail.com](mailto:anuragsrivastav0027@gmail.com).
     
 
 # Contact
