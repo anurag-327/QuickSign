@@ -23,7 +23,7 @@ const Login = () => {
       <div className="w-[50%] sm:w-[100%]   flex flex-col gap-10  justify-center items-center">
          <div className=" flex flex-col justify-center items-center">
              <CodesandboxLogo size={100} color="#ffffff" weight="light" />
-             <h2 className="text-3xl text-white font-bold font-mono mt-3">Welcome to QuickSign</h2>
+             <h2 className="text-3xl sm:text-2xl text-center text-white font-bold font-mono mt-3">Welcome to QuickSign</h2>
              <p className="mt-1 text-white font-poppins">An OAuth for hastle free signups</p>
          </div>
          <div className="flex flex-col gap-5 w-[100%] items-center">
