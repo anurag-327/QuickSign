@@ -11,8 +11,9 @@ import { Eye } from "phosphor-react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Loader from "./Loader";
-import avatar from "../assets/companylogo.jfif";
+import avatar from "../assets/companylogo.webp";
 import { BASE_URL } from "../base";
+import {Swap,CodesandboxLogo} from "phosphor-react"
 const RegisterUserComponent = () => {
 
   const navigate = useNavigate();
@@ -21,10 +22,23 @@ const RegisterUserComponent = () => {
   const [profile,setProfile]=useState("")
   // getting query parameter
   const [searchParams] = useSearchParams();
-  let type;
+  let type,redirect_url;
+  let flag=true;
   for (const entry of searchParams.entries()) {
     const [param, value] = entry;
-    type = value;
+    if(param=="redirect_url")
+    {
+      if(flag==true)
+    {
+        redirect_url=value;
+        flag=false
+    }
+    else
+    {
+       redirect_url+="&redirect_url="+value
+    } 
+    } 
+    if (param === "type") type = value;
   }
   async function uploadprofile(e)
   {
@@ -57,7 +71,14 @@ const RegisterUserComponent = () => {
         setLoading(false);
         setToken(data.token,type);
         toast.success("Registration successfull");
-        navigate("/home");
+        if(redirect_url)
+        {
+          window.location.href=redirect_url;
+        }
+        else
+        {
+          navigate("/home");
+        }
       } else {
         console.log(data)
         setLoading(false);
@@ -71,7 +92,7 @@ const RegisterUserComponent = () => {
   //     setProfile(base64)
   // }
   return (
-    <div className="w-[50%] h-[100vh] sm:w-[100%] flex flex-col justify-center items-center">
+    <div className="w-[50%] h-[98vh] sm:w-[100%] font-poppins flex flex-col justify-center items-center">
       <Toaster position="top-center" reverseOrder />
       <div className="w-[350px] ">
         <form
@@ -82,58 +103,56 @@ const RegisterUserComponent = () => {
           method="post"
         >
           <div className="flex flex-col gap-3 w-full signupsection  ">
-            <div className=" flex flex-col justify-center items-center">
-              <img className="w-[80px]" src={Logo} />
-              <h1 className="text-3xl font-bold text-violet-700">
-                Register User
-              </h1>
-            </div>
-            <div className=" ">
+          <div className=" flex flex-col justify-center items-center">
+             <CodesandboxLogo size={50} color="#ffffff" weight="light" />
+             <h1 className="text-3xl font-bold font-mono text-white">Register here!</h1>
+         </div>
+            <div className=" mx-auto">
                     <label className="" htmlFor='profile'>
-                         <img  src={profile || avatar }  className='  w-[100px] h-[100px] object-cover border cursor-pointer border-gray-800 rounded-full m-auto ' alt="profile"/>
+                         <img  src={profile || avatar }  className='  w-[100px] h-[100px] mx-28 object-cover border cursor-pointer border-gray-800 rounded-full m-auto ' alt="profile"/>
                     </label>
                     <input onChange={uploadprofile} className='hidden' id="profile" name="profile" type="file"></input>
-                    <p className=" text-center text-blue-600 font-semibold ">drop your profile photo here here</p>
+                    <p className=" text-center text-white font-semibold ">Drop your profile photo here here</p>
             </div>
-            <div>
+            <div className="w-[95%]">
               <input
                 type="text"
                 autoCorrect="off"
-                className="namefield  border-2 w-full rounded-md p-2 outline-none"
+                className="namefield  border-2 w-full rounded-md p-2 text-lg outline-none"
                 name="name"
                 placeholder="Name"
               />
             </div>
-            <div>
+            <div className="w-[95%]">
               <input
                 type="email"
                 autoCorrect="off"
-                className="emailfield border-2 w-full rounded-md p-2  outline-none"
+                className="emailfield border-2 w-full rounded-md p-2 text-lg  outline-none"
                 name="email"
                 placeholder="Email Address"
               />
             </div>
-            <div>
+            <div className="w-[95%]">
               <input
                 type="text"
                 autoCorrect="off"
-                className="pnofield border-2 w-full rounded-md p-2  outline-none"
+                className="pnofield w-full rounded-md p-2 text-lg outline-none"
                 name="phonenumber"
                 placeholder="Phone Number"
               />
             </div>
-            <div className="flex items-center bg-white rounded-md border-2">
+            <div className="relative rounded-md border-2 w-[95%]">
               <input
                 type={toggleEye ? "text" : "password"}
                 autoComplete="off"
                 autoCorrect="off"
-                className="passwordfield  w-[93%] rounded-md p-2  hover:resize-none outline-none "
+                className="passwordfield  w-[100%] rounded-md p-2 text-lg hover:resize-none outline-none "
                 name="password"
                 placeholder="password"
               />
               <Eye
-                className="cursor-pointer "
-                size={20}
+                className="cursor-pointer absolute right-0 top-2"
+                size={30}
                 onClick={() => setToggleEye(!toggleEye)}
                 color="#000000"
               />
@@ -141,7 +160,7 @@ const RegisterUserComponent = () => {
 
             <div className="checkboxfield">
               <input type="checkbox" className="" defaultChecked />
-              <label className="text-blue-500 cursor-pointer">
+              <label className="text-white cursor-pointer">
                 I accept Terms and Conditions
               </label>
             </div>
@@ -149,7 +168,7 @@ const RegisterUserComponent = () => {
               {loading === true ? (
                 <Loader />
               ) : (
-                <button className="signupbutton w-full block  p-2 bg-blue-700 rounded-md">
+                <button className="signupbutton w-full block cursor-pointer p-2 text-lg text-white font-semibold bg-blue-700 rounded-md">
                   Register
                 </button>
               )}
@@ -157,12 +176,20 @@ const RegisterUserComponent = () => {
             <div id="loginfooter" className=" text-center mt-4 ">
               <span className="msg">
                 Already a member ?{" "}
-                <Link
-                  className="font-bold text-blue-500 underline"
-                  to={`/auth/login?type=${type}`}
-                >
-                  Login
-                </Link>
+                {
+                  redirect_url?(<a
+                    href={`/auth/login?type=${type}&redirect_url=${redirect_url}`}
+                    className="underline  font-bold text-blue-200"
+                  >
+                    Login
+                  </a>):(<a
+                    href={`/auth/login?type=${type}`}
+                    className="underline  font-bold text-blue-200"
+                  >
+                    Login
+                  </a>)
+                }
+                
               </span>
             </div>
           </div>

@@ -2,42 +2,29 @@ import { User } from 'phosphor-react'
 import React,{useContext} from 'react'
 import { UserContext } from '../Context/ContextAPI'
 import avatar from "../assets/Logo.png"
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import toast from 'react-hot-toast';
 const OrganizationDashboard = () => {
   const {user}=useContext(UserContext)
-  console.log(user)
+
+  function copykey()
+  {
+
+  }
   return (
-    <div className="flex items-center mt-20 justify-center border-2 border-gray-400 rounded-md">
-
-<div className="min-w-[220px]">
-    <div className="bg-white shadow-xl rounded-lg py-3">
-        <div className="photo-wrapper p-2">
-            <img className="w-28 border-2 border-blue-600 object-cover h-28 rounded-full mx-auto" src={user.profile || avatar} alt={user.name}/>
-        </div>
-        <div className="p-2">
-            <h3 className="text-center text-xl text-gray-900 font-medium leading-8">{user.name}</h3>
-            <div className="text-center text-gray-400 text-xs font-semibold">
-                <p>{user.type}</p>
-            </div>
-            {/* <table className="text-xs my-1">
-                <tbody>
-                <tr>
-                    <td className="px-2 py-2 text-gray-500 font-semibold">Email</td>
-                    <td className="px-2 py-2">{item.company.contact}</td>
-                </tr>
-            </tbody></table> */}
-
-            <div className="text-center my-1">
-                <a className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium" target="_blank" href={user.link}>{user.link}</a>
-            </div>
-            <div>
-                <span>API_KEY={user.API_KEY}</span>
-            </div>
-
-        </div>
+   
+<div className="px-8 py-4 mt-20 outline rounded-md outline-gray-600 flex justify-center items-center flex-col">
+    <img src={user.profile || avatar}  alt="logi"></img>
+    <div className='w-full justify-center items-center flex flex-col gap-1'>
+        <h1 className='font-poppins'>{user.name}</h1>
+        <span className='font-poppins -mt-4'>{user.type}</span>
+        <CopyToClipboard text={user.API_KEY}>
+         
+          <span onClick={() => toast.success("Copied to clipboard")} className='px-8 py-2 bg-blue-500 font-poppins mt-4 text-white rounded-md cursor-pointer'>Copy API KEY</span>
+        </CopyToClipboard>
     </div>
 </div>
 
-</div>
   )
 }
 

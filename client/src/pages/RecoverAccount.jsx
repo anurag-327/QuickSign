@@ -42,7 +42,7 @@ const RecoverAccount = () => {
         
         setAccountDetails(data);
         const otp = generateOTP();
-        console.log(otp)
+       
         const x=await sendOTP(email, otp);
         console.log(x)
         if(x.ok)
@@ -133,13 +133,13 @@ const RecoverAccount = () => {
           </h2>
         </div>
         {emailsection === true && (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col  gap-5">
             <input
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               autoComplete="off"
               autoCorrect="off"
-              className="  border-2 w-full rounded-md p-2  outline-none"
+              className="  rounded-md p-2 text-lg w-[95%]  outline-none"
               name="email"
               placeholder="Email"
             />
@@ -149,7 +149,7 @@ const RecoverAccount = () => {
               ) : (
                 <button
                   onClick={handleSendOTP}
-                  className=" w-full block  p-2 bg-blue-700 rounded-md"
+                  className=" w-full block  cursor-pointer p-2 text-lg bg-blue-600 text-white rounded-md"
                 >
                   Send OTP
                 </button>
