@@ -10,7 +10,7 @@ const AdminNavbar = () => {
     <nav className=" fixed top-0 z-50 font-poppins bg-gradient-to-l from-[#111010] to-[#000000] via-[#181818] w-full max-w-screen py-3 px-6 text-white  ">
       <div className='flex float-right sm:float-right mr-3 sm:mr-1  gap-8 sm:gap-3 text-lg'>
         <a className='hover:underline hover:text-blue-200' href="/">Home</a>
-        <a className='hover:underline hover:text-blue-200' href="/docs">Docs</a>
+        <a className='hover:underline hover:text-blue-200' href="https://quicksign-doc.vercel.app/">Docs</a>
         <button onClick={() => {setCurrentPage("pending")}} className='hover:underline hover:text-blue-200' >Pending</button>
         <button onClick={() => {setCurrentPage("organizations")}} className='hover:underline hover:text-blue-200' >All Organizations</button>
            
