@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Loader from "./Loader";
 import { BASE_URL } from "../base";
+import {Swap,CodesandboxLogo} from "phosphor-react"
+
 const LoginComponent = () => 
 {
   const navigate = useNavigate();
@@ -19,10 +21,24 @@ const LoginComponent = () =>
   const [loading,setLoading]=useState(false)
   // getting query parameter
   const [searchParams] = useSearchParams();
-  let type;
+  let redirect_url,type;
+  let flag=true;
+  
   for (const entry of searchParams.entries()) {
     const [param, value] = entry;
-    type = value;
+    if (param === "redirect_url") 
+    {
+        if(flag==true)
+        {
+            redirect_url=value;
+            flag=false
+        }
+        else
+        {
+           redirect_url+="&redirect_url="+value
+        }  
+    }
+    if (param === "type") type = value;
   }
   
 
@@ -45,10 +61,16 @@ const LoginComponent = () =>
       const data = await response.json();
       if (response.status === 200 && data) {
         setLoading(false)
-        // console.log(data)
         setToken(data.token,type);
         toast.success("Login successfull");
-        navigate("/home");
+        if(redirect_url)
+        {
+          window.location.href=redirect_url;
+        }
+        else
+        {
+          navigate("/home");
+        }
       } else {
         setLoading(false)
         toast.error(`${data.message}`);
@@ -63,13 +85,13 @@ const LoginComponent = () =>
     }
   })
   return (
-    <div className="  w-[50%]  sm:w-[100%] h-[100vh] flex flex-col gap-8 sm:justify-around justify-center items-center">
+    <div className="  w-[50%]  sm:w-[100%] h-[98vh] font-poppins flex flex-col gap-8 sm:justify-around justify-center items-center">
       <Toaster position="top-center" reverseOrder />
     
       <div className=" flex flex-col justify-center items-center">
-        <img className="w-[200px]" src={Logo} />
-        <h1 className="text-3xl font-bold text-violet-700">Hello Again!</h1>
-      </div>
+             <CodesandboxLogo size={100} color="#ffffff" weight="light" />
+             <h1 className="text-3xl font-bold font-mono text-white">Hello Again!</h1>
+         </div>
       <div className="w-[350px] ">
         <form
           onSubmit={(e) => {
@@ -78,59 +100,62 @@ const LoginComponent = () =>
           }}
           method="post"
         >
-          <div className="flex flex-col gap-3 w-full loginsection">
+          <div className="flex flex-col w-[350px]  gap-3 loginsection">
             <div>
               <input
                 type="email"
                 
-                autoCorrect="off"
-                className="username  border-2 w-full rounded-md p-2  outline-none"
+                className="username w-[95%] border-none hover:resize-none rounded-md p-2 text-lg  outline-none"
                 name="email"
                 placeholder="Email"
               />
             </div>
-            <div className="flex items-center bg-white rounded-md border-2">
+            <div className="relative w-[95%] bg-white rounded-md">
               <input
                 type={toggleEye ? "text" : "password"}
                 autoComplete="off"
                 autoCorrect="off"
-                className="passwordfield   w-[93%] rounded-md p-2  hover:resize-none outline-none "
+                className="passwordfield  text-lg w-[100%] rounded-md p-2 border-none hover:resize-none outline-none "
                 name="password"
                 placeholder="password"
               />
               <Eye
-                className="cursor-pointer "
-                size={20}
+                className="cursor-pointer absolute right-1 top-1 bottom-0"
+                size={30}
                 onClick={() => setToggleEye(!toggleEye)}
                 color="#000000"
+                weight="light"
               />
             </div>
-            {/* <div className="checkboxfield">
-              <input name="check" type="checkbox" className="" defaultChecked />
-              <label className=" ml-1">Remember Me</label>
-            </div> */}
+            
 
-            <div className="text-center  rounded-lg text-white p-1">
+            <div className="text-center  w-full rounded-lg ">
                 {
-                    loading===true?(<Loader/>):( <button className="signupbutton w-full block  p-2 bg-blue-700 rounded-md">
+                    loading===true?(<Loader/>):( <button className="signupbutton w-[100%] block border-none p-2 cursor-pointer bg-blue-600 text-white text-lg font-semibold rounded-md">
                     Login
                   </button>)
                 }
-             
-              
             </div>
-            <div className="text-center  font-bold text-blue-500">
-              <Link to={`/auth/recover?type=${type}`}>Forgot Password</Link>
+            <div className="text-center mt-6  font-bold text-white ">
+              <a className="text-white no-underline" href={`/auth/recover?type=${type}`}>Forgot Password</a>
             </div>
-            <div id="loginfooter" className="  text-center mt-4 ">
-              <span className="msg">
+            <div id="loginfooter" className="  text-center  ">
+              <span className="msg text-white">
                 Not a member?{" "}
-                <Link
-                  to={`/auth/register?type=${type}`}
-                  className="  font-bold text-blue-500 underline"
-                >
-                  Register Here
-                </Link>
+                {
+                  redirect_url?(<a
+                    href={`/auth/register?type=${type}&redirect_url=${redirect_url}`}
+                    className="underline  font-bold text-blue-200"
+                  >
+                    Register Here
+                  </a>):(<a
+                    href={`/auth/register?type=${type}`}
+                    className="underline  font-bold text-blue-200"
+                  >
+                    Register Here
+                  </a>)
+                }
+                
               </span>
             </div>
           </div>

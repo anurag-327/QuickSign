@@ -1,5 +1,6 @@
 const Organization=require("../model/Organization")
 const CryptoJS=require("crypto-js");
+
 const jwt=require("jsonwebtoken")
 
 module.exports.register=async(req,res) =>
@@ -21,6 +22,8 @@ module.exports.register=async(req,res) =>
                 address:address,
                 link:link,
                 profile:profile || '',
+                status:"verified",
+                API_KEY:tokengeneratorcopy(_id),
                 password:CryptoJS.AES.encrypt(password,process.env.CRYPTOJS_SEC_KEY).toString(),
                 
             })
@@ -99,10 +102,10 @@ module.exports.verifyEmail=async (req,res)=>
 module.exports.getOrganization=async(req,res)=>
 {
     try{
-        const user=await Organization.findOne({_id:req.user._id,status:"verified"}).select("-password -updatedAt");
-        if(user)
+        const organization=await Organization.findOne({_id:req.user._id,status:"verified"}).select("-address -password -createdAt -updatedAt");
+        if(organization)
         {
-            return res.status(200).json(user);
+            return res.status(200).json(organization);
         }
         else{
             return res.status(404).json({status:404,message:"Couldn't get user"});  

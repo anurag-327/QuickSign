@@ -3,7 +3,8 @@ const Organization=require("../model/Organization")
 module.exports.getUser=async(req,res)=>
 {
     try{
-        const user=await User.findById(req.user._id).select("-password -updatedAt").populate({path:"access",populate:{path:"company",select:"name link type contact profile"}});
+        const user=await User.findOne({_id:req.user._id})
+        .populate({path:"access"})
         if(user)
         {
             return res.status(200).json(user);
@@ -14,6 +15,7 @@ module.exports.getUser=async(req,res)=>
 
     }catch(err)
     {
+        console.log(err)
         return res.status(500).json({status:500,message:err.message});
     }
 }

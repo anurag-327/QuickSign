@@ -4,18 +4,20 @@ import { Toaster } from "react-hot-toast";
 import LoginBanner from "../components/LoginBanner";
 import RegisterOrganization from "../components/RegisterOrganization";
 import RegisterUserComponent from "../components/RegisterUserComponent"
+import Header from "../components/Header";
 const Login = () => {
     const [searchParams] = useSearchParams(); 
-	let type;
-	for (const entry of searchParams.entries()) 
-	{
-		const [param, value] = entry;
-		type = value;
+    let type,redirect_url;
+    for (const entry of searchParams.entries()) {
+      const [param, value] = entry;
+      if (param === "redirect_url") redirect_url = value;
+      if (param === "type") type = value;
     }
   return (
     <section className="flex sm:flex-col   gap-1 justify-center items-center">
       <Toaster position="top-center" reverseOrder />
-      <LoginBanner/>
+      <Header />
+      
       {
         type==="user"&&<RegisterUserComponent/>
       }

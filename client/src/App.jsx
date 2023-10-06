@@ -14,6 +14,8 @@ import ContextAPI from './Context/ContextAPI'
 import AdminContextAPI from './Context/AdminContext'
 import AuthHome from './auth/Home'
 import Documentation from './pages/Documentation'
+import Footer from './components/Footer'
+import Header from './components/Footer'
 function App() {
   const router=createBrowserRouter([
     {
@@ -58,7 +60,10 @@ function App() {
  }
 ])
   return (
-    <RouterProvider router={router}/>
+    <RouterProvider router={router}>
+      {/* <Header /> */}
+      <Footer />
+    </RouterProvider>
   )
 }
 

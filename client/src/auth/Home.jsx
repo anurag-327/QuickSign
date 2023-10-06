@@ -18,6 +18,8 @@ const Home = () => {
     
     useEffect(() =>
     { 
+        setPageLoading(true);
+        
     ( async function()
             {
                 
@@ -31,6 +33,7 @@ const Home = () => {
              const data = await response.json();
              if(response.status===200 && data)
              {
+                 
                  setOrganization(data);
                  setPageLoading(false)
              }
@@ -38,16 +41,15 @@ const Home = () => {
              {
                  setPageLoading(false)
                 setError(true)
-             }
-            
+             }  
          }())
   },[])
 
   return (
-    <div className='flex flex-col w-full h-screen justify-center items-center'>
+    <div className='flex font-poppins flex-col text-white w-full h-screen justify-center items-center'>
         {
             pageloading?(<><Loader/> <div className=' mt-2'>Verify Organization...</div></>):(
-                error?(<><p>Could Not verify Organizatiob</p></>):(<><LoginComponent organization={organization}  />
+                error?(<><p>Could Not verify Organization</p></>):(<><LoginComponent organization={organization}  />
                 </>)
             )
         }

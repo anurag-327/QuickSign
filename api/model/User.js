@@ -24,7 +24,8 @@ const UserSchema=new mongoose.Schema({
         default:"user"
     },
     access:[{
-        company:{type:mongoose.Schema.Types.ObjectId,ref:"Organization"}
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Organization"
     }]
 },{
     timestamps:true

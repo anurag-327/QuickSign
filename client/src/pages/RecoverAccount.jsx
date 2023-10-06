@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../base";
+import {Swap,CodesandboxLogo} from "phosphor-react"
 const RecoverAccount = () => {
   const navigate=useNavigate();
   const [searchParams] = useSearchParams();
@@ -29,7 +30,7 @@ const RecoverAccount = () => {
   const [userOTP, setUserOTP] = useState();
   const [loading, setLoading] = useState(false);
   const [accountdeatils,setAccountDetails]=useState()
-  
+
   async function handleSendOTP() {
     setmsg("")
     if (verifyEmail(email) == true) {
@@ -41,7 +42,7 @@ const RecoverAccount = () => {
         
         setAccountDetails(data);
         const otp = generateOTP();
-        console.log(otp)
+       
         const x=await sendOTP(email, otp);
         console.log(x)
         if(x.ok)
@@ -120,25 +121,25 @@ const RecoverAccount = () => {
     
   }
   return (
-    <div className="w-[100%] h-[80vh] text-center  flex  justify-center items-center">
+    <div className="w-[100%] h-[100vh] text-center bg-[#111010] flex  justify-center items-center">
       <Toaster position="top-center" reverseOrder />
       <div className="w-[350px]">
         <div>
-          <div className=" flex flex-col justify-center items-center">
-            <img className="w-[100px]" src={Logo} />
-          </div>
-          <h2 className="my-5 text-xl font-bold text-red-400">
+        <div className=" flex flex-col justify-center items-center">
+             <CodesandboxLogo size={100} color="#ffffff" weight="light" />
+         </div>
+          <h2 className="my-5 text-xl font-bold text-white">
             Recover your Account
           </h2>
         </div>
         {emailsection === true && (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col  gap-5">
             <input
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               autoComplete="off"
               autoCorrect="off"
-              className="  border-2 w-full rounded-md p-2  outline-none"
+              className="  rounded-md p-2 text-lg w-[95%]  outline-none"
               name="email"
               placeholder="Email"
             />
@@ -148,7 +149,7 @@ const RecoverAccount = () => {
               ) : (
                 <button
                   onClick={handleSendOTP}
-                  className=" w-full block  p-2 bg-blue-700 rounded-md"
+                  className=" w-full block  cursor-pointer p-2 text-lg bg-blue-600 text-white rounded-md"
                 >
                   Send OTP
                 </button>
