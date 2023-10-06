@@ -9,7 +9,7 @@ const AdminDashboard = () => {
 
     },[currentPage])
   return (
-    <div className='w-[calc(100%-300px)] bg-blue-100 sm:w-full md:w-full p-10 sm:p-3 h-screen'>
+    <div className='w-[100%] bg-gradient-to-l from-[#111010] to-[#000000] via-[#181818] sm:w-full md:w-full p-10 sm:p-3 min-h-[75vh]'>
         {
             currentPage==="pending"&&<PendingComponent/>
         }

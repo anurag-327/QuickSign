@@ -22,8 +22,8 @@ module.exports.register=async(req,res) =>
                 address:address,
                 link:link,
                 profile:profile || '',
-                status:"verified",
-                API_KEY:tokengeneratorcopy(_id),
+                // status:"verified",
+                // API_KEY:tokengeneratorcopy(_id),
                 password:CryptoJS.AES.encrypt(password,process.env.CRYPTOJS_SEC_KEY).toString(),
                 
             })
@@ -35,7 +35,7 @@ module.exports.register=async(req,res) =>
         }
     }catch(err) 
     {
-        console.log(err.message)
+        console.log(err,"hii")
         return res.status(500).json({status:500,message:err.message});
     }
     return res.json(req.body)

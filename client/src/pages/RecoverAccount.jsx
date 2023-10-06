@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../base";
 import {Swap,CodesandboxLogo} from "phosphor-react"
+import Header from "../components/Header";
 const RecoverAccount = () => {
   const navigate=useNavigate();
   const [searchParams] = useSearchParams();
@@ -122,6 +123,7 @@ const RecoverAccount = () => {
   }
   return (
     <div className="w-[100%] h-[100vh] text-center bg-[#111010] flex  justify-center items-center">
+      <Header />
       <Toaster position="top-center" reverseOrder />
       <div className="w-[350px]">
         <div>

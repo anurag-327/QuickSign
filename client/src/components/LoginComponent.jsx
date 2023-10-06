@@ -85,14 +85,14 @@ const LoginComponent = () =>
     }
   })
   return (
-    <div className="  w-[50%]  sm:w-[100%] h-[98vh] font-poppins flex flex-col gap-8 sm:justify-around justify-center items-center">
+    <div className="   mx-auto h-[98vh] font-poppins flex flex-col gap-8 sm:justify-center justify-center items-center">
       <Toaster position="top-center" reverseOrder />
     
       <div className=" flex flex-col justify-center items-center">
              <CodesandboxLogo size={100} color="#ffffff" weight="light" />
-             <h1 className="text-3xl font-bold font-mono text-white">Hello Again!</h1>
+             <h1 className="text-3xl sm:text-xl mt-2 font-bold font-mono text-white">Hello Again!</h1>
          </div>
-      <div className="w-[350px] ">
+      <div className="w-[380px] mx-auto sm:w-[94%] ">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -100,38 +100,42 @@ const LoginComponent = () =>
           }}
           method="post"
         >
-          <div className="flex flex-col w-[350px]  gap-3 loginsection">
-            <div>
-              <input
-                type="email"
-                
-                className="username w-[95%] border-none hover:resize-none rounded-md p-2 text-lg  outline-none"
-                name="email"
-                placeholder="Email"
-              />
+          <div className="flex flex-col   gap-4 mt-5 loginsection">
+          <div class="relative  bg-white rounded-lg">
+               <input
+                  type="email"
+                  required
+                  className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                  id="email"
+                  placeholder="name@example.com"
+                  name="email" />
+               <label
+                 htmlFor="email"
+                 class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                 >Email address</label
+               >
             </div>
-            <div className="relative w-[95%] bg-white rounded-md">
+            <div className="relative rounded-md border-2 full">
               <input
                 type={toggleEye ? "text" : "password"}
                 autoComplete="off"
                 autoCorrect="off"
-                className="passwordfield  text-lg w-[100%] rounded-md p-2 border-none hover:resize-none outline-none "
+                className="passwordfield  w-[100%] rounded-md px-2 py-3 text-lg hover:resize-none outline-none "
                 name="password"
                 placeholder="password"
               />
               <Eye
-                className="cursor-pointer absolute right-1 top-1 bottom-0"
+                className="cursor-pointer absolute right-2 top-3"
                 size={30}
                 onClick={() => setToggleEye(!toggleEye)}
                 color="#000000"
-                weight="light"
               />
             </div>
             
 
             <div className="text-center  w-full rounded-lg ">
                 {
-                    loading===true?(<Loader/>):( <button className="signupbutton w-[100%] block border-none p-2 cursor-pointer bg-blue-600 text-white text-lg font-semibold rounded-md">
+                    loading===true?(<Loader/>):( <button className="signupbutton w-[100%] block border-none px-2 py-3 cursor-pointer bg-blue-600 text-white text-lg font-semibold rounded-md">
                     Login
                   </button>)
                 }
@@ -161,7 +165,6 @@ const LoginComponent = () =>
           </div>
         </form>
       </div>
-      <Footer/>
     </div>
   );
 };

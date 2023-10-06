@@ -8,10 +8,10 @@ import Header from "../components/Footer";
 import {LinkedinLogo} from "phosphor-react"
 const Login = () => {
   return (
-    <section className="flex flex-col h-[98vh] gap-4 font-poppins  justify-center items-center">
-		<Header />
-      <div className=" flex flex-col justify-center items-center">
-             <CodesandboxLogo size={60} color="#ffffff" weight="light" />
+    <section className="flex flex-col h-[98vh] gap-4 font-poppins text-white justify-center items-center">
+		
+      <div className=" flex gap-3 justify-center items-center">
+             <CodesandboxLogo size={40} color="#ffffff" weight="light" />
              <h2 className="text-3xl font-bold font-mono mt-2">Contact Us!</h2>
         </div>
       <div className="flex flex-col justify-center outline outline-gray-500  max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
@@ -43,6 +43,7 @@ const Login = () => {
 		</div>
 	</div>
 </div>
+<Footer />
     </section>
   );
 };
