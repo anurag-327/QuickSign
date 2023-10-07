@@ -1,3 +1,5 @@
+import { BASE_URL } from "../base";
+
 export function generateOTP()
 {
   const OTP=Math.round(Math.random()*9000+1000)
@@ -11,7 +13,7 @@ export function generateOTP()
 
 export async function sendOTP(email,OTP)
 {
- 
+  
     let options = {
         method: "POST",
         headers: {
@@ -19,9 +21,7 @@ export async function sendOTP(email,OTP)
         },
         body: JSON.stringify({email:email, OTP: OTP }),
       };
-   const res=await fetch(`${import.meta.env.VITE_BASE_URL}/sendOTP`,options)
+   const res=await fetch(`${BASE_URL}/sendOTP`,options)
    const data=await res.json();
    return res;
-  
-   
 }

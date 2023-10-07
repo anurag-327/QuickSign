@@ -84,7 +84,7 @@ module.exports.verifyEmail=async (req,res)=>
         const user= await User.findOne({email:email}).select("_id email");
         if(user)
         {
-            return res.status(200).json(user);
+            return res.status(200).json({status:200,user:user});
         }
         else
         {

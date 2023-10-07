@@ -86,14 +86,14 @@ const RegisterOrganization = () => {
           }}
           method="post"
         >
-          <div className="flex flex-col mt-10 gap-3 w-full sm:mt-20 signupsection  ">
+          <div className="flex flex-col mt-20  gap-3 w-full sm:mt-20 signupsection  ">
           <div className=" flex gap-2 justify-center items-center">
              <CodesandboxLogo size={35} color="#ffffff" weight="light" />
              <h1 className="text-3xl sm:text-2xl font-bold text-white">Register here!</h1>
          </div>
             <div className="mx-auto mt-3">
                     <label className="" htmlFor='profile'>
-                         <img  src={profile || "http://localhost:5173/public/champagnedark.svg" }  className=' p-3  w-[80px] h-[80px] mx-32 object-cover border cursor-pointer bg-gray-200 rounded-full m-auto ' alt="profile"/>
+                         <img  src={profile || "https://github.com/anurag-327/QuickSign/assets/98267696/59ea78a9-7a16-4ebf-b258-88931a9ac98a" }  className=' p-3  w-[80px] h-[80px] mx-32 object-cover border cursor-pointer bg-gray-200 rounded-full m-auto ' alt="profile"/>
                     </label>
                     <input onChange={uploadprofile} className='hidden' id="profile" name="profile" type="file"></input>
                     <p className=" text-center mt-4 text-white font-semibold ">Drop your Application logo here</p>
