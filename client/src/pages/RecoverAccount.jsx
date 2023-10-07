@@ -38,14 +38,14 @@ const RecoverAccount = () => {
       setLoading(true)
       const res= await fetch(`${BASE_URL}/api/auth/${type}/verifyemail?email=${email}`) 
       const data=await res.json();
-      if(res.status==200)
+      if(res.ok)
       {
-        
+        console.log(res,data)
         setAccountDetails(data);
         const otp = generateOTP();
-       
+        
         const x=await sendOTP(email, otp);
-        console.log(x)
+        
         if(x.ok)
         {
           setOTP(otp);
@@ -122,10 +122,10 @@ const RecoverAccount = () => {
     
   }
   return (
-    <div className="w-[100%] h-[100vh] text-center bg-[#111010] flex  justify-center items-center">
+    <div className="w-[100%]  h-[100vh] text-center bg-[#111010] flex  justify-center items-center">
       <Header />
       <Toaster position="top-center" reverseOrder />
-      <div className="w-[350px]">
+      <div className="w-[350px] sm:w-[90%]">
         <div>
         <div className=" flex flex-col justify-center items-center">
              <CodesandboxLogo size={100} color="#ffffff" weight="light" />
@@ -135,13 +135,13 @@ const RecoverAccount = () => {
           </h2>
         </div>
         {emailsection === true && (
-          <div className="flex flex-col  gap-5">
+          <div className="flex flex-col w-full  gap-5">
             <input
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               autoComplete="off"
               autoCorrect="off"
-              className="  rounded-md p-2 text-lg w-[95%]  outline-none"
+              className="  rounded-md px-2 py-3 text-lg w-[100%]  outline-none"
               name="email"
               placeholder="Email"
             />
@@ -151,7 +151,7 @@ const RecoverAccount = () => {
               ) : (
                 <button
                   onClick={handleSendOTP}
-                  className=" w-full block  cursor-pointer p-2 text-lg bg-blue-600 text-white rounded-md"
+                  className=" w-full block  cursor-pointer px-2 py-3 text-lg bg-blue-600 text-white rounded-md"
                 >
                   Send OTP
                 </button>

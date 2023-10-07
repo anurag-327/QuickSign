@@ -10,15 +10,15 @@ module.exports.sendOTP = async (req, res) => {
       host: "smtp.ethereal.email",
       port:587,
       auth: {
-        user: "eloise.bailey85@ethereal.email",
-        pass: "A3D6NrA21rk7MnJpGh",
+        user: "turner.grant@ethereal.email",
+        pass: "1a1KJ1bypCwnsHqp93",
       },
     });
 
     var mailOptions = {
       from: '"Quick Sign" <anuragsrivastav0027@gmail.com>',
       to: `${email}`,
-      subject: "Rest your account password",
+      subject: "Reset your account password",
       text: `OTP to reset your account is : ${OTP}`,
     };
 
