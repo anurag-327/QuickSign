@@ -1,17 +1,16 @@
 const mongoose=require("mongoose")
 
 const ApplicationSchema=new mongoose.Schema({
-    applicationName:{
+    name:{
         type:String,
         required:true,
-        unique:true
+    },
+    description:{
+        type:String,
     },
     homepageURL:{
         type:String,
         required:true
-    },
-    description:{
-        type:String,
     },
     callbackURL:{
         type:String,
@@ -21,10 +20,14 @@ const ApplicationSchema=new mongoose.Schema({
         type:Boolean,
         default:true
     },
-    profile:{type:String},
+    logo:{type:String},
     clientSecret:{
         type:String,
         required:true
+    },
+    developer:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
     }
 })
 

@@ -2,60 +2,42 @@ import React,{useState,useEffect,useContext, createContext} from 'react'
 export const  UserContext=createContext();
 import { getToken } from '../helper/tokenHandler'
 import { BASE_URL } from '../base';
+import { Router } from 'react-router-dom';
 export default function ContextAPI({children}) {
    
     const [user,setUser]=useState();
+    const [application,setApplications]=useState([])
     useEffect(() =>
     {
         const token=getToken();
         if(token)
         {
-            if(token.type=="user")
+            (async function()
             {
-                ( async function()
+                let options={
+                    method:"GET",
+                    headers:{
+                        "authorization":`Bearer ${token.token}`
+                    },
+                }
+                const response = await fetch(`${BASE_URL}/api/data/getdata`, options);
+                const data = await response.json();
+                if(data.status===200)
                 {
-                    
-                 let options={
-                     method:"GET",
-                     headers:{
-                         "authorization":`Bearer ${token.token}`
-                     },
-                 }
-                 const response = await fetch(`${BASE_URL}/api/getuser`, options);
-                 const data = await response.json();
-                 if(response.status===200 && data)
-                 {
-                     setUser(data)
-                 }
-                
-             }())
-            }
-
-            else if(token.type==="organization")
-            {
-                // console.log("org")
-                ( async function()
-            {
-                
-             let options={
-                 method:"GET",
-                 headers:{
-                     "authorization":`Bearer ${token.token}`
-                 },
-             }
-             const response = await fetch(`${BASE_URL}/api/getorganization`, options);
-             const data = await response.json();
-             if(response.status===200 && data)
-             {
-                console.log(response)
-                 setUser(data)
-             }
-            
-         }())
-            }
+                    console.log(data)
+                    setUser(data.data)
+                    setApplications(data.applications)
+                }
+                else
+                {
+                    console.log(data)
+                }
+            }())
         }
-       
-
+        else{
+            console.log("Access token missing")
+        }
+    
     },[])
   return (
     <UserContext.Provider value={{user,setUser}} >{children}</UserContext.Provider>

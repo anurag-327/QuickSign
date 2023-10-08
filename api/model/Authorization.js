@@ -1,11 +1,11 @@
 const mongoose=require("mongoose")
-const AuthorisationSchema=new mongoose.Schema(
+const AuthorizationSchema=new mongoose.Schema(
     {
         userId:{
             type:mongoose.Schema.Types.ObjectId,
             ref:"User"
         },
-        applicationId:{
+        clientId:{
             type:mongoose.Schema.Types.ObjectId,
             ref:"Application"
         },
@@ -14,4 +14,4 @@ const AuthorisationSchema=new mongoose.Schema(
         timestamps:true
     }
 )
-module.exports=mongoose.model("Authorisation",AuthorisationSchema)
+module.exports=mongoose.model("Authorization",AuthorizationSchema)

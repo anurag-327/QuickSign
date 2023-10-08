@@ -9,9 +9,9 @@ export  function valiateLogin(email,password)
     }
 }
 
-export  function validateSignup(name,email,contact,link,address,password,profile)
+export  function validateSignup(name,email,password)
 {
-    if(verifyName(name)===true && verifyEmail(email) && verifyPhonenumber(contact) && verify(contact) && verify(address) && verifyPassword(password)===true  && checkPasswordStrength(password) && verify(profile) )
+    if(verifyName(name)===true && verifyEmail(email)  && verifyPassword(password)===true  )
     {
         return true; 
     }

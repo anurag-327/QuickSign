@@ -8,6 +8,7 @@ import UserDashboard from '../components/UserDashboard';
 import OrganizationDashboard from '../components/OrganizationDashboard';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Dashboard from '../components/Dashboard';
 const Home = () => {
   const navigate=useNavigate();
   const {user}=useContext(UserContext)
@@ -21,12 +22,15 @@ const Home = () => {
   })
   return (
     <>
+      <Navbar />
       {
-        user!=undefined?(<div className='flex flex-col w-full justify-center items-center'><Navbar />{token.type==="user"&&<UserDashboard />}{token.type==="organization"&&<OrganizationDashboard />}<Footer /></div>):(<div className='w-[100%] h-[100vh] flex sm:flex-col justify-center items-center'><Loader/>
+        user!=undefined?(<section className='min-h-screen w-[100vw] mt-28 sm:mt-20'>
+        <Dashboard />
+      </section>):(<div className='w-[100%] h-[100vh] flex sm:flex-col justify-center items-center'><Loader/>
         <div className='ml-8 sm:ml-0 text-white sm:mt-4'>Setting up the dashboard...</div></div>)
-      }
-       
-    </>
+      } 
+      <Footer />
+    </>      
   )
 }
 

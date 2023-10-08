@@ -14,7 +14,11 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    profile:{type:String}
+    profile:{type:String},
+    verificationStatus:{
+        type:Boolean,
+        default:true
+    }
 },{
     timestamps:true
 })
