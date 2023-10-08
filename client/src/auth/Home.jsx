@@ -113,7 +113,7 @@ const Home = () => {
   return (
     <div className='flex font-poppins flex-col text-white w-full h-screen justify-center items-center'>
         {
-            pageloading?(<><Loader/> <div className=' mt-2'>Verify Organization...</div></>):(
+            pageloading?(<><Loader/> <div className=' mt-2'>Verify Application...</div></>):(
                 error?(<><div>
                      <p>{errorMessage}</p>  
                      <button onClick={redirect} className='border px-3 py-2 rounded-md'>Back</button>                  
