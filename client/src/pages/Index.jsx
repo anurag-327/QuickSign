@@ -13,7 +13,7 @@ const Login = () => {
   {
     if(getToken())
     {
-      navigate("/home")
+      navigate("/dashboard")
     }
   })
   return (

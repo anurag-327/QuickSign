@@ -12,23 +12,20 @@ const RegisterComponent = () => {
     const [toggleEye, setToggleEye] = useState(false);
     const [loading,setLoading]=useState(false)
     const [searchParams] = useSearchParams();
-    
-    let redirect_url,flag=true;
+    let redirect_url="",flag=true;
     for (const entry of searchParams.entries()) {
       const [param, value] = entry;
-      if (param === "redirect_url") 
+      if(flag==true)
       {
-          if(flag==true)
-          {
-              redirect_url=value;
-              flag=false
-          }
-          else
-          {
-             redirect_url+="&redirect_url="+value
-          }  
+        redirect_url+=`${value}` 
+        flag=false;
+      }
+      else
+      {
+        redirect_url+=`&${param}=${value}` 
       }
     }
+    
 
     async function handleSignUp(e)
     {
@@ -54,7 +51,15 @@ const RegisterComponent = () => {
               {
                 setLoading(false)
                 setToken(res.token)
-                navigate("/dashboard")
+                if(redirect_url)
+                {
+                   window.location.href=redirect_url;
+                }
+                else
+                {
+                   navigate("/dashboard");
+                }
+               
               }
               else
               {

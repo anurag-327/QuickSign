@@ -20,23 +20,21 @@ const LoginComponent = () =>
 
   // getting query parameter
   const [searchParams] = useSearchParams();
-  let redirect_url,flag=true;
+  let redirect_url="",flag=true;
+  let x;
   for (const entry of searchParams.entries()) 
   {
     const [param, value] = entry;
-    if (param === "redirect_url") 
-    {
-        if(flag==true)
-        {
-            redirect_url=value;
-            flag=false
-        }
-        else
-            redirect_url+="&redirect_url="+value  
-    }
+    if(flag==true)
+      {
+        redirect_url+=`${value}` 
+        flag=false;
+      }
+      else
+      {
+        redirect_url+=`&${param}=${value}` 
+      }
   }
-  
-
   async function handleLogin(e) 
   {
     const data = new FormData(e.target);
@@ -60,7 +58,14 @@ const LoginComponent = () =>
         {
           setLoading(false)
           setToken(res.token)
-          navigate("/dashboard")
+          if(redirect_url)
+          {
+             window.location.href=redirect_url;
+          }
+          else
+          {
+            navigate("/dashboard");
+          }
         }
         else
         {

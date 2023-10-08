@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 const Login = () => {
   return (
-    <section className="px-6 sm:px-0 justify-center items-center">
+    <section className="px-6 sm:px-0 ">
       <Toaster position="top-center" reverseOrder />
       <Header />  
       <LoginComponent/>

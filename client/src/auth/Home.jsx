@@ -14,17 +14,17 @@ const Home = () => {
     const [application,setApplication]=useState();
     const [error,setError]=useState(true);
     const [errorMessage,setErrorMessage]=useState("");
-    let clientId,clientSecret,redirctURL;
+    let clientId,clientSecret,redirect_url="";
     for (const entry of searchParams.entries()) {
       const [param, value] = entry;
       if(param==="clientId") clientId=value;
       if(param==="clientSecret") clientSecret=value;
-      if(param==="redirectURL") redirctURL=value;
+      if(param==="redirect_url") redirect_url=value;
     }
     function redirect()
     {
-        if(redirctURL)
-           window.location.href=redirctURL;
+        if(redirect_url)
+           window.location.href=redirect_url
         else
            window.location.href="https://quick-sign.vercel.app/"
     }
@@ -103,8 +103,7 @@ const Home = () => {
                 setPageLoading(false)
                 setError(true)
                 setErrorMessage("Missing OAuth Credentials")
-                flag=false
-                
+                flag=false  
             } 
             flag=false 
        }  
@@ -117,7 +116,7 @@ const Home = () => {
                 error?(<><div>
                      <p>{errorMessage}</p>  
                      <button onClick={redirect} className='border px-3 py-2 rounded-md'>Back</button>                  
-                </div></>):(<>{application?<LoginComponent application={application} clientId={clientId} clientSecret={clientSecret} />:(
+                </div></>):(<>{application?<LoginComponent application={application} clientId={clientId} clientSecret={clientSecret} redirect_url={redirect_url} />:(
                     <div>
                      <p>{errorMessage}</p>  
                      <button onClick={redirect} className='border px-3 py-2 rounded-md'>Back</button>                  

@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import RegisterComponent from "../components/RegisterComponent";
 const Register = () => {
   return (
-    <section className="flex flex-col  justify-center items-center">
+    <section className="px-6 sm:px-0 ">
       <Toaster position="top-center" reverseOrder />
       <Header />
       <RegisterComponent />

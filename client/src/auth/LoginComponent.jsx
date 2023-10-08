@@ -11,7 +11,7 @@ import { BASE_URL } from "../base";
 import Loader from "../components/Loader";
 import {Swap,CodesandboxLogo,CheckCircle} from "phosphor-react"
 import { getToken } from "../helper/tokenHandler";
-const LoginComponent = ({ application,clientId,clientSecret }) => {
+const LoginComponent = ({ application,clientId,clientSecret,redirect_url }) => {
   const navigate = useNavigate();
   const [toggleEye, setToggleEye] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
