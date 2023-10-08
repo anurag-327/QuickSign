@@ -22,7 +22,7 @@ const AdminNavbar = () => {
         <a className='hover:underline hover:text-blue-200' href="https://quicksign-doc.vercel.app/">Docs</a>
         <button onClick={() => {setCurrentPage("pending")}} className='hover:underline hover:text-blue-200' >Pending</button>
         <button onClick={() => {setCurrentPage("organizations")}} className='hover:underline hover:text-blue-200' >All Organizations</button>
-        <a className='hover:underline hover:text-blue-200  px-2 py-1 border rounded-md ' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
+        <a className='hover:underline hover:text-blue-200  sm:px-2 sm:py-1 sm:border sm:rounded-md ' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
       </div>
     </nav>)
 }

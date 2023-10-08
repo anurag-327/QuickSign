@@ -21,7 +21,7 @@ const Header = () => {
         <a className='hover:underline hover:text-blue-200  sm:mt-52' href="/">Home</a>
         <a className='hover:underline hover:text-blue-200' href="/contact">Contact Us</a>
         <a className='hover:underline hover:text-blue-200' href="https://quicksign-doc.vercel.app/">Docs</a>
-        <a className='hover:underline hover:text-blue-200 px-2 py-1 border rounded-md text-center' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
+        <a className='hover:underline hover:text-blue-200 sm:px-2 sm:py-1 sm:border sm:rounded-md text-center' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
       </div>
     </nav>
   )

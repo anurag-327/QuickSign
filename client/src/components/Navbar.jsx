@@ -30,7 +30,7 @@ function Navbar()
         <a className='hover:underline hover:text-blue-200' href="/contact">Contact Us</a>
         <a className='hover:underline hover:text-blue-200' href="https://quicksign-doc.vercel.app/">Docs</a>
         <button onClick={() => {removeToken(); navigate("/")}} className='hover:underline hover:text-blue-200'>LogOut</button>
-        <a className='hover:underline hover:text-blue-200  px-2 py-1 border rounded-md ' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
+        <a className='hover:underline hover:text-blue-200  sm:px-2 sm:py-1 sm:border sm:rounded-md ' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
       </div>
     </nav>
   )
