@@ -1,4 +1,4 @@
-const Organization=require("../model/Organization")
+const Organization=require("../model/Application")
 const CryptoJS=require("crypto-js");
 
 const jwt=require("jsonwebtoken")

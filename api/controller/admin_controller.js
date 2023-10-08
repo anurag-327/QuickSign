@@ -1,4 +1,4 @@
-const Organization=require("../model/Organization")
+const Organization=require("../model/Application")
 module.exports.getOrganizations=async (req,res) =>
 {
     try{

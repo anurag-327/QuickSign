@@ -4,10 +4,6 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    phonenumber:{
-        type:String,
-        required:true
-    },
     email:{
         type:String,
         required:true,
@@ -18,15 +14,7 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    profile:{type:String},
-    type:{
-        type:String,
-        default:"user"
-    },
-    access:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Organization"
-    }]
+    profile:{type:String}
 },{
     timestamps:true
 })

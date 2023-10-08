@@ -1,5 +1,5 @@
 const User=require("../model/User")
-const Organization=require("../model/Organization")
+const Organization=require("../model/Application")
 module.exports.getUser=async(req,res)=>
 {
     try{
