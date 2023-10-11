@@ -100,12 +100,34 @@ module.exports.delete=async(req,res) =>
 module.exports.resetPassword=async (req,res)=>
 {
     try{
-        const {password,_id}=req.body;
-        const user= await User.findByIdAndUpdate(_id,{password:CryptoJS.AES.encrypt(password,process.env.CRYPTOJS_SEC_KEY).toString(),},{new:true})
+        const {oldPassword,newPassword}=req.body;
+        const user= await User.findById(req.user._id);
         if(user)
         {
-            return res.status(200).json({status:200,message:"success"}); 
+            let userPass=user.password
+            var decryptedPassword = CryptoJS.AES.decrypt(user.password,process.env.CRYPTOJS_SEC_KEY).toString(CryptoJS.enc.Utf8)
+            if(oldPassword===decryptedPassword)
+            {
+                const updatedUser= await User.findByIdAndUpdate(user._id,{password:CryptoJS.AES.encrypt(newPassword,process.env.CRYPTOJS_SEC_KEY).toString()},{new:true})
+                if(updatedUser)
+                {
+                    return res.status(200).json({status:200,message:"success"}); 
+                }
+                else
+                {
+                    return res.status(500).json({status:403,message:"failed to update Password"});
+                }
+            }
+            else
+            {
+                return res.status(403).json({status:403,message:"Wrong password"});
+            }
         }
+        else
+        {
+            return res.status(404).json({status:403,message:"User Not Found"});
+        }
+        
     }catch(err)
     {
         return res.status(500).json({status:500,message:err.message}); 
@@ -148,7 +170,7 @@ module.exports.update=async(req,res) =>
         }
         const result=await User.findByIdAndUpdate(req.user._id,x,{new:true}).select("-password");
         if(result)
-            return res.status(200).json({status:200,message:"Information updated",application:result})
+            return res.status(200).json({status:200,message:"Information updated",user:result})
         else
             return res.status(500).json({status:500,message:"Failed to update Information"})      
             

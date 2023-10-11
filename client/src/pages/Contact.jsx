@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import LoginBanner from "../components/LoginBanner";
 import Logo from "../assets/Logo.png"
 import { Link } from "react-router-dom";
 import {Swap,CodesandboxLogo} from "phosphor-react"

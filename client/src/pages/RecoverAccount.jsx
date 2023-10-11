@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import Logo from "../assets/Logo.png";
 import { verifyEmail } from "../helper/verify";
 import { generateOTP, sendOTP } from "../helper/OTPHandler";
 import Loader from "../components/Loader";

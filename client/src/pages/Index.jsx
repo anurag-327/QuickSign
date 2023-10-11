@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LoginBanner from "../components/LoginBanner";
-import Logo from "../assets/Logo.png"
-import { Link } from "react-router-dom";
+
 import Footer from "../components/Footer";
 import { getToken } from "../helper/tokenHandler";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +20,7 @@ const Login = () => {
       <Header />
       <div className="sm:w-[50%] w-[100%]   flex flex-col gap-10  justify-center items-center">
          <div className=" flex flex-col justify-center items-center">
-             <CodesandboxLogo size={100} color="#ffffff" weight="light" />
+             <CodesandboxLogo className="animate-pulse" size={100} color="#ffffff" weight="light" />
              <h2 className="text-3xl sm:text-2xl text-center text-white font-bold font-mono mt-3">Welcome to QuickSign</h2>
              <p className="mt-1 text-white font-poppins">An OAuth for hastle free signups</p>
          </div>

@@ -6,7 +6,8 @@ import { Router } from 'react-router-dom';
 export default function ContextAPI({children}) {
    
     const [user,setUser]=useState();
-    const [application,setApplications]=useState([])
+    const [applications,setApplications]=useState([])
+    const [authorizations,setAuthorizations]=useState([])
     useEffect(() =>
     {
         const token=getToken();
@@ -27,6 +28,7 @@ export default function ContextAPI({children}) {
                     console.log(data)
                     setUser(data.data)
                     setApplications(data.applications)
+                    setAuthorizations(data.authorizations)
                 }
                 else
                 {
@@ -40,6 +42,6 @@ export default function ContextAPI({children}) {
     
     },[])
   return (
-    <UserContext.Provider value={{user,setUser}} >{children}</UserContext.Provider>
+    <UserContext.Provider value={{user,setUser,applications,setApplications,authorizations,setAuthorizations}} >{children}</UserContext.Provider>
   )
 }

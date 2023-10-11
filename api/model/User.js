@@ -14,7 +14,10 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    profile:{type:String},
+    profile:{
+        type:String,
+        default:"https://github.com/anurag-327/QuickSign/assets/98267696/381eb2f4-0245-417b-8b71-56ff3ead9797"  
+    },
     verificationStatus:{
         type:Boolean,
         default:true

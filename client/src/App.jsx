@@ -13,7 +13,7 @@ import Admin from './Admin/Admin'
 import ContextAPI from './Context/ContextAPI'
 import AdminContextAPI from './Context/AdminContext'
 import AuthHome from './auth/Home'
-import Documentation from './pages/Documentation'
+import Application from './pages/Application'
 function App() {
   const router=createBrowserRouter([
     {
@@ -48,6 +48,11 @@ function App() {
     path:"*",
     element:<Error />
  }
+//  ,
+//   {
+//     path:"/dashboard/application/:id",
+//     element:<Application />
+//  }
 ])
   return (
     <RouterProvider router={router}>

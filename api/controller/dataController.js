@@ -7,9 +7,10 @@ module.exports.getData=async(req,res)=>
     try{
         const user=await User.findOne({_id:req.user._id}).select("-password")
         const applications=await Application.find({developer:req.user._id})
+        const authorizations=await Authorization.find({userId:req.user._id}).populate({path:"clientId",select:"name homepageURL logo description"})
         if(user && applications)
         {
-            return res.status(200).json({status:200,data:user,applications:applications});
+            return res.status(200).json({status:200,data:user,applications:applications,authorizations:authorizations});
         }
         else{
             return res.status(404).json({status:404,message:"Couldn't get data"});  

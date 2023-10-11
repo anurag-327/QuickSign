@@ -20,7 +20,7 @@ const ApplicationSchema=new mongoose.Schema({
         type:Boolean,
         default:true
     },
-    logo:{type:String},
+    logo:{type:String,default:"https://github.com/anurag-327/QuickSign/assets/98267696/373a8c6a-6e65-4b02-9ba6-27cdf49ea4b8"},
     clientSecret:{
         type:String,
         required:true

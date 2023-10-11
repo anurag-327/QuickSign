@@ -20,7 +20,7 @@ function Navbar()
      document.querySelector("#X").classList.toggle("sm:hidden")
   }
   return (
-    <nav className=" fixed top-0 z-50 font-poppins bg-gradient-to-l from-[#111010] to-[#000000] via-[#181818] w-full max-w-screen py-3 px-6 text-white  ">
+    <nav className=" fixed top-0 z-50 font-poppins bg-gradient-to-l from-[#111010] to-[#000000] via-black w-full max-w-screen py-3 px-6 text-white  ">
       <div className='flex float-right'>
          <List id="list" className='hidden sm:block' onClick={toggleDrawer} size={32} weight="light" color="#ffffff" />
          <X id="X" onClick={toggleDrawer} className="md:hidden lg:hidden xl:hidden 2xl:hidden sm:hidden" size={32} weight="light" color="#ffffff"/>

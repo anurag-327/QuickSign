@@ -113,9 +113,9 @@ const Home = () => {
     <div className='flex font-poppins flex-col text-white w-full h-screen justify-center items-center'>
         {
             pageloading?(<><Loader/> <div className=' mt-2'>Verify Application...</div></>):(
-                error?(<><div>
-                     <p>{errorMessage}</p>  
-                     <button onClick={redirect} className='border px-3 py-2 rounded-md'>Back</button>                  
+                error?(<><div className='flex flex-col justify-center items-center gap-6'>
+                     <p className='sm:text-2xl font-semibold'>{errorMessage}</p>  
+                     <button onClick={redirect} className='underline bg-zinc-700 px-3 py-2 rounded-lg border border-zinc-800 '>Back</button>                  
                 </div></>):(<>{application?<LoginComponent application={application} clientId={clientId} clientSecret={clientSecret} redirect_url={redirect_url} />:(
                     <div>
                      <p>{errorMessage}</p>  
