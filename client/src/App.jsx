@@ -48,11 +48,11 @@ function App() {
     path:"*",
     element:<Error />
  }
-//  ,
-//   {
-//     path:"/dashboard/application/:id",
-//     element:<Application />
-//  }
+ ,
+  {
+    path:'/dashboard/application/:id',
+    element:<Application />
+ }
 ])
   return (
     <RouterProvider router={router}>

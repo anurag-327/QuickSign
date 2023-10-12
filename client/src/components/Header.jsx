@@ -8,20 +8,19 @@ const Header = () => {
   function toggleDrawer()
   {
      document.querySelector("#Drawer").classList.toggle("sm:hidden")
-     document.querySelector("#list").classList.toggle("sm:hidden")
-     document.querySelector("#X").classList.toggle("sm:hidden")
+     document.querySelector("#list").classList.toggle("block")
+     document.querySelector("#X").classList.toggle("hidden")
   }
   return (
     <nav className=" fixed top-0 z-50 font-poppins bg-gradient-to-l from-[#111010] to-[#000000] via-black w-full max-w-screen py-3 px-6 text-white  ">
-      <div className='flex float-right'>
-         <List id="list" className='hidden sm:block' onClick={toggleDrawer} size={32} weight="light" color="#ffffff" />
-         <X id="X" onClick={toggleDrawer} className="md:hidden lg:hidden xl:hidden 2xl:hidden sm:hidden" size={32} weight="light" color="#ffffff"/>
-      </div>
-      <div id="Drawer" className='flex float-right sm:text-center sm:float-none mr-3 gap-8 sm:gap-5  sm:px-10 text-lg sm:w-[300px] sm:absolute top-0 sm:left-0 sm:h-[100vh] sm:border-r sm:bg-[#181818] sm:hidden sm:flex-col '>
-        <a className='hover:underline hover:text-blue-200  sm:mt-52' href="/">Home</a>
-        <a className='hover:underline hover:text-blue-200' href="/contact">Contact Us</a>
+      {/* <div className='flex float-right'>
+         <List id="list" className='block sm:hidden' onClick={toggleDrawer} size={32} weight="light" color="#ffffff" />
+         <X id="X" onClick={toggleDrawer} className=" hidden sm:hidden" size={32} weight="light" color="#ffffff"/>
+      </div> */}
+      <div id="Drawer" className='flex   gap-4 flex-row  float-right  text-lg top-0   '>
+        <a className='hover:underline hover:text-blue-200  ' href="/">Home</a>
         <a className='hover:underline hover:text-blue-200' href="https://quicksign-doc.vercel.app/">Docs</a>
-        <a className='hover:underline hover:text-blue-200 sm:px-2 sm:py-1 sm:border sm:rounded-md text-center' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
+        <a className='hover:underline hover:text-blue-200 ' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
       </div>
     </nav>
   )

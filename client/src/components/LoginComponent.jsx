@@ -87,7 +87,7 @@ const LoginComponent = () =>
       <Toaster position="top-center" reverseOrder />
       <div className=" flex flex-col justify-center items-center">
           <CodesandboxLogo size={100} color="#ffffff" weight="light" />
-          <h1 className="text-2xl sm:text-3xl mt-2 font-bold font-mono text-white">Hello Again!</h1>
+          <h1 className="text-2xl sm:text-3xl mt-2 font-bold text-white">Quick Sign</h1>
       </div>
       <form className="flex flex-col  w-[100%] sm:w-[400px] mx-auto  gap-4 mt-5 loginsection" onSubmit={(e) => { e.preventDefault(); handleLogin(e); }} method="post">
           <div className="relative  bg-white rounded-lg w-full">

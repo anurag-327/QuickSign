@@ -25,7 +25,7 @@ export default function ContextAPI({children}) {
                 const data = await response.json();
                 if(data.status===200)
                 {
-                    console.log(data)
+                   
                     setUser(data.data)
                     setApplications(data.applications)
                     setAuthorizations(data.authorizations)

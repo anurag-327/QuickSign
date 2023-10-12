@@ -59,32 +59,15 @@ module.exports.delete=async(req,res) =>
 module.exports.update=async(req,res) =>
 {
     try {
-        const {applicationId,field,value}=req.body;
-        let x;
-        switch(field)
-        {
-            case "applicationName":
-               x={"applicationName":value}
-               break;
-            case "description":
-                x={"description":value}
-                break;
-            case "logo":
-                x={"logo":value}
-                break; 
-            case "homepageURL":
-                x={"homepageURL":value}
-                break;
-            case "callbackURL":
-                x={"calbackURL":value}
-                break;
-            case "logo":
-                x={"logo":value}
-                break;
-            default :
-               return res.status(404).json({status:404,message:"No such field exist"})                   
-        }
+        const body=req.body;
+        const applicationId=body.applicationId
         const applicationDetails=await Application.findById(applicationId);
+        const x={
+            name:body.name,
+            description:body.description,
+            homepageURL:body.homepageURL,
+            callbackURL:body.callbackURL
+        }
         if(applicationDetails)
         {
             if(req.user._id==applicationDetails.developer)

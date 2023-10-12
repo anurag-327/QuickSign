@@ -63,7 +63,8 @@ module.exports.getApplication=async(req,res)=>
 {
     try{
         const applicationId=req.params.id;
-        const application=await Application.find({_id:applicationId,developer:req.user._id}).populate({path:"developer",select: "name email profile"})
+        const application=await Application.findOne({_id:applicationId,developer:req.user._id})
+        .populate({path:"developer",select: "name email profile"})
         if(application)
         {
             return res.status(200).json({status:200,data:application});
