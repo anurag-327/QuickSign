@@ -4,53 +4,124 @@ import { useSearchParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import Loader from '../components/Loader'
 import { BASE_URL } from '../base'
+import toast from 'react-hot-toast'
+import { getToken } from '../helper/tokenHandler'
+import { useNavigate } from 'react-router-dom'
 const Home = () => {
+    const navigate = useNavigate();
     const [pageloading,setPageLoading]=useState(false);
     const [searchParams] = useSearchParams();
-    const [organization,setOrganization]=useState();
-    const [error,setError]=useState();
-    let state;
+    const [application,setApplication]=useState();
+    const [error,setError]=useState(true);
+    const [errorMessage,setErrorMessage]=useState("");
+    let clientId,clientSecret,redirect_url="";
     for (const entry of searchParams.entries()) {
       const [param, value] = entry;
-      if(param==="state")
-      state=value;
+      if(param==="clientId") clientId=value;
+      if(param==="clientSecret") clientSecret=value;
+      if(param==="redirect_url") redirect_url=value;
     }
-    
+    function redirect()
+    {
+        if(redirect_url)
+           window.location.href=redirect_url
+        else
+           window.location.href="https://quick-sign.vercel.app/"
+    }
+    let flag=true
     useEffect(() =>
     { 
-        setPageLoading(true);
-        
-    ( async function()
+        if(flag==true)
+        {
+            setPageLoading(true);
+            if(clientId!=undefined && clientSecret!=undefined)
             {
-                
-             let options={
-                 method:"GET",
-                 headers:{
-                     "authorization":`Bearer ${state}`
-                 },
-             }
-             const response = await fetch(`${BASE_URL}/api/getorganization`, options);
-             const data = await response.json();
-             if(response.status===200 && data)
-             {
-                 
-                 setOrganization(data);
-                 setPageLoading(false)
-             }
-             else
-             {
-                 setPageLoading(false)
+                console.log("credentials Exist")
+                const token=getToken();
+                if(token)
+                {
+                    (async function()
+                    {
+                        let options={
+                            method:"POST",
+                            headers:{
+                                "content-type": "application/json",
+                                "authorization":`Bearer ${token.token}`
+                            },
+                            body:JSON.stringify({
+                            clientId,clientSecret
+                             })
+                        }
+                        const response = await fetch(`${BASE_URL}/api/OAuth`, options);
+                        const data = await response.json();
+                        if(data.status===200)
+                        {
+                            setError(false)
+                            setApplication(data.application)
+                            if(data.authorization===true)
+                            {
+                                console.log("Already Authorised")
+                                flag=false
+                                console.log(data)
+                                let redirect_url =data.application.callbackURL + `?status=true&token=${data.token}`
+                                window.location.href=redirect_url;
+                            }
+                            else
+                            {  
+                                console.log("Not Authorized")
+                                setPageLoading(false);
+                                setError(false)
+                            }
+                        }
+                        else
+                        {
+                            flag=false
+                            console.log("Failed to authorise")
+                            console.log(data)
+                            setPageLoading(false)
+                            setError(true)
+                            setErrorMessage(data.message)
+                        }  
+                    }())
+                }
+                else
+                {
+                    console.log("Access token missing")
+                    setPageLoading(false)
+                    setError("No active Session Found")
+                    console.log(window.location.href)
+                    toast.error("No active sessions found")
+                    flag=false
+                    navigate(`/auth/login?redirect_url=${window.location.href}`)
+                }
+                flag=false
+            }   
+            else
+                {
+                console.log("Credentials Missing")
+                toast.error("Missing credentials")
+                setPageLoading(false)
                 setError(true)
-             }  
-         }())
-  },[])
+                setErrorMessage("Missing OAuth Credentials")
+                flag=false  
+            } 
+            flag=false 
+       }  
+    },[])
 
   return (
     <div className='flex font-poppins flex-col text-white w-full h-screen justify-center items-center'>
         {
-            pageloading?(<><Loader/> <div className=' mt-2'>Verify Organization...</div></>):(
-                error?(<><p>Could Not verify Organization</p></>):(<><LoginComponent organization={organization}  />
-                </>)
+            pageloading?(<><Loader/> <div className=' mt-2'>Verify Application...</div></>):(
+                error?(<><div className='flex flex-col justify-center items-center gap-6'>
+                     <p className='sm:text-2xl font-semibold'>{errorMessage}</p>  
+                     <button onClick={redirect} className='underline bg-zinc-700 px-3 py-2 rounded-lg border border-zinc-800 '>Back</button>                  
+                </div></>):(<>{application?<LoginComponent application={application} clientId={clientId} clientSecret={clientSecret} redirect_url={redirect_url} />:(
+                    <div>
+                     <p>{errorMessage}</p>  
+                     <button onClick={redirect} className='border px-3 py-2 rounded-md'>Back</button>                  
+                </div>
+                )}</>)
             )
         }
        

@@ -67,7 +67,7 @@ export function verifyPassword(password)
     }
     else
     {
-        return true;
+        return true
     }
 }
 export function checkPasswordStrength(password)

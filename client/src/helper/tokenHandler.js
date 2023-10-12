@@ -3,7 +3,6 @@ export function setToken(token,type)
 {
     const value={
         token:token,
-        type:type
     }
 
     ls.set('quick_sign',value,{ttl:86400})

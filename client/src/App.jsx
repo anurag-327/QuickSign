@@ -9,22 +9,16 @@ import Register from "./pages/Register"
 import Index from "./pages/Index"
 import Contact from "./pages/Contact"
 import Admin from './Admin/Admin'
-import RecoverAccount from "./pages/RecoverAccount"
+
 import ContextAPI from './Context/ContextAPI'
 import AdminContextAPI from './Context/AdminContext'
 import AuthHome from './auth/Home'
-import Documentation from './pages/Documentation'
-import Footer from './components/Footer'
-import Header from './components/Footer'
+import Application from './pages/Application'
 function App() {
   const router=createBrowserRouter([
     {
     path:"/",
     element:<Index />
-  },
-    {
-    path:"/contact",
-    element:<Contact />
   },
     {
     path:"/auth/login",
@@ -35,11 +29,7 @@ function App() {
     element:<Register />
   },
     {
-    path:"/auth/recover",
-    element:<RecoverAccount/>
-  },
-    {
-    path:"/home",
+    path:"/dashboard",
     element:<ContextAPI><Home /></ContextAPI>
   },
     {
@@ -50,13 +40,18 @@ function App() {
     path:"/auth",
     element:<AuthHome />
   },
-    {
-    path:"/docs",
-    element:<Documentation />
+   {
+    path:"/contact",
+    element:<Contact />
   },
   {
     path:"*",
     element:<Error />
+ }
+ ,
+  {
+    path:'/dashboard/application/:id',
+    element:<Application />
  }
 ])
   return (

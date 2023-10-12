@@ -1,9 +1,30 @@
 const User=require("../model/User")
+const Application=require("../model/Application")
+const Authorization=require("../model/Authorization")
 const CryptoJS=require("crypto-js");
 const jwt=require("jsonwebtoken")
 
+module.exports.verifyApplication=async (req,res,next) =>
+{
+    try{
+        const {clientId,clientSecret}=req.body;
+        const application=await Application.findOne({_id:clientId,clientSecret}).select("-_id -secretId -description -developer ");
+        if(application)
+        {
+            req.application=application
+            next();
+        }
+        else
+        {
+            return res.status(404).json({status:404,message:"Couldn't verify Application"});  
+        }
+    }catch (err) 
+    {
+        return res.status(500).json({status:500,message:err.message})
+    }
+}
 
-module.exports.OAuth=async(req,res) => 
+module.exports.verifyUser=async (req,res,next) =>
 {
     try{
         const authHeader=req.headers.authorization;
@@ -13,49 +34,47 @@ module.exports.OAuth=async(req,res) =>
                 const token=authHeader.split(' ')[1];
                 jwt.verify(token,process.env.JWT_SEC_KEY,async (err,user) =>
                 {
-                    if(err) return res.status(403).json({status:403,mesaage:"Invalid token"});
+                    if(err) return res.status(403).json({status:403,mesaage:"Invalid Access token"});
+                    const userDetails= await User.findById(user._id).select(" -createdAt -updatedAt -password ");
+                    if(userDetails)
+                    {
+                        req.user=userDetails    
+                        next();
+                    }
                     else
                     {
-                        const userDetails= await User.findById(user._id).select(" -createdAt -updatedAt -password");
-                        if(userDetails)
-                        {
-                                // add org id to user list
-                                const orgs=userDetails.access;
-                                
-                                if(orgs.includes(req.body.organizationId)==false)
-                                {
-                                    orgs.push(req.body.organizationId);
-                                    console.log(orgs)
-                                    User.findByIdAndUpdate(user._id,{access:orgs},function (err, docs) { 
-                                        if (err){ 
-                                            return res.status(401).json({status:401,mesaage:"Authorisation failed"})
-                                        } 
-                                        // else{ 
-                                        //     console.log("Updated User : ", docs); 
-                                        // } 
-                                    });
-                                }
-                                const details={
-                                    email:userDetails.email,
-                                    name:userDetails.name,
-                                    // profile:userDetails.profile,
-                                }
-                                return res.status(200).json({status:200,token:tokengenerator(user._id),user:details});
-                        }
-                        else
-                        {
-                            return res.status(404).json({status:404,message:"User Not found"});
-                        }
-                    }                    
+                        return res.status(404).json({status:404,message:"User Not found"});
+                    }
                 })
             }catch(err)
             {
-                return res.status(401).json({status:401,mesaage:"Authorisation failed"})
+                return res.status(401).json({status:401,message:"authorisation failed"})
             }
         }
         else
         {
-            return res.status(401).json({status:401,mesaage:"No token provided/Invalid token"})
+            return res.status(401).json({status:401,message:"No token provided/Invalid token"})
+        }
+    }catch (err) 
+    {
+        return res.status(500).json({status:500,message:err.message})
+    }
+}
+
+module.exports.OAuth=async(req,res) => 
+{
+    try{
+        const {clientId,clientSecret}=req.body;
+        const authorization=await Authorization.findOne({userId:req.user._id,clientId:clientId})
+        if(authorization)
+        {
+            // already authorized
+            return res.status(200).json({status:200,authorization:true,application:req.application,token:tokengenerator(req.user._id)});
+        }
+        else
+        {
+            // not authorized for direct authorization
+            return res.status(405).json({status:200,authorization:false,application:req.application});
         }
     }catch (err) 
     {
@@ -63,41 +82,55 @@ module.exports.OAuth=async(req,res) =>
     }
 }
 
-module.exports.verifyUser=async (req,res,next) =>
+module.exports.authorize=async(req,res) => 
 {
     try{
-            try{
-                const token=req.body.token;
-                jwt.verify(token,process.env.JWT_SEC_KEY,async (err,user) =>
-                {
-                    if(err) return res.status(403).json({status:403,mesaage:"Invalid Access token"});
-                    else
-                    {
-                        const userDetails= await User.findById(user._id).select(" -createdAt -updatedAt -password -access");
-                        if(userDetails)
-                        {
-                            return res.status(200).json({status:200,user:userDetails});
-                        }
-                        else
-                        {
-                            return res.status(404).json({status:404,message:"User Not found"});
-                        }
-                    }         
-                    
-                })
-            }catch(err)
-            {
-                return res.status(401).json({status:401,mesaage:"Authorisation failed"})
-            }
+        const {clientId,clientSecret}=req.body;
+        const authorization=await Authorization.findOne({userId:req.user._id,clientId})
+        if(authorization)
+        {
+            // already authorized
+            return res.status(200).json({status:200,authorization:true,application:req.application,token:tokengenerator(req.user._id)});
+        }
+        else
+        {
+            // add authorization
+            const newauth= new Authorization({
+                userId:req.user._id,
+                clientId
+            })
+            const result=await newauth.save();
+            if(result)
+            return res.status(201).json({status:201,authorization:true,application:req.application,token:tokengenerator(req.user._id)});
+            else
+            return res.status(500).json({status:500,message:"Error Authorizing user"});
+        }
+    }catch (err) 
+    {
+        console.log(err)
+        return res.status(500).json({status:500,mesaage:err.message})
+    }
+}
+
+module.exports.removeAuthorization=async (req,res,next) =>
+{
+    try{
+       const {clientId}=req.body;
+       Authorization.deleteOne({ userId:req.user._id,clientId }).then(function(){
+        return res.status(200).json({status:200,message:"Deleted Successfully"});
+    }).catch(function(error){
+        return res.status(500).json({status:500,message:error.message})
+        
+    });
         
     }catch (err) 
     {
-        return res.status(500).json({status:500,mesaage:err.message})
+        return res.status(500).json({status:500,message:err.message})
     }
-
 }
+
 
 const tokengenerator = (_id) =>
 {
-    return jwt.sign({_id:_id},process.env.JWT_SEC_KEY,{expiresIn:"1d"});
+    return jwt.sign({_id:_id},process.env.JWT_SEC_KEY,{expiresIn:"2d"});
 }

@@ -4,10 +4,6 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    phonenumber:{
-        type:String,
-        required:true
-    },
     email:{
         type:String,
         required:true,
@@ -18,15 +14,14 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    profile:{type:String},
-    type:{
+    profile:{
         type:String,
-        default:"user"
+        default:"https://github.com/anurag-327/QuickSign/assets/98267696/381eb2f4-0245-417b-8b71-56ff3ead9797"  
     },
-    access:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Organization"
-    }]
+    verificationStatus:{
+        type:Boolean,
+        default:true
+    }
 },{
     timestamps:true
 })

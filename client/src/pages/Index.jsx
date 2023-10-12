@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LoginBanner from "../components/LoginBanner";
-import Logo from "../assets/Logo.png"
-import { Link } from "react-router-dom";
+
 import Footer from "../components/Footer";
 import { getToken } from "../helper/tokenHandler";
 import { useNavigate } from "react-router-dom";
@@ -13,24 +11,22 @@ const Login = () => {
   {
     if(getToken())
     {
-      navigate("/home")
+      navigate("/dashboard")
     }
   })
   return (
     <>
-    <section className="flex gap-1 font-poppins w-[99vw] h-[98vh] overflow-hidden justify-center items-center">
+    <section className="flex gap-1 font-poppins w-[99vw] min-h-[99vh] overflow-hidden justify-center items-center">
       <Header />
-      <div className="w-[50%] sm:w-[100%]   flex flex-col gap-10  justify-center items-center">
+      <div className="sm:w-[50%] w-[100%]   flex flex-col gap-10  justify-center items-center">
          <div className=" flex flex-col justify-center items-center">
-             <CodesandboxLogo size={100} color="#ffffff" weight="light" />
-             <h2 className="text-3xl sm:text-2xl text-center text-white font-bold font-mono mt-3">Welcome to QuickSign</h2>
-             <p className="mt-1 text-white font-poppins">An OAuth for hastle free signups</p>
+             <CodesandboxLogo className="" size={100} color="#ffffff" weight="light" />
+             <h2 className="text-3xl sm:text-2xl text-center text-white font-bold  mt-3">Welcome to QuickSign</h2>
+             <p className="mt-1 text-white text-center font-poppins">An OAuth Provider for hastle free signups</p>
          </div>
          <div className="flex flex-col gap-5 w-[100%] items-center">
-            <a className="bg-violet-500 sm:w-[80%] w-[40%] no-underline hover:shadow-xl hover:scale-105 transform translate duration-300 text-center font-bold text-white p-3 rounded-lg" href="/auth/login?type=user">Register as User</a>
-            <a className="bg-green-500 sm:w-[80%] w-[40%] no-underline hover:shadow-xl hover:scale-105 transform translate duration-300 text-center font-bold text-white p-3 rounded-lg" href="/auth/login?type=organization">Register as Organization</a>
-         </div>
-        
+            <a className="bg-violet-500 w-[80%] sm:w-[50%] no-underline hover:shadow-xl hover:scale-105 transform translate duration-300 text-center font-bold text-white p-3 rounded-lg" href="/auth/login">Sign In to Continue</a>
+         </div>   
       </div>
     </section>
       <Footer />
