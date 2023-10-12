@@ -1,7 +1,9 @@
 ## Setting up URL to redirect to OAuth Authentication
 
 ```jsx
-<a href="https://quicksign-bq48.onrender.com/auth?state=**<YOUR API_KEY>**&redirect_url=**<YOUR REDIRECT URL>**/">
+<a href="https://quicksign-bq48.onrender.com/auth?clientId=**<YOUR ClientId>**&clientSecret=**<YOUR clientSecret>&redirect_url=**<YOUR REDIRECT URL>**/">
 Continue with QuickSign
 </a>
 ```
+
+**The redirect URL parameter is optional but it is advised to pass redirect url for redirect in case of any error**

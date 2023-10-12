@@ -1,5 +1,6 @@
 const jwt=require("jsonwebtoken");
 const User=require("../model/User");
+const Application = require("../model/Application");
 const verifyToken=async (req,res,next) =>
 {
     try{
@@ -30,7 +31,7 @@ const verifyToken=async (req,res,next) =>
 
 }
 
-const verifyOrganization=async(req,res,next)=>
+const verifyApplication=async(req,res,next)=>
 {
     try{
         const authHeader=req.headers.api;
@@ -38,12 +39,16 @@ const verifyOrganization=async(req,res,next)=>
         {
             try{
                 const token=authHeader;
-                jwt.verify(token,process.env.JWT_SEC_KEY,async (err,user) =>
+                const application=await Application.findOne({clientSecret:token})
+                if(application)
                 {
-                    if(err) return res.status(403).json({status:403,message:"Invalid ORGANIZATION token"});
-                    req.user=user;
+                    req.application=application
                     next();
-                })
+                }
+                else
+                {
+                    return res.status(403).json({status:403,message:"Invalid APPLICATION token"});
+                }
             }catch(err)
             {
                 return res.status(401).json({status:401,message:"Authorisation failed"})
@@ -87,4 +92,4 @@ const verifyAPIKey=async(req,res,next)=>
         return res.status(500).json({status:500,message:err.message})
     }
 }
-module.exports={verifyToken,verifyOrganization,verifyAPIKey};
+module.exports={verifyToken,verifyApplication,verifyAPIKey};

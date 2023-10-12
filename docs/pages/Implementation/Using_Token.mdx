@@ -6,14 +6,14 @@
 https://quicksign-bq48.onrender.com/auth/verify
 // sample fetch request
 const body={
-   method:"post",
+   method:"GET",
    headers:{
       "content-type":"application/json",
-      "authorization":"Bearer <YOUR API KEY>"
+      "authorization":"<Client Secret>"
    },
    body:JSON.stringify({token:**<ACCESS TOKEN>**})
 }
-const response=await fetch("https://quicksign-bq48.onrender.com/auth/verify",body);
+const response=await fetch("https://quicksign-bq48.onrender.com/api/data/getuser",body);
 const data=await response.json();
 
 ```
@@ -26,7 +26,7 @@ const data=await response.json();
 1- OK Response
 {
    staus:200,
-   user:{
+   datar:{
       name:<NAME>
       email:<EMAIL>
       type:user,
