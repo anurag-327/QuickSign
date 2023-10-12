@@ -16,7 +16,7 @@ const Slider = ({tab}) => {
            <a className={`hover:bg-[#333] ${tab=="profile"&&"bg-[#333]"} flex gap-2 rounded-md px-2 items-center py-2`} href="/dashboard?tab=profile"><UserSquare size={25} color="#ffffff" weight="light" />Profile</a>
            <a className={`hover:bg-[#333]  flex gap-2 rounded-md px-2 items-center py-2`} href="https://quicksign-doc.vercel.app/"><Files size={25} color="#ffffff" weight="light" />Developer Docs</a>
            <button onClick={() => {removeToken(); navigate("/")}} className=' hover:bg-[#333] outline-none flex gap-2 rounded-md px-2 items-center py-2 '><SignOut size={25} color="#ffffff" weight="light" />LogOut</button>
-           <a className={`hover:bg-[#333] border-2 border-zinc-700 flex justify-center mt-0 sm:mt-10 gap-2 rounded-md px-2 items-center py-2`}  href="https://my-vault-pm.vercel.app/"><TestTube size={25} color="#ffffff" weight="light" />Try Now </a>
+           <a className={`hover:bg-[#333] border-2 border-zinc-700 flex justify-center mt-0 sm:mt-10 gap-2 rounded-md px-2 items-center py-2`} target='blank'  href="https://my-vault-pm.vercel.app/"><TestTube size={25} color="#ffffff" weight="light" />Try Now </a>
         </div>
     </div>
   )
