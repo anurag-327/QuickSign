@@ -18,10 +18,10 @@ const Login = () => {
     <>
     <section className="flex gap-1 font-poppins w-[99vw] min-h-[99vh] overflow-hidden justify-center items-center">
       <Header />
-      <div className="sm:w-[50%] w-[100%]   flex flex-col gap-10  justify-center items-center">
+      <div className="sm:w-[50%] w-[95%]   flex flex-col gap-10  justify-center items-center">
          <div className=" flex flex-col justify-center items-center">
              <CodesandboxLogo className="" size={100} color="#ffffff" weight="light" />
-             <h2 className="text-3xl sm:text-2xl text-center text-white font-bold  mt-3">Welcome to QuickSign</h2>
+             <h2 className="text-3xl sm:text-xl text-center text-white font-bold  mt-3">Welcome to QuickSign</h2>
              <p className="mt-1 text-white text-center font-poppins">An OAuth Provider for hastle free signups</p>
          </div>
          <div className="flex flex-col gap-5 w-[100%] items-center">

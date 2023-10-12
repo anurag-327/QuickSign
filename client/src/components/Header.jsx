@@ -20,7 +20,7 @@ const Header = () => {
       <div id="Drawer" className='flex   gap-4 flex-row  float-right  text-lg top-0   '>
         <a className='hover:underline hover:text-blue-200  ' href="/">Home</a>
         <a className='hover:underline hover:text-blue-200' href="https://quicksign-doc.vercel.app/">Docs</a>
-        <a className='hover:underline hover:text-blue-200 ' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
+        <a className='hover:underline hover:text-blue-200 ' target='blank' href="https://my-vault-pm.vercel.app/">Try Now ↗</a>
       </div>
     </nav>
   )
