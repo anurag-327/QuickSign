@@ -21,7 +21,8 @@ app.use("/api/application",require("./routes/application"));
 app.use("/api/OAuth",require("./routes/OAuth"));
 // api for fetching data 
 app.use("/api/data",require("./routes/data"))
-
+// developers api
+app.use("/api/developers",require("./routes/developers"))
 
 app.use((req,res,next)=>
 {
