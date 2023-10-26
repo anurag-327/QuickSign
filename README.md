@@ -79,17 +79,17 @@ https://<REDIRECT URL>?status=true&token=**<ACCESS TOKEN>**&email=**<Email>**&na
 1. **API Endpoint for token verification**
 
 ```jsx
-**https://quicksign-bq48.onrender.com/auth/verify**
+**https://quicksign-bq48.onrender.com/api/developers/verifyuser**
 // sample fetch request
 const body={
    method:"post",
    headers:{
       "content-type":"application/json",
-      "authorization":"Bearer <YOUR API KEY>"
+      "api":"<Client Secret>"
    },
    body:JSON.stringify({token:**<ACCESS TOKEN>**})
 }
-const response=await fetch("**https://quicksign-bq48.onrender.com/auth/verify**",body);
+const response=await fetch("**https://quicksign-bq48.onrender.com/api/developers/verifyuser",body);
 const data=await response.json();
 ```
 
