@@ -34,10 +34,20 @@ const AuthorizedApps = () => {
         toast.error("Error removing Authorization!")
     }
     }
-    return ( <div className='flex w-[80%] sm:min-w-[300px] mx-auto sm:w-[50%] gap-4 justify-around items-center bg-zinc-800 border border-zinc-700 px-3 py-3 rounded-md'>
-      <h3 className='text-lg font-semibold'>{data.clientId.name}</h3>
-      <button onClick={removeAuthorization} className='bg-gray-600 rounded-md px-2  py-2'>Remove Authorization</button>
-   </div>)
+    return ( 
+    <>
+      <div className='p-4 bg-zinc-900 border border-zinc-800 w-[95%] md:w-[250px] flex flex-col gap-2  rounded-lg w'>
+      <div className=" flex gap-2 items-center  ">
+         <img className="w-[26px] h-[26px] rounded-full" src={data.clientId.logo} alt="logo" />
+         <h2 className="font-bold text-xl">{data.clientId.name}</h2>
+      </div>
+      <div>
+        <p className="text-sm text-gray-400">{data.clientId.description}</p>
+       <button onClick={removeAuthorization} className='text-white underline mt-2  float-right p-1 rounded-lg '>Remove Authorization</button>
+      </div>
+      </div>
+   </>
+   )
   }
   return (
     <div className='w-full p-3'>
@@ -45,7 +55,7 @@ const AuthorizedApps = () => {
      <div className='flex justify-center mt-6 w-full'>
      {
         authorizations.length==0?(<span className='font-semibold text-center w-full mx-auto'>You have not authorized to any application</span>):(
-          <div className='flex flex-col gap-2 w-full flex-wrap flex-grow-0'>
+          <div className='flex gap-2 w-full flex-wrap flex-grow-0'>
             {
               authorizations.map((data,index) => <Card key={data._id} data={data} />)
             }
