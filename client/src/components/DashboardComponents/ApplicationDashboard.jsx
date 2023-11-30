@@ -4,20 +4,23 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useForm } from "react-hook-form";
 import { getToken } from "../../helper/tokenHandler";
 import { BASE_URL } from "../../base";
-import {Toaster, toast} from"react-hot-toast"
+import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-const ApplicationDashboard = ({ application ,setApplication}) => 
-{
-const navigate=useNavigate();
+const ApplicationDashboard = ({ application, setApplication }) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [deleteLoading,setDeleteLoading]=useState(false)
-  const [deleteMessage,setDeleteMessage]=useState("")
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [deleteMessage, setDeleteMessage] = useState("");
   const token = getToken();
-  const {register,handleSubmit,watch,formState: { errors },} = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = async (data) => 
-  {
-    console.log(data)
+  const onSubmit = async (data) => {
+    console.log(data);
     setLoading(true);
     let options = {
       method: "PUT",
@@ -25,15 +28,14 @@ const navigate=useNavigate();
         "content-type": "application/json",
         authorization: `Bearer ${token.token}`,
       },
-      body: JSON.stringify({...data,applicationId:application._id}),
+      body: JSON.stringify({ ...data, applicationId: application._id }),
     };
     const res = await fetch(`${BASE_URL}/api/application/update`, options);
     const result = await res.json();
-    console.log(result)
-    if (result.status == 200) 
-    {
+    console.log(result);
+    if (result.status == 200) {
       setLoading(false);
-    //   setApplication(result.application)
+      //   setApplication(result.application)
       toast.success("Successfully updated!");
     } else {
       setLoading(false);
@@ -41,33 +43,32 @@ const navigate=useNavigate();
       toast.error("Error updating Details!");
     }
   };
-  async function deleteAccount()
-    {
-        setDeleteLoading(true)
-        let options={
-            method:"DELETE",
-            headers:{
-                "content-type": "application/json",
-                "authorization":`Bearer ${token.token}`
-            },
-        }
-        const res=await fetch(`${BASE_URL}/api/application/delete/${application._id}`,options);
-        const data= await res.json();
-        if(data.status==200)
-        {
-            setDeleteLoading(false)
-            toast.success("Deleted Successfully")
-            navigate("/dashboard")
-        }
-        else
-        {
-            setDeleteLoading(false)
-            toast.error("Error Deleting Account")
-        }
+  async function deleteAccount() {
+    setDeleteLoading(true);
+    let options = {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${token.token}`,
+      },
+    };
+    const res = await fetch(
+      `${BASE_URL}/api/application/delete/${application._id}`,
+      options
+    );
+    const data = await res.json();
+    if (data.status == 200) {
+      setDeleteLoading(false);
+      toast.success("Deleted Successfully");
+      navigate("/dashboard");
+    } else {
+      setDeleteLoading(false);
+      toast.error("Error Deleting Account");
     }
+  }
   return (
     <div className="px-8 text-white mx-auto  border rounded-xl border-zinc-900 overflow-hidden py-4 mt-8 w-[95%] sm:w-[60%]  justify-center items-start flex-col gap-3">
-        <Toaster position="top-center" reverseOrder />
+      <Toaster position="top-center" reverseOrder />
       <h2 className="text-6xl gap-4 flex sm:text-4xl mt-5 font-bold ">
         <CodesandboxLogo size={60} weight="fill" /> Welcome {application.name}
       </h2>
@@ -95,12 +96,15 @@ const navigate=useNavigate();
           <div className="px-8 py-6  bg-[#181818] overflow-auto  whitespace-pre-wrap  border border-gray-600 rounded-lg">
             <div className="flex justify-between mb-2">
               <h3 className="text-2xl text-gray-300 mb-2">Client ID</h3>
-              <Copy
-                onClick={() => CopyToClipboard(application._id)}
-                className=" cursor-pointer"
-                size={32}
-                weight="light"
-              />
+
+              <CopyToClipboard
+                text={application._id}
+                onCopy={() => toast.success("copied")}
+              >
+                <button>
+                  <Copy className="cursor-pointer " size={25} weight="light" />
+                </button>
+              </CopyToClipboard>
             </div>
             <input
               readOnly
@@ -111,13 +115,14 @@ const navigate=useNavigate();
           <div className="px-8 py-6  bg-[#181818] overflow-auto  whitespace-pre-wrap  border border-gray-600 rounded-lg">
             <div className="flex justify-between mb-2">
               <h3 className="text-2xl text-gray-300 mb-2">Client Secret</h3>
-              <Copy
-                title="click to copy"
-                onClick={() => CopyToClipboard(application.clinetSecret)}
-                className=" cursor-pointer"
-                size={32}
-                weight="light"
-              />
+              <CopyToClipboard
+                text={application.clientSecret}
+                onCopy={() => toast.success("copied")}
+              >
+                <button>
+                  <Copy className="cursor-pointer " size={25} weight="light" />
+                </button>
+              </CopyToClipboard>
             </div>
             <input
               readOnly
@@ -239,15 +244,41 @@ const navigate=useNavigate();
           </div>
         </form>
         <div className="px-6 sm:px-8 py-6 w-full mt-20 bg-zinc-900  overflow-auto  whitespace-pre-wrap  border border-zinc-700 rounded-lg">
-                 <div className="  w-full">
-                    <h3 className="text-2xl text-red-800 font-bold mb-2">Delete Application</h3>
-                    <p className='text-center my-4 whitespace-pre-wrap text-sm'>Note! This is a destructive action continuing will delete your profie</p>
-                    <p>Type <span className='text-red-400  my-2 font-bold'>QuickSign/Delete/{application.name}</span> to delete your account</p>
-                    <input id="deleteBox" value={deleteMessage} type="text" autoCorrect="off" autoComplete='off' onChange={(e) => setDeleteMessage(e.target.value) }   className="w-full  mt-2 outline-none bg-zinc-700 py-3 px-3 rounded-md font-semibold text-lg"/>
-                 </div>
-                 {
-                    deleteMessage===`QuickSign/Delete/${application.name}`&&<button onClick={deleteAccount}  className={`bg-red-500 mt-4 rounded-md mr-4 float-right px-3 py-2 ${deleteLoading?"bg-red-200":"bg-red-500"}`}>Delete my account</button>
-                 }
+          <div className="  w-full">
+            <h3 className="text-2xl text-red-800 font-bold mb-2">
+              Delete Application
+            </h3>
+            <p className="text-center my-4 whitespace-pre-wrap text-sm">
+              Note! This is a destructive action continuing will delete your
+              profie
+            </p>
+            <p>
+              Type{" "}
+              <span className="text-red-400  my-2 font-bold">
+                QuickSign/Delete/{application.name}
+              </span>{" "}
+              to delete your account
+            </p>
+            <input
+              id="deleteBox"
+              value={deleteMessage}
+              type="text"
+              autoCorrect="off"
+              autoComplete="off"
+              onChange={(e) => setDeleteMessage(e.target.value)}
+              className="w-full  mt-2 outline-none bg-zinc-700 py-3 px-3 rounded-md font-semibold text-lg"
+            />
+          </div>
+          {deleteMessage === `QuickSign/Delete/${application.name}` && (
+            <button
+              onClick={deleteAccount}
+              className={`bg-red-500 mt-4 rounded-md mr-4 float-right px-3 py-2 ${
+                deleteLoading ? "bg-red-200" : "bg-red-500"
+              }`}
+            >
+              Delete my account
+            </button>
+          )}
         </div>
       </div>
     </div>
