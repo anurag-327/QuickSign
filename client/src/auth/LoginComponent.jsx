@@ -97,7 +97,7 @@ const LoginComponent = ({ application,clientId,clientSecret,redirect_url }) => {
           <hr className="w-[40px]" />
           <img
             className="w-[60px] ml-2 border rounded-full border-gray-500"
-            src={"https://avatars.githubusercontent.com/u/98267696?v=4" }
+            src={"https://github.com/anurag-327/QuickSign/assets/98267696/381eb2f4-0245-417b-8b71-56ff3ead9797"}
           />
         </div>
         <div className="text-center">
