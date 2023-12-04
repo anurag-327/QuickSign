@@ -4,7 +4,7 @@ import { Globe, LinkSimpleHorizontal, PlusCircle } from "phosphor-react";
 const OAuthApps = () => {
   const { applications } = useContext(UserContext);
   return (
-    <div className="px-2">
+    <div className="w-full px-2">
       <h2 className="text-start text-2xl font-bold"> OAuth Apps</h2>
       <div className="w-full">
         {applications.length > 0 ? (

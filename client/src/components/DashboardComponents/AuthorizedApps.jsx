@@ -48,7 +48,7 @@ const AuthorizedApps = () => {
             </div>
             <button
               onClick={removeAuthorization}
-              className="p-1 text-xs font-semibold border border-gray-300 text-red-400 float-right rounded-lg "
+              className="p-1 text-xs font-semibold border border-gray-600 text-red-400 float-right rounded-md "
             >
               <WarningOctagon
                 className="inline text-red-400 mr-2"
