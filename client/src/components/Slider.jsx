@@ -20,7 +20,7 @@ const Slider = ({ tab }) => {
       <div className="flex flex-col border-gray-500 py-4 gap-2 text-black text-start w-full px-2">
         <a
           className={`hover:bg-gray-100 ${
-            tab == "applications" && "bg-gray-300 border border-gray-400"
+            tab == "applications" && "bg-gray-300"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=applications"
         >
@@ -28,7 +28,7 @@ const Slider = ({ tab }) => {
           OAuth Apps
         </a>
         <a
-          className={`hover:bg-gray-100 ${
+          className={`hover:bg-gray-200 ${
             tab == "authorizedapps" && "bg-gray-300 border-gray-400"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=authorizedapps"
@@ -37,7 +37,7 @@ const Slider = ({ tab }) => {
           Authorized Apps
         </a>
         <a
-          className={`hover:bg-gray-100 ${
+          className={`hover:bg-gray-200 ${
             tab == "addoauth" && "bg-gray-300 border-gray-400"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=addoauth"
@@ -46,7 +46,7 @@ const Slider = ({ tab }) => {
           Add New OAuth App
         </a>
         <a
-          className={`hover:bg-gray-100 ${
+          className={`hover:bg-gray-200 ${
             tab == "profile" && "bg-gray-300 border-gray-400"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=profile"
@@ -55,7 +55,7 @@ const Slider = ({ tab }) => {
           Profile
         </a>
         <a
-          className={`hover:bg-gray-100 border-gray-400 flex gap-2 rounded-md px-2 items-center py-2`}
+          className={`hover:bg-gray-200 border-gray-400 flex gap-2 rounded-md px-2 items-center py-2`}
           href="https://quicksign-doc.vercel.app/"
         >
           <Files size={25} color="#000000" weight="light" />
@@ -66,13 +66,13 @@ const Slider = ({ tab }) => {
             removeToken();
             navigate("/");
           }}
-          className=" hover:bg-gray-100 border-gray-400 outline-none flex gap-2 rounded-md px-2 items-center py-2 "
+          className=" hover:bg-gray-200 border-gray-400 outline-none flex gap-2 rounded-md px-2 items-center py-2 "
         >
           <SignOut size={25} color="#000000" weight="light" />
           LogOut
         </button>
         <a
-          className={`hover:bg-gray-300  border-2 bg-blue-400 border-zinc-700 flex justify-center mt-0 sm:mt-10 gap-2 rounded-md px-2 items-center py-2`}
+          className={`hover:bg-gray-200  border bg-blue-200 border-zinc-700 flex justify-center mt-0 sm:mt-10 gap-2 rounded-md px-2 items-center py-2`}
           target="blank"
           href="https://my-vault-pm.vercel.app/"
         >

@@ -109,7 +109,7 @@ const Profile = () => {
     }
   }
   return (
-    <div className="md:w-[70%] md:min-w-[400px] my-10 w-[90%] flex flex-col gap-8 mx-auto">
+    <div className="md:w-[80%] md:min-w-[400px] my-10 w-[100%] flex flex-col gap-8 mx-auto">
       <div>
         <label htmlFor="profile">
           <img
@@ -128,16 +128,16 @@ const Profile = () => {
           Update Profile
         </div>
       </div>
-      <div className="px-6 sm:px-8 py-6  w-full overflow-auto  whitespace-pre-wrap  border border-gray-200 shadow-md rounded-lg">
+      <div className="px-6 sm:px-8 py-6  w-full overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
         <div className="flex justify-between  w-full">
-          <h3 className="text-2xl text-black mb-2">Name</h3>
+          <h3 className=" text-base sm:text-2xl text-black mb-2">Name</h3>
         </div>
         <input
           type="text"
           autoCorrect="off"
           defaultValue={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-lg"
+          className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
         />
         {user.name != name && (
           <button
@@ -145,22 +145,22 @@ const Profile = () => {
             onClick={() => updateInfo("name", name)}
             className={`${
               !nameLoading ? "bg-green-600" : "bg-green-300"
-            } mt-4 rounded-md mr-4 float-right px-3 py-2`}
+            } mt-4 rounded-md text-white mr-4 float-right px-3 py-2`}
           >
             Update
           </button>
         )}
       </div>
-      <div className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 shadow-md rounded-lg">
+      <div className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
         <div className="flex justify-between  w-full">
-          <h3 className="text-2xl text-black mb-2">Email</h3>
+          <h3 className="text-base sm:text-2xl text-black mb-2">Email</h3>
         </div>
         <input
           type="text"
           autoCorrect="off"
           readOnly
           defaultValue={user.email}
-          className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-lg"
+          className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
         />
       </div>
 
@@ -171,31 +171,35 @@ const Profile = () => {
           updatePassword(e);
         }}
         method="post"
-        className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 shadow-md rounded-lg"
+        className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg"
       >
         <div className="flex justify-between mb-4  w-full">
-          <h3 className="text-2xl text-black mb-2">Reset Password</h3>
+          <h3 className="text-base sm:text-2xl text-black mb-2">
+            Reset Password
+          </h3>
         </div>
         <div>
-          <h3 className="text-xl text-black mb-2">Old Password</h3>
+          <h3 className="text-base sm:text-lg text-black mb-2">Old Password</h3>
           <input
             type="text"
             required
             autoCorrect="off"
             defaultValue={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
-            className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-lg"
+            className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
           />
         </div>
         <div>
-          <h3 className="text-xl mt-2 text-black mb-2">New Password</h3>
+          <h3 className="text-base sm:text-lg mt-2 text-black mb-2">
+            New Password
+          </h3>
           <input
             type="text"
             required
             autoCorrect="off"
             defaultValue={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-lg"
+            className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
           />
         </div>
         {oldPassword != newPassword && (
@@ -211,16 +215,16 @@ const Profile = () => {
       </form>
       <div className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 shadow-md rounded-lg">
         <div className="  w-full">
-          <h3 className="text-2xl text-red-800 font-bold mb-2">
+          <h3 className="text-lg sm:text-2xl text-red-800 font-bold mb-2">
             Delete Account
           </h3>
-          <p className="text-center my-4 whitespace-pre-wrap text-sm">
+          <p className="text-start my-4 whitespace-pre-wrap text-xs sm:text-sm">
             Note! This is a destructive action continuing will delete your
             profie
           </p>
-          <p>
+          <p className="text-sm sm:text-lg">
             Type{" "}
-            <span className="text-red-400 select-none my-2 font-bold">
+            <span className="text-red-600 select-none my-2 font-bold">
               QuickSign/Delete/{user.name}
             </span>{" "}
             to delete your account
@@ -232,7 +236,7 @@ const Profile = () => {
             autoCorrect="off"
             autoComplete="off"
             onChange={(e) => setDeleteMessage(e.target.value)}
-            className="w-full  mt-2 outline-none bg-red-100 py-3 px-3 rounded-md font-semibold text-lg"
+            className="w-full  mt-2 outline-none border py-3 px-3 rounded-md font-semibold text-lg"
           />
         </div>
         {deleteMessage === `QuickSign/Delete/${user.name}` && (

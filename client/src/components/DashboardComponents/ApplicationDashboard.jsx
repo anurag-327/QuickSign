@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CodesandboxLogo, Copy } from "phosphor-react";
+import { CodesandboxLogo, Copy, ShieldStar } from "phosphor-react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useForm } from "react-hook-form";
 import { getToken } from "../../helper/tokenHandler";
@@ -67,10 +67,10 @@ const ApplicationDashboard = ({ application, setApplication }) => {
     }
   }
   return (
-    <div className="px-8  mx-auto  border rounded-xl border-gray-200 shadow-md overflow-hidden py-4 mt-8 w-[95%] sm:w-[60%]  justify-center items-start flex-col gap-3">
+    <div className="sm:px-8 px-4  mx-auto  border rounded-xl border-gray-200 shadow-sm overflow-hidden py-4 w-[100%] sm:w-[100%]  justify-center items-start flex-col gap-3">
       <Toaster position="top-center" reverseOrder />
-      <h2 className="text-6xl gap-4 flex sm:text-4xl mt-5 font-bold ">
-        <CodesandboxLogo size={60} weight="fill" /> Welcome {application.name}
+      <h2 className="text-3xl gap-4 flex sm:text-4xl flec items-center mt-5 font-bold ">
+        <ShieldStar size={50} weight="fill" /> Welcome {application.name}
       </h2>
 
       <div className="px-5 py-5 mt-8 bg-gray-100 border border-gray-200 rounded-lg">
@@ -79,7 +79,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
           OAuth system, please refer to our{" "}
           <a
             href="https://quicksign-doc.vercel.app/"
-            className="font-bold text-blue-300"
+            className="font-bold text-blue-600 underline"
           >
             Developer Docs
           </a>{" "}
@@ -88,21 +88,25 @@ const ApplicationDashboard = ({ application, setApplication }) => {
       </div>
 
       <div>
-        <h2 className="text-3xl  flex  gap-4 text-start my-10 font-bold ">
-          <CodesandboxLogo size={40} weight="fill" />
+        <h2 className="text-3xl  flex  gap-4 text-start my-10 font-semibold ">
+          <ShieldStar size={40} weight="fill" />
           Your Application credentials
         </h2>
         <div className="flex gap-4 flex-col">
-          <div className="px-8 py-6   shadow-md overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+          <div className="px-8 py-4   shadow-md overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
             <div className="flex justify-between mb-2">
-              <h3 className="text-2xl  mb-2">Client ID</h3>
+              <h3 className="text-lg">Client ID</h3>
 
               <CopyToClipboard
                 text={application._id}
                 onCopy={() => toast.success("copied")}
               >
                 <button>
-                  <Copy className="cursor-pointer " size={25} weight="light" />
+                  <Copy
+                    className="cursor-pointer text-yellow-600"
+                    size={25}
+                    weight="fill"
+                  />
                 </button>
               </CopyToClipboard>
             </div>
@@ -112,21 +116,25 @@ const ApplicationDashboard = ({ application, setApplication }) => {
               defaultValue={application._id}
             />
           </div>
-          <div className="px-8 py-6 shadow-md  bg-white overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+          <div className="px-8 py-4 shadow-md overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
             <div className="flex justify-between mb-2">
-              <h3 className="text-2xl =mb-2">Client Secret</h3>
+              <h3 className="text-lg ">Client Secret</h3>
               <CopyToClipboard
                 text={application.clientSecret}
                 onCopy={() => toast.success("copied")}
               >
                 <button>
-                  <Copy className="cursor-pointer " size={25} weight="light" />
+                  <Copy
+                    className="cursor-pointer text-yellow-600"
+                    size={25}
+                    weight="fill"
+                  />
                 </button>
               </CopyToClipboard>
             </div>
             <input
               readOnly
-              className="w-full overflow-visible bg-gray-200 outline-none  py-3 px-3 rounded-md  text-lg  "
+              className="w-full overflow-visible bg-gray-200 outline-none  py-3 px-3 rounded-md  text-lg"
               defaultValue={application.clientSecret}
             />
           </div>
@@ -135,7 +143,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
 
       <div className="">
         <h2 className="text-3xl text-black flex  gap-4 text-start my-10 font-bold ">
-          <CodesandboxLogo size={40} weight="fill" />
+          <ShieldStar size={40} weight="fill" />
           General Credentials
         </h2>
         <form
@@ -236,16 +244,16 @@ const ApplicationDashboard = ({ application, setApplication }) => {
               disabled={loading}
               className={`w-[100%] block border-none px-2 py-3 cursor-pointer ${
                 loading ? "bg-green-300" : "bg-green-600"
-              } bg-blue-600 text-black text-lg font-semibold rounded-md`}
+              } bg-blue-600 text-white text-lg font-semibold rounded-md`}
               type="Submit"
             >
-              Update
+              {loading ? "Updating" : "Update"}
             </button>
           </div>
         </form>
-        <div className="px-6 sm:px-8 py-6 w-full mt-20 bg-white  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+        <div className="px-6 sm:px-8 py-6 w-full mt-20  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
           <div className="  w-full">
-            <h3 className="text-2xl text-red-800 font-bold mb-2">
+            <h3 className="text-2xl text-red-600 font-bold mb-2">
               Delete Application
             </h3>
             <p className="text-center my-4 whitespace-pre-wrap text-sm">
@@ -266,7 +274,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
               autoCorrect="off"
               autoComplete="off"
               onChange={(e) => setDeleteMessage(e.target.value)}
-              className="w-full  mt-2 outline-none bg-red-300 py-3 px-3 rounded-md font-semibold text-lg"
+              className="w-full  mt-2 outline-none bg-gray-50 border py-3 px-3 rounded-md font-semibold text-lg"
             />
           </div>
           {deleteMessage === `QuickSign/Delete/${application.name}` && (

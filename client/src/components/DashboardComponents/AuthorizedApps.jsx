@@ -27,7 +27,7 @@ const AuthorizedApps = () => {
       if (result.status == 200) {
         toast.success("Successfully Removed!");
         setAuthorizations(
-          authorizations.filter((item) => item.clientId === data.clientId._id)
+          authorizations.filter((item) => item._id != data._id)
         );
       } else {
         console.log(result, data);
@@ -36,11 +36,7 @@ const AuthorizedApps = () => {
     }
     return (
       <>
-<<<<<<< HEAD
-        <div className="px-4 py-2 shadow-md border border-gray-600 w-[95%]  flex flex-col gap-2  rounded-lg w">
-=======
-        <div className="px-4 py-2 bg-gray-50 shadow-md border border-gray-200 w-[95%]  flex flex-col gap-2  rounded-lg w">
->>>>>>> lightmode
+        <div className="px-4 py-2 bg-gray-50  border border-gray-200 w-[95%]  flex flex-col gap-2  rounded-lg w">
           <div className=" flex justify-between flex-wrap gap-2 items-center  ">
             <div className="flex gap-2 items-center">
               <img
@@ -52,11 +48,7 @@ const AuthorizedApps = () => {
             </div>
             <button
               onClick={removeAuthorization}
-<<<<<<< HEAD
-              className="p-1 text-xs font-semibold border border-gray-600 text-red-400 float-right rounded-md "
-=======
-              className="p-1 text-xs font-semibold border border-gray-300 text-red-400 float-right rounded-lg "
->>>>>>> lightmode
+              className="p-1 text-xs font-semibold  border-gray-300 text-red-400 float-right rounded-md "
             >
               <WarningOctagon
                 className="inline text-red-400 mr-2"
@@ -66,36 +58,27 @@ const AuthorizedApps = () => {
               Remove Authorization
             </button>
           </div>
-<<<<<<< HEAD
-=======
-          <div>
-            {/* <p className="text-sm mt-1 text-gray-800">
-              {data.clientId.description}
-            </p> */}
-          </div>
->>>>>>> lightmode
         </div>
       </>
     );
   }
   return (
-<<<<<<< HEAD
-    <div className="w-full p-3">
-=======
     <div className="w-full px-1 py-3">
->>>>>>> lightmode
-      <h2 className=" mb-4 w-full text-2xl font-dbold">Authorized Apps</h2>
+      <div>
+        <h2 className=" mb-4 w-full text-2xl font-bold">Authorized Apps</h2>
+        <p className="text-sm mt-2">
+          Authorized apps are third-party applications that users give
+          permission to access specific information or perform certain actions
+          on their behalf.
+        </p>
+      </div>
       <div className="flex justify-center mt-6 w-full">
         {authorizations.length == 0 ? (
           <span className="font-semibold text-center w-full mx-auto">
             You have not authorized to any application
           </span>
         ) : (
-<<<<<<< HEAD
-          <div className="flex gap-2 w-full flex-wrap flex-grow-0">
-=======
           <div className="flex gap-2 w-full flex-wrap flex-col flex-grow-0">
->>>>>>> lightmode
             {authorizations.map((data, index) => (
               <Card key={data._id} data={data} />
             ))}

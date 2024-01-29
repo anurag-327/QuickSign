@@ -41,15 +41,15 @@ const AddNewOAuth = () => {
       <form
         id="Form"
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col  w-[100%] sm:w-[50%] sm:min-w-[400px] mx-auto  gap-4 mt-5 loginsection"
+        className="flex flex-col mt-10  w-[100%] sm:w-[80%] sm:min-w-[400px] mx-auto  gap-4 loginsection"
       >
-        <div className="relative mt-10 rounded-lg w-full">
+        <div className="relative rounded-lg w-full">
           <h3 className="text-lg font-bold mb-2">
             Name <span className="text-red-500 text-2xl">*</span>
           </h3>
           <input
             type="name"
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 shadow-md outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
             id="name"
             {...register("name", { required: true })}
             placeholder="Ex-QuickSign"
@@ -66,7 +66,7 @@ const AddNewOAuth = () => {
           <textarea
             type="text"
             rows={5}
-            className="peer m-0 block w-full rounded border border-solid border-gray-300 shadow-md outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+            className="peer m-0 block w-full rounded border border-solid border-gray-300 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
             id="description"
             placeholder="Description"
             {...register("description")}
@@ -78,8 +78,8 @@ const AddNewOAuth = () => {
             Homepage URL <span className="text-red-500 text-2xl">*</span>
           </h3>
           <input
-            type="text"
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 shadow-md outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+            type="url"
+            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
             id="homepageURL"
             {...register("homepageURL", {
               required: true,
@@ -101,8 +101,8 @@ const AddNewOAuth = () => {
             <span className="text-red-500 text-2xl">*</span>
           </h3>
           <input
-            type="text"
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 shadow-md outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+            type="url"
+            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
             id="callbackURL"
             {...register("callbackURL", {
               required: true,
