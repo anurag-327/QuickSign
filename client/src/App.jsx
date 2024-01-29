@@ -1,64 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import {createBrowserRouter,RouterProvider} from "react-router-dom"
-import Login from './pages/Login'
-import Home from "./pages/Home"
-import Error from './pages/Error'
-import Register from "./pages/Register"
-import Index from "./pages/Index"
-import Contact from "./pages/Contact"
-import Admin from './Admin/Admin'
-
-import ContextAPI from './Context/ContextAPI'
-import AdminContextAPI from './Context/AdminContext'
-import AuthHome from './auth/Home'
-import Application from './pages/Application'
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Error from "./pages/Error";
+import Register from "./pages/Register";
+import Index from "./pages/Index";
+import Contact from "./pages/Contact";
+import Admin from "./Admin/Admin";
+import ContextAPI from "./Context/ContextAPI";
+import AdminContextAPI from "./Context/AdminContext";
+import AuthHome from "./auth/Home";
+import Application from "./pages/Application";
 function App() {
-  const router=createBrowserRouter([
+  const router = createBrowserRouter([
     {
-    path:"/",
-    element:<Index />
-  },
+      path: "/",
+      element: <Index />,
+    },
     {
-    path:"/auth/login",
-    element:<Login />
-  },
+      path: "/auth/login",
+      element: <Login />,
+    },
     {
-    path:"/auth/register",
-    element:<Register />
-  },
+      path: "/auth/register",
+      element: <Register />,
+    },
     {
-    path:"/dashboard",
-    element:<ContextAPI><Home /></ContextAPI>
-  },
+      path: "/dashboard",
+      element: (
+        <ContextAPI>
+          <Home />
+        </ContextAPI>
+      ),
+    },
+    // {
+    //   path: "/admin",
+    //   element: (
+    //     <AdminContextAPI>
+    //       <Admin />
+    //     </AdminContextAPI>
+    //   ),
+    // },
     {
-    path:"/admin",
-    element:<AdminContextAPI><Admin /></AdminContextAPI>
-  },
+      path: "/auth",
+      element: <AuthHome />,
+    },
     {
-    path:"/auth",
-    element:<AuthHome />
-  },
-   {
-    path:"/contact",
-    element:<Contact />
-  },
-  {
-    path:"*",
-    element:<Error />
- }
- ,
-  {
-    path:'/dashboard/application/:id',
-    element:<Application />
- }
-])
-  return (
-    <RouterProvider router={router}>
-  
-    </RouterProvider>
-  )
+      path: "/contact",
+      element: <Contact />,
+    },
+    {
+      path: "*",
+      element: <Error />,
+    },
+    {
+      path: "/dashboard/application/:id",
+      element: <Application />,
+    },
+  ]);
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
-export default App
+export default App;
