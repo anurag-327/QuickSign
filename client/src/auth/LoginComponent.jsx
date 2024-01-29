@@ -84,7 +84,6 @@ const LoginComponent = ({
         <Toaster position="top-center" reverseOrder />
 
         <div className="flex justify-center gap-3 items-center">
-          {/* <CodesandboxLogo size={80} color="#000000" weight="light" /> */}
           <img
             className="w-[60px] mr-2 rounded-full border-gray-500"
             src={application.logo}
@@ -93,10 +92,9 @@ const LoginComponent = ({
           <CheckCircle size={32} color="#bc9b80" weight="fill" />
           <hr className="w-[40px]" />
           <img
-            src={
             className="w-[60px] ml-2  rounded-full border-gray-500"
-              "https://github-production-user-asset-6210df.s3.amazonaws.com/98267696/273621841-381eb2f4-0245-417b-8b71-56ff3ead9797.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240129%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240129T115313Z&X-Amz-Expires=300&X-Amz-Signature=7e827c8961323a7d6c8e22b98a6a59e5c083201c05c7dfea0af18f6dd459d74d&X-Amz-SignedHeaders=host&actor_id=98267696&key_id=0&repo_id=613187554"
-            }
+            src="https://github-production-user-asset-6210df.s3.amazonaws.com/98267696/273621841-381eb2f4-0245-417b-8b71-56ff3ead9797.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240129%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240129T115313Z&X-Amz-Expires=300&X-Amz-Signature=7e827c8961323a7d6c8e22b98a6a59e5c083201c05c7dfea0af18f6dd459d74d&X-Amz-SignedHeaders=host&actor_id=98267696&key_id=0&repo_id=613187554"
+            alt="logo"
           />
         </div>
         <div className="text-center">
