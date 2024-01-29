@@ -67,14 +67,14 @@ const ApplicationDashboard = ({ application, setApplication }) => {
     }
   }
   return (
-    <div className="px-8 text-white mx-auto  border rounded-xl border-zinc-900 overflow-hidden py-4 mt-8 w-[95%] sm:w-[60%]  justify-center items-start flex-col gap-3">
+    <div className="px-8  mx-auto  border rounded-xl border-gray-200 shadow-md overflow-hidden py-4 mt-8 w-[95%] sm:w-[60%]  justify-center items-start flex-col gap-3">
       <Toaster position="top-center" reverseOrder />
       <h2 className="text-6xl gap-4 flex sm:text-4xl mt-5 font-bold ">
         <CodesandboxLogo size={60} weight="fill" /> Welcome {application.name}
       </h2>
 
-      <div className="px-5 py-5 mt-8 bg-[#181818] border border-gray-600 rounded-lg">
-        <p className="whitespace-pre-wrap text-lg font-semibold">
+      <div className="px-5 py-5 mt-8 bg-gray-100 border border-gray-200 rounded-lg">
+        <p className="whitespace-pre-wrap text-lg ">
           If you encounter any issues or have questions about using QuickSign's
           OAuth system, please refer to our{" "}
           <a
@@ -88,14 +88,14 @@ const ApplicationDashboard = ({ application, setApplication }) => {
       </div>
 
       <div>
-        <h2 className="text-3xl text-gray-300 flex  gap-4 text-start my-10 font-bold ">
+        <h2 className="text-3xl  flex  gap-4 text-start my-10 font-bold ">
           <CodesandboxLogo size={40} weight="fill" />
           Your Application credentials
         </h2>
         <div className="flex gap-4 flex-col">
-          <div className="px-8 py-6  bg-[#181818] overflow-auto  whitespace-pre-wrap  border border-gray-600 rounded-lg">
+          <div className="px-8 py-6   shadow-md overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
             <div className="flex justify-between mb-2">
-              <h3 className="text-2xl text-gray-300 mb-2">Client ID</h3>
+              <h3 className="text-2xl  mb-2">Client ID</h3>
 
               <CopyToClipboard
                 text={application._id}
@@ -108,13 +108,13 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </div>
             <input
               readOnly
-              className="w-full overflow-visible bg-[#333] outline-none py-3 px-3 rounded-md font-semibold text-lg  "
+              className="w-full overflow-visible bg-gray-200 outline-none py-3 px-3 rounded-md  text-lg  "
               defaultValue={application._id}
             />
           </div>
-          <div className="px-8 py-6  bg-[#181818] overflow-auto  whitespace-pre-wrap  border border-gray-600 rounded-lg">
+          <div className="px-8 py-6 shadow-md  bg-white overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
             <div className="flex justify-between mb-2">
-              <h3 className="text-2xl text-gray-300 mb-2">Client Secret</h3>
+              <h3 className="text-2xl =mb-2">Client Secret</h3>
               <CopyToClipboard
                 text={application.clientSecret}
                 onCopy={() => toast.success("copied")}
@@ -126,7 +126,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </div>
             <input
               readOnly
-              className="w-full overflow-visible bg-[#333] outline-none  py-3 px-3 rounded-md font-semibold text-lg  "
+              className="w-full overflow-visible bg-gray-200 outline-none  py-3 px-3 rounded-md  text-lg  "
               defaultValue={application.clientSecret}
             />
           </div>
@@ -134,7 +134,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
       </div>
 
       <div className="">
-        <h2 className="text-3xl text-gray-300 flex  gap-4 text-start my-10 font-bold ">
+        <h2 className="text-3xl text-black flex  gap-4 text-start my-10 font-bold ">
           <CodesandboxLogo size={40} weight="fill" />
           General Credentials
         </h2>
@@ -149,7 +149,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </h3>
             <input
               type="name"
-              className="peer m-0 block h-[58px] w-full rounded border border-solid border-zinc-700 bg-zinc-900 outline-none px-3 py-4 text-base font-normal leading-tight text-white "
+              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="name"
               {...register("name", { required: true })}
               placeholder="Ex-QuickSign"
@@ -167,7 +167,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             <textarea
               type="text"
               rows={5}
-              className="peer m-0 block w-full rounded border border-solid border-zinc-700 bg-zinc-900 outline-none px-3 py-4 text-base font-normal leading-tight text-white "
+              className="peer m-0 block w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="description"
               placeholder="Description"
               {...register("description")}
@@ -181,7 +181,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </h3>
             <input
               type="text"
-              className="peer m-0 block h-[58px] w-full rounded border border-solid border-zinc-700 bg-zinc-900 outline-none px-3 py-4 text-base font-normal leading-tight text-white "
+              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="homepageURL"
               {...register("homepageURL", {
                 required: true,
@@ -205,7 +205,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </h3>
             <input
               type="text"
-              className="peer m-0 block h-[58px] w-full rounded border border-solid border-zinc-700 bg-zinc-900 outline-none px-3 py-4 text-base font-normal leading-tight text-white "
+              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="callbackURL"
               {...register("callbackURL", {
                 required: true,
@@ -222,7 +222,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
               </span>
             )}
           </div>
-          {/* <div className='mt-5 bg-zinc-900 border border-zinc-700 px-3 py-8'>
+          {/* <div className='mt-5 bg-gray-200 border border-gray-200 px-3 py-8'>
                     <label htmlFor='profile'>
                          <img  src={"https://github.com/anurag-327/QuickSign/assets/98267696/373a8c6a-6e65-4b02-9ba6-27cdf49ea4b8"}  className='w-[100px] object-cover border cursor-pointer border-gray-800 rounded-full m-auto h-auto' alt="profile"/>
                     </label>
@@ -236,14 +236,14 @@ const ApplicationDashboard = ({ application, setApplication }) => {
               disabled={loading}
               className={`w-[100%] block border-none px-2 py-3 cursor-pointer ${
                 loading ? "bg-green-300" : "bg-green-600"
-              } bg-blue-600 text-white text-lg font-semibold rounded-md`}
+              } bg-blue-600 text-black text-lg font-semibold rounded-md`}
               type="Submit"
             >
               Update
             </button>
           </div>
         </form>
-        <div className="px-6 sm:px-8 py-6 w-full mt-20 bg-zinc-900  overflow-auto  whitespace-pre-wrap  border border-zinc-700 rounded-lg">
+        <div className="px-6 sm:px-8 py-6 w-full mt-20 bg-white  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
           <div className="  w-full">
             <h3 className="text-2xl text-red-800 font-bold mb-2">
               Delete Application
@@ -266,7 +266,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
               autoCorrect="off"
               autoComplete="off"
               onChange={(e) => setDeleteMessage(e.target.value)}
-              className="w-full  mt-2 outline-none bg-zinc-700 py-3 px-3 rounded-md font-semibold text-lg"
+              className="w-full  mt-2 outline-none bg-red-300 py-3 px-3 rounded-md font-semibold text-lg"
             />
           </div>
           {deleteMessage === `QuickSign/Delete/${application.name}` && (

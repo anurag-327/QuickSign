@@ -36,7 +36,11 @@ const AuthorizedApps = () => {
     }
     return (
       <>
+<<<<<<< HEAD
         <div className="px-4 py-2 shadow-md border border-gray-600 w-[95%]  flex flex-col gap-2  rounded-lg w">
+=======
+        <div className="px-4 py-2 bg-gray-50 shadow-md border border-gray-200 w-[95%]  flex flex-col gap-2  rounded-lg w">
+>>>>>>> lightmode
           <div className=" flex justify-between flex-wrap gap-2 items-center  ">
             <div className="flex gap-2 items-center">
               <img
@@ -48,7 +52,11 @@ const AuthorizedApps = () => {
             </div>
             <button
               onClick={removeAuthorization}
+<<<<<<< HEAD
               className="p-1 text-xs font-semibold border border-gray-600 text-red-400 float-right rounded-md "
+=======
+              className="p-1 text-xs font-semibold border border-gray-300 text-red-400 float-right rounded-lg "
+>>>>>>> lightmode
             >
               <WarningOctagon
                 className="inline text-red-400 mr-2"
@@ -58,12 +66,24 @@ const AuthorizedApps = () => {
               Remove Authorization
             </button>
           </div>
+<<<<<<< HEAD
+=======
+          <div>
+            {/* <p className="text-sm mt-1 text-gray-800">
+              {data.clientId.description}
+            </p> */}
+          </div>
+>>>>>>> lightmode
         </div>
       </>
     );
   }
   return (
+<<<<<<< HEAD
     <div className="w-full p-3">
+=======
+    <div className="w-full px-1 py-3">
+>>>>>>> lightmode
       <h2 className=" mb-4 w-full text-2xl font-dbold">Authorized Apps</h2>
       <div className="flex justify-center mt-6 w-full">
         {authorizations.length == 0 ? (
@@ -71,7 +91,11 @@ const AuthorizedApps = () => {
             You have not authorized to any application
           </span>
         ) : (
+<<<<<<< HEAD
           <div className="flex gap-2 w-full flex-wrap flex-grow-0">
+=======
+          <div className="flex gap-2 w-full flex-wrap flex-col flex-grow-0">
+>>>>>>> lightmode
             {authorizations.map((data, index) => (
               <Card key={data._id} data={data} />
             ))}
