@@ -62,7 +62,7 @@ const Application = () => {
       ) : (
         <div className="w-[100%] h-[100vh] flex sm:flex-col justify-center items-center">
           <Loader />
-          <div className="ml-8 sm:ml-0 text-white sm:mt-4">
+          <div className="ml-8 sm:ml-0  sm:mt-4">
             Setting up the dashboard...
           </div>
         </div>
