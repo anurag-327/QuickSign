@@ -17,7 +17,6 @@ const LoginComponent = ({
   clientSecret,
   redirect_url,
 }) => {
-  console.log(application);
   const navigate = useNavigate();
   const [loginLoading, setLoginLoading] = useState(false);
   async function authorise() {
@@ -80,7 +79,7 @@ const LoginComponent = ({
 
   return (
     application && (
-      <div className="  sm:w-[420px] bg-white p-2 sm:p-4 w-[95%] font-poppins sm:h-auto   border  border-gray-300  rounded-2xl  flex flex-col gap-4 sm:justify-start  justify-around items-center">
+      <div className="  sm:w-[420px] bg-white p-2 sm:p-4 w-[95%] sm:h-auto   border  border-gray-300  rounded-2xl  flex flex-col gap-4 sm:justify-start  justify-around items-center">
         <Toaster position="top-center" reverseOrder />
 
         <div className="flex justify-center gap-3 items-center">
@@ -93,19 +92,19 @@ const LoginComponent = ({
           <hr className="w-[40px]" />
           <img
             className="w-[60px] ml-2  rounded-full border-gray-500"
-            src="https://github-production-user-asset-6210df.s3.amazonaws.com/98267696/273621841-381eb2f4-0245-417b-8b71-56ff3ead9797.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240129%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240129T115313Z&X-Amz-Expires=300&X-Amz-Signature=7e827c8961323a7d6c8e22b98a6a59e5c083201c05c7dfea0af18f6dd459d74d&X-Amz-SignedHeaders=host&actor_id=98267696&key_id=0&repo_id=613187554"
+            src={application.logo}
             alt="logo"
           />
         </div>
         <div className="text-center">
-          <h2 className="text-2xl spa font-semibold">Authorise account...</h2>
+          <h2 className="text-xl font-semibold">Authorise account...</h2>
           <h2 className="text-sm">
             to continue to{" "}
             <a
               href={application.homepageURL}
               rel="noopener noreferrer"
               target="blank"
-              className="text-green-500 text-lg font-semibold"
+              className="text-branddark2 font-semibold"
             >
               {application.name}
             </a>{" "}
@@ -114,8 +113,8 @@ const LoginComponent = ({
         <div className="flex flex-col gap-2 max-w-[300px] w-full">
           <button
             onClick={authorise}
-            className={`rounded-md font-sans cursor-pointer border-none py-1 px-4 w-full font-semibold bg-green-500 text-white text-lg ${
-              loginLoading && "bg-green-200 cursor-not-allowed "
+            className={`rounded-md font-sans cursor-pointer border-none py-1.5 px-4 w-full font-semibold bg-brand text-white ${
+              loginLoading && "bg-blue-300 cursor-not-allowed "
             }`}
           >
             Authorise {application.name}
@@ -123,9 +122,9 @@ const LoginComponent = ({
           <button
             disabled={loginLoading}
             onClick={abortAuth}
-            className={`rounded-md cursor-pointer py-1 px-4 w-full font-sans font-semibold border border-gray-400  bg-white  ${
+            className={`rounded-md cursor-pointer py-1 px-4 w-full font-sans font-semibold border border-gray-300  bg-white  ${
               loginLoading && "bg-gray-200 cursor-not-alloweds"
-            } text-black text-lg`}
+            } text-black `}
           >
             Cancel
           </button>

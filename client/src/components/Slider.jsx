@@ -1,11 +1,13 @@
 import React from "react";
 import {
+  ArrowSquareOut,
   Files,
   Key,
   PlusCircle,
   SignOut,
   SquaresFour,
   TestTube,
+  User,
   UserSquare,
 } from "phosphor-react";
 import { removeToken } from "../helper/tokenHandler";
@@ -20,7 +22,7 @@ const Slider = ({ tab }) => {
       <div className="flex flex-col border-gray-500 py-4 gap-2 text-black text-start w-full px-2">
         <a
           className={`hover:bg-gray-100 ${
-            tab == "applications" && "bg-gray-300"
+            tab == "applications" && "bg-gray-200"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=applications"
         >
@@ -29,7 +31,7 @@ const Slider = ({ tab }) => {
         </a>
         <a
           className={`hover:bg-gray-200 ${
-            tab == "authorizedapps" && "bg-gray-300 border-gray-400"
+            tab == "authorizedapps" && "bg-gray-200 border-gray-400"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=authorizedapps"
         >
@@ -38,7 +40,7 @@ const Slider = ({ tab }) => {
         </a>
         <a
           className={`hover:bg-gray-200 ${
-            tab == "addoauth" && "bg-gray-300 border-gray-400"
+            tab == "addoauth" && "bg-gray-200 border-gray-400"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=addoauth"
         >
@@ -47,18 +49,19 @@ const Slider = ({ tab }) => {
         </a>
         <a
           className={`hover:bg-gray-200 ${
-            tab == "profile" && "bg-gray-300 border-gray-400"
+            tab == "profile" && "bg-gray-200 border-gray-400"
           } flex gap-2 rounded-md px-2 items-center py-2`}
           href="/dashboard?tab=profile"
         >
-          <UserSquare size={25} color="#000000" weight="light" />
+          <User size={25} color="#000000" weight="light" />
           Profile
         </a>
         <a
           className={`hover:bg-gray-200 border-gray-400 flex gap-2 rounded-md px-2 items-center py-2`}
           href="https://quicksign-doc.vercel.app/"
+          target="_blank"
         >
-          <Files size={25} color="#000000" weight="light" />
+          <ArrowSquareOut size={25} color="#000000" weight="light" />
           Developer Docs
         </a>
         <button
@@ -66,9 +69,9 @@ const Slider = ({ tab }) => {
             removeToken();
             navigate("/");
           }}
-          className=" hover:bg-gray-200 border-gray-400 outline-none flex gap-2 rounded-md px-2 items-center py-2 "
+          className=" hover:bg-red-500 text-white bg-red-500 border-gray-400 outline-none flex gap-2 rounded-md px-2 items-center py-2 "
         >
-          <SignOut size={25} color="#000000" weight="light" />
+          <SignOut size={25} color="#ffffff" weight="light" />
           LogOut
         </button>
         <a

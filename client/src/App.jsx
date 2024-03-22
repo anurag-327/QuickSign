@@ -1,7 +1,7 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import Home from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Register from "./pages/Register";
 import Index from "./pages/Index";
@@ -11,6 +11,7 @@ import ContextAPI from "./Context/ContextAPI";
 import AdminContextAPI from "./Context/AdminContext";
 import AuthHome from "./auth/Home";
 import Application from "./pages/Application";
+import TestUi from "./pages/TestUi";
 function App() {
   const router = createBrowserRouter([
     {
@@ -33,14 +34,18 @@ function App() {
         </ContextAPI>
       ),
     },
-    // {
-    //   path: "/admin",
-    //   element: (
-    //     <AdminContextAPI>
-    //       <Admin />
-    //     </AdminContextAPI>
-    //   ),
-    // },
+    {
+      path: "/testUI",
+      element: <TestUi />,
+    },
+    {
+      path: "/admin",
+      element: (
+        <AdminContextAPI>
+          <Admin />
+        </AdminContextAPI>
+      ),
+    },
     {
       path: "/auth",
       element: <AuthHome />,

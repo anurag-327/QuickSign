@@ -1,46 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { valiateLogin, validateSignup } from "../../helper/validate";
 import { getToken, setToken } from "../../helper/tokenHandler";
-import { Eye, EyeSlash, ShieldStar } from "phosphor-react";
 import { BASE_URL } from "../../base";
-import { CodesandboxLogo } from "phosphor-react";
-
+import { Eye, EyeSlash, ShieldStar } from "phosphor-react";
+import { set, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema } from "../../schema/LoginSchema";
 const LoginComponent = () => {
   const navigate = useNavigate();
-  const [toggleEye, setToggleEye] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  // getting query parameter
-  const [searchParams] = useSearchParams();
-  let redirect_url = "",
-    flag = true;
-  for (const entry of searchParams.entries()) {
-    const [param, value] = entry;
-    if (flag == true) {
-      redirect_url += `${value}`;
-      flag = false;
-    } else {
-      redirect_url += `&${param}=${value}`;
-    }
-  }
-  async function handleLogin(e) {
-    const data = new FormData(e.target);
-    let { email, password } = Object.fromEntries(data.entries());
-    if (valiateLogin(email, password) === true) {
+  const [error, setError] = useState("");
+  const [showPassword, SetShowPassword] = useState(false);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  console.log(queryParams.get("redirect_url"));
+  const redirect_url = queryParams.get("redirect_url") || "";
+  console.log(redirect_url);
+  let linkref = "/auth/register";
+  if (redirect_url) linkref = `/auth/register?redirect_url=${redirect_url}`;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting, touchedFields },
+  } = useForm({
+    resolver: zodResolver(LoginSchema),
+  });
+  async function onSubmit(data) {
+    try {
       setLoading(true);
+      setError("");
       let options = {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
+        body: JSON.stringify(data),
       };
       const response = await fetch(`${BASE_URL}/api/auth/login`, options);
       const res = await response.json();
@@ -55,8 +54,12 @@ const LoginComponent = () => {
       } else {
         setLoading(false);
         console.log(res);
-        toast.error(res.message);
+        setError(res.message);
+        toast.error("Error signing");
       }
+    } catch (error) {
+      setError("Server Error");
+      toast.error("Error signing");
     }
   }
   useEffect(() => {
@@ -65,106 +68,113 @@ const LoginComponent = () => {
     }
   });
   return (
-    <div className="   mx-auto h-[98vh] font-poppins flex flex-col gap-8  justify-center items-center">
-      <Toaster position="top-center" reverseOrder />
-      <div className=" flex flex-col justify-center items-center">
-        <ShieldStar className="" size={200} color="#634bd8" weight="fill" />
-        <h1 className="text-2xl sm:text-3xl mt-2 font-bold dark:text-white">
-          Quick Sign
-        </h1>
-      </div>
-      <form
-        className="flex flex-col  w-[100%] sm:w-[400px] mx-auto  gap-4 mt-5 loginsection"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin(e);
-        }}
-        method="post"
-      >
-        <div className="relative  bg-white rounded-lg w-full">
-          <input
-            type="email"
-            required
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
-            id="email"
-            placeholder="name@example.com"
-            name="email"
-          />
-          <label
-            htmlFor="email"
-            className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-          >
-            Email address
-          </label>
+    <div className=" p-0 md:p-12 lg:p-24 xl:p-28 order-2 md:order-1">
+      <div>
+        <div>
+          <h3 className="text-4xl font-semibold">Welcome Back</h3>
+          <p className="text-sm text-gray-500 mt-2">
+            Welcome back! Please enter your details
+          </p>
         </div>
-        <div className="relative rounded-lg bg-white w-full">
-          <input
-            type={toggleEye ? "text" : "password"}
-            required
-            autoComplete="off"
-            autoCorrect="off"
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
-            id="password"
-            placeholder="Password"
-            name="password"
-          />
-          <label
-            htmlFor="password"
-            className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-          >
-            Password
-          </label>
-          {toggleEye ? (
-            <EyeSlash
-              className="cursor-pointer absolute right-3 top-4"
-              size={25}
-              onClick={() => setToggleEye(!toggleEye)}
-              color="#000000"
-            />
-          ) : (
-            <Eye
-              className="cursor-pointer absolute right-3 top-4"
-              size={25}
-              onClick={() => setToggleEye(!toggleEye)}
-              color="#000000"
-            />
-          )}
-        </div>
-        <div className="text-center mt-6 w-full rounded-lg ">
-          {loading === true ? (
-            <button
-              disabled
-              className="signupbutton w-[100%] block border-none px-2 py-3 cursor-pointer bg-blue-300 text-white text-lg font-semibold rounded-md"
+        <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
+          <div className="my-4">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
-              Logging You In
-            </button>
-          ) : (
-            <button className="signupbutton w-[100%] block border-none px-2 py-3 cursor-pointer bg-blue-600 text-white text-lg font-semibold rounded-md">
-              Login
-            </button>
-          )}
-        </div>
-        <div className="  text-center  ">
-          <span className="msg dark:text-white">
-            Not a member?{" "}
-            {redirect_url ? (
-              <a
-                href={`/auth/register?redirect_url=${redirect_url}`}
-                className="underline  font-bold text-blue-500"
-              >
-                Register Here
-              </a>
-            ) : (
-              <a
-                href={`/auth/register`}
-                className="underline  font-bold text-blue-500"
-              >
-                Register Here
-              </a>
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              {...register("email")}
+              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="your@email.com"
+            />
+            {touchedFields.email && errors.email && (
+              <div className="text-sm text-red-600">{errors.email.message}</div>
             )}
-          </span>
-        </div>
-      </form>
+          </div>
+          <div className="mb-4 relative">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              Password
+            </label>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              {...register("password")}
+              placeholder="Enter your password"
+            />
+            <div className="absolute right-4 top-10">
+              {showPassword ? (
+                <EyeSlash
+                  onClick={() => SetShowPassword(!showPassword)}
+                  size={20}
+                ></EyeSlash>
+              ) : (
+                <Eye onClick={() => SetShowPassword(!showPassword)} size={20} />
+              )}
+            </div>
+            <a
+              href="#"
+              className="text-xs font-semibold text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Forgot Password?
+            </a>
+            {touchedFields.password && errors.password && (
+              <div className="text-sm text-red-600">
+                {errors.password.message}
+              </div>
+            )}
+          </div>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="remember"
+                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none checked:bg-blue-600"
+                defaultChecked
+                {...register("remember")}
+              />
+              <label
+                htmlFor="remember"
+                className="ml-2 block text-sm font-semibold text-gray-500 dark:text-gray-300"
+              >
+                Remember for 30 days
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className="text-center mt-6 w-full rounded-lg ">
+              <button
+                disabled={isSubmitting}
+                className={`w-[100%] block border-none px-2 py-2 cursor-pointe text-white text-lg font-semibold rounded-md ${
+                  isSubmitting ? "bg-blue-300" : "bg-brand"
+                } `}
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+          <div className="  text-center  my-4">
+            <span className="msg dark:text-white text-sm text-gray-600">
+              Don't have an account?{" "}
+              <a href={linkref} className="font-semibold text-blue-500">
+                Sign up
+              </a>
+            </span>
+          </div>
+        </form>
+        {error && (
+          <div>
+            <span className="text-red-600">! {error}</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

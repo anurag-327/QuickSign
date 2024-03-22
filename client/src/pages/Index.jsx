@@ -1,27 +1,16 @@
-import React, { useEffect } from "react";
-import Footer from "../components/Footer";
-import { getToken } from "../helper/tokenHandler";
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Home from "../components/Home/Home";
 import Landing from "../components/Home/Landing";
+import Navbar from "../components/Home/Navbar";
+import Footer from "../components/Home/Footer";
 import Features from "../components/Home/Features";
 const Login = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (getToken()) {
-      navigate("/dashboard");
-    }
-  });
   return (
     <>
-      <section className="flex flex-col font-poppins w-[99vw] min-h-[90vh] overflow-hidden justify-center items-center">
-        <Header />
+      <section className="flex bg-grid bg-black bg-gradient-to-r from-black to-branddark flex-col font-poppins w-full min-h-screen overflow-hidden ">
+        <Navbar />
         <Landing />
-        {/* <Home /> */}
-        {/* <Features /> */}
+        <Features />
+        <Footer />
       </section>
-      <Footer />
     </>
   );
 };

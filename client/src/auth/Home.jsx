@@ -23,6 +23,7 @@ const Home = () => {
     if (param === "clientSecret") clientSecret = value;
     if (param === "redirect_url") redirect_url = value;
   }
+  console.log(redirect);
   function redirect() {
     if (redirect_url) window.location.href = redirect_url;
     else window.location.href = "https://quick-sign.vercel.app/";
@@ -55,7 +56,6 @@ const Home = () => {
               if (data.authorization === true) {
                 console.log("Already Authorised");
                 flag = false;
-                console.log(data);
                 let redirect_url =
                   data.application.callbackURL +
                   `?status=true&token=${data.token}`;
@@ -78,10 +78,12 @@ const Home = () => {
           console.log("Access token missing");
           setPageLoading(false);
           setError("No active Session Found");
-          console.log(window.location.href);
-          toast.error("No active sessions found");
           flag = false;
-          navigate(`/auth/login?redirect_url=${window.location.href}`);
+          navigate(
+            `/auth/login?redirect_url=${encodeURIComponent(
+              window.location.href
+            )}`
+          );
         }
         flag = false;
       } else {
@@ -97,7 +99,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex font-poppins flex-col  w-full h-screen justify-center items-center">
+    <div className="flex font-sans flex-col  w-full h-screen justify-center items-center">
       {pageloading ? (
         <>
           <Loader /> <div className=" mt-2">Verify Application...</div>

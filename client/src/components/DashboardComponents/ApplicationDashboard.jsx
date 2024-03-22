@@ -67,14 +67,14 @@ const ApplicationDashboard = ({ application, setApplication }) => {
     }
   }
   return (
-    <div className="sm:px-8 px-4  mx-auto  border rounded-xl border-gray-200 shadow-sm overflow-hidden py-4 w-[100%] sm:w-[100%]  justify-center items-start flex-col gap-3">
+    <div className="sm:px-8 px-4  mx-auto  border rounded-xl bg-gray-100 border-gray-200 shadow-sm overflow-hidden py-4 w-[100%] sm:w-[100%]  justify-center items-start flex-col gap-3">
       <Toaster position="top-center" reverseOrder />
-      <h2 className="text-3xl gap-4 flex sm:text-4xl flec items-center mt-5 font-bold ">
-        <ShieldStar size={50} weight="fill" /> Welcome {application.name}
+      <h2 className="text-2xl gap-4 flex sm:text-2xl flec items-center mt-5 font-bold ">
+        <ShieldStar size={40} weight="fill" /> Welcome {application.name}
       </h2>
 
-      <div className="px-5 py-5 mt-8 bg-gray-100 border border-gray-200 rounded-lg">
-        <p className="whitespace-pre-wrap text-lg ">
+      <div className="px-5 py-5 mt-8 bg-white border border-gray-200 rounded-lg">
+        <p className="whitespace-pre-wrap ">
           If you encounter any issues or have questions about using QuickSign's
           OAuth system, please refer to our{" "}
           <a
@@ -88,14 +88,14 @@ const ApplicationDashboard = ({ application, setApplication }) => {
       </div>
 
       <div>
-        <h2 className="text-3xl  flex  gap-4 text-start my-10 font-semibold ">
-          <ShieldStar size={40} weight="fill" />
+        <h2 className="text-2xl  flex  gap-4 text-start my-10 font-semibold ">
+          <ShieldStar size={30} weight="fill" />
           Your Application credentials
         </h2>
         <div className="flex gap-4 flex-col">
-          <div className="px-8 py-4   shadow-md overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+          <div className="px-8 py-4 bg-white overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
             <div className="flex justify-between mb-2">
-              <h3 className="text-lg">Client ID</h3>
+              <h3 className="text-lg font-semibold">Client ID</h3>
 
               <CopyToClipboard
                 text={application._id}
@@ -112,13 +112,13 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </div>
             <input
               readOnly
-              className="w-full overflow-visible bg-gray-200 outline-none py-3 px-3 rounded-md  text-lg  "
+              className="w-full overflow-visible bg-gray-100 outline-none py-3 px-3 rounded-md  text-base  "
               defaultValue={application._id}
             />
           </div>
-          <div className="px-8 py-4 shadow-md overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+          <div className="px-8 py-4 bg-white overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
             <div className="flex justify-between mb-2">
-              <h3 className="text-lg ">Client Secret</h3>
+              <h3 className="text-lg font-semibold ">Client Secret</h3>
               <CopyToClipboard
                 text={application.clientSecret}
                 onCopy={() => toast.success("copied")}
@@ -134,7 +134,7 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </div>
             <input
               readOnly
-              className="w-full overflow-visible bg-gray-200 outline-none  py-3 px-3 rounded-md  text-lg"
+              className="w-full overflow-visible bg-gray-100 outline-none  py-3 px-3 rounded-md  text-base"
               defaultValue={application.clientSecret}
             />
           </div>
@@ -142,22 +142,22 @@ const ApplicationDashboard = ({ application, setApplication }) => {
       </div>
 
       <div className="">
-        <h2 className="text-3xl text-black flex  gap-4 text-start my-10 font-bold ">
-          <ShieldStar size={40} weight="fill" />
+        <h2 className="text-2xl text-black flex  gap-4 text-start my-10 font-semibold ">
+          <ShieldStar size={30} weight="fill" />
           General Credentials
         </h2>
         <form
           id="Form"
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col  w-[100%] sm:w-[70%] sm:min-w-[400px] mx-auto  gap-4 mt-5 loginsection"
+          className="flex bg-white px-4 py-4 sm:px-12 sm:py-8  rounded-xl border flex-col  w-[100%] sm:w-[100%] sm:min-w-[400px] mx-auto  gap-4 mt-5 loginsection"
         >
-          <div className="relative mt-10 rounded-lg w-full">
-            <h3 className="text-lg font-bold mb-2">
+          <div className="relative rounded-lg w-full">
+            <h3 className="text-lg font-semibold mb-2">
               Name <span className="text-red-500 text-2xl">*</span>
             </h3>
             <input
               type="name"
-              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-100 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="name"
               {...register("name", { required: true })}
               placeholder="Ex-QuickSign"
@@ -171,11 +171,11 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             )}
           </div>
           <div className="relative mt-5 rounded-lg w-full">
-            <h3 className="text-lg font-bold mb-2">Description</h3>
+            <h3 className="text-lg font-semibold mb-2">Description</h3>
             <textarea
               type="text"
               rows={5}
-              className="peer m-0 block w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+              className="peer m-0 block w-full rounded border border-solid border-gray-200 bg-gray-100 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="description"
               placeholder="Description"
               {...register("description")}
@@ -184,17 +184,17 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             />
           </div>
           <div className="relative mt-5 rounded-lg w-full">
-            <h3 className="text-lg font-bold mb-2">
+            <h3 className="text-lg font-semibold mb-2">
               Homepage URL <span className="text-red-500 text-2xl">*</span>
             </h3>
             <input
               type="text"
-              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-100 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="homepageURL"
               {...register("homepageURL", {
                 required: true,
-                pattern:
-                  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
+                // pattern:
+                //   /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
               })}
               placeholder="https//www.quick-sign.com/"
               defaultValue={application.homepageURL}
@@ -207,18 +207,18 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             )}
           </div>
           <div className="relative mt-5 rounded-lg w-full">
-            <h3 className="text-lg font-bold mb-2">
+            <h3 className="text-lg font-semibold mb-2">
               Authorization Callback URL{" "}
               <span className="text-red-500 text-2xl">*</span>
             </h3>
             <input
               type="text"
-              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-200 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+              className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-200 bg-gray-100 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
               id="callbackURL"
               {...register("callbackURL", {
                 required: true,
-                pattern:
-                  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
+                // pattern:
+                //   /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
               })}
               placeholder="https//www.quick-sign.com/login"
               defaultValue={application.callbackURL}
@@ -251,14 +251,14 @@ const ApplicationDashboard = ({ application, setApplication }) => {
             </button>
           </div>
         </form>
-        <div className="px-6 sm:px-8 py-6 w-full mt-20  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+        <div className="px-6 sm:px-8 bg-white py-6 w-full mt-20  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
           <div className="  w-full">
-            <h3 className="text-2xl text-red-600 font-bold mb-2">
+            <h3 className="text-2xl text-red-600 font-semibold mb-2">
               Delete Application
             </h3>
             <p className="text-center my-4 whitespace-pre-wrap text-sm">
               Note! This is a destructive action continuing will delete your
-              profie
+              application
             </p>
             <p>
               Type{" "}

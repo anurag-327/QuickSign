@@ -65,13 +65,14 @@ const AuthorizedApps = () => {
   return (
     <div className="w-full px-1 py-3">
       <div>
-        <h2 className=" mb-4 w-full text-2xl font-bold">Authorized Apps</h2>
-        <p className="text-sm mt-2">
+        <h2 className=" mb-4 w-full text-xl font-bold">Authorized Apps</h2>
+        <p className="text-xs mt-2">
           Authorized apps are third-party applications that users give
           permission to access specific information or perform certain actions
           on their behalf.
         </p>
       </div>
+      <hr className="h-[1.5px] bg-gray-300 mt-4" />
       <div className="flex justify-center mt-6 w-full">
         {authorizations.length == 0 ? (
           <span className="font-semibold text-center w-full mx-auto">

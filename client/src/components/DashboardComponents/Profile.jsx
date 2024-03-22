@@ -128,16 +128,16 @@ const Profile = () => {
           Update Profile
         </div>
       </div>
-      <div className="px-6 sm:px-8 py-6  w-full overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+      <div className="px-6 sm:px-8 py-6 bg-white w-full overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
         <div className="flex justify-between  w-full">
-          <h3 className=" text-base sm:text-2xl text-black mb-2">Name</h3>
+          <h3 className=" text-base font-semibold text-black mb-1">Name</h3>
         </div>
         <input
           type="text"
           autoCorrect="off"
           defaultValue={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
+          className="w-full overflow-visible border-gray-200 bg-gray-100 outline-none py-3 px-3 rounded-md text-base"
         />
         {user.name != name && (
           <button
@@ -151,16 +151,16 @@ const Profile = () => {
           </button>
         )}
       </div>
-      <div className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
+      <div className="px-6 sm:px-8 py-6 w-full bg-white overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
         <div className="flex justify-between  w-full">
-          <h3 className="text-base sm:text-2xl text-black mb-2">Email</h3>
+          <h3 className="text-base font-semibold text-black mb-1">Email</h3>
         </div>
         <input
           type="text"
           autoCorrect="off"
           readOnly
           defaultValue={user.email}
-          className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
+          className="w-full mt-1 overflow-visible border-gray-200 bg-gray-100 outline-none py-3 px-3 rounded-md text-base "
         />
       </div>
 
@@ -171,58 +171,56 @@ const Profile = () => {
           updatePassword(e);
         }}
         method="post"
-        className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg"
+        className="px-6 sm:px-8 py-6 w-full  overflow-auto bg-white  whitespace-pre-wrap  border border-gray-200 rounded-lg"
       >
         <div className="flex justify-between mb-4  w-full">
-          <h3 className="text-base sm:text-2xl text-black mb-2">
+          <h3 className="text-base sm:text-xl font-semibold text-black mb-1">
             Reset Password
           </h3>
         </div>
         <div>
-          <h3 className="text-base sm:text-lg text-black mb-2">Old Password</h3>
+          <h3 className="text-base  text-black mb-1">Old Password</h3>
           <input
             type="text"
             required
             autoCorrect="off"
             defaultValue={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
-            className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
+            className="w-full mt-1 overflow-visible border-gray-200 bg-gray-100 outline-none py-3 px-3 rounded-md ext-base"
           />
         </div>
         <div>
-          <h3 className="text-base sm:text-lg mt-2 text-black mb-2">
-            New Password
-          </h3>
+          <h3 className="text-base mt-1 text-black mb-2">New Password</h3>
           <input
             type="text"
             required
             autoCorrect="off"
             defaultValue={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            className="w-full mt-2 overflow-visible border-gray-200 bg-gray-200 outline-none py-3 px-3 rounded-md font-semibold text-base sm:text-lg"
+            className="w-full mt-1 overflow-visible border-gray-200 bg-gray-100 outline-none py-3 px-3 rounded-md text-base"
           />
         </div>
         {oldPassword != newPassword && (
-          <button className="bg-green-600 mt-4 outline-none rounded-md mr-4 float-right px-3 py-2">
+          <button className="bg-brand text-white mt-4 outline-none rounded-md mr-4 float-right px-3 py-2">
             Update
           </button>
         )}
         {
-          <span className="text-red-400 mt-4 rounded-md mr-4 text-sm sm:text-xl float-right px-3 py-2">
+          <span className="text-red-400 mt-3 rounded-md mr-4 text-sm sm:text-lg float-right px-3 py-2">
             {passwordError}
           </span>
         }
       </form>
-      <div className="px-6 sm:px-8 py-6 w-full  overflow-auto  whitespace-pre-wrap  border border-gray-200 shadow-md rounded-lg">
+      <div className="px-6 sm:px-8 py-6 w-full bg-white overflow-auto  whitespace-pre-wrap  border border-gray-200 rounded-lg">
         <div className="  w-full">
-          <h3 className="text-lg sm:text-2xl text-red-800 font-bold mb-2">
+          <h3 className="text-lg sm:text-xl text-red-800 font-bold mb-2">
             Delete Account
           </h3>
           <p className="text-start my-4 whitespace-pre-wrap text-xs sm:text-sm">
             Note! This is a destructive action continuing will delete your
             profie
           </p>
-          <p className="text-sm sm:text-lg">
+          <p className="text-sm sm:text-base">
             Type{" "}
             <span className="text-red-600 select-none my-2 font-bold">
               QuickSign/Delete/{user.name}
@@ -236,13 +234,13 @@ const Profile = () => {
             autoCorrect="off"
             autoComplete="off"
             onChange={(e) => setDeleteMessage(e.target.value)}
-            className="w-full  mt-2 outline-none border py-3 px-3 rounded-md font-semibold text-lg"
+            className="w-full bg-gray-100 mt-1 outline-none border py-3 px-3 rounded-md"
           />
         </div>
         {deleteMessage === `QuickSign/Delete/${user.name}` && (
           <button
             onClick={deleteAccount}
-            className={`bg-red-500 mt-4 rounded-md mr-4 float-right px-3 py-2 ${
+            className={`text-white mt-4 rounded-md mr-4 float-right px-3 py-2 ${
               deleteLoading ? "bg-red-200" : "bg-red-500"
             }`}
           >

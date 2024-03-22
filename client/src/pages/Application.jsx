@@ -7,7 +7,7 @@ import { BASE_URL } from "../base";
 import Slider from "../components/Slider";
 import ApplicationDashboard from "../components/DashboardComponents/ApplicationDashboard";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Header from "../components/UI/Header";
 const Application = () => {
   const id = useParams().id;
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Application = () => {
       {loading === false ? (
         <>
           <Header />
-          <section className=" w-[95%] mt-10 md:w-[80%] mx-auto gap-5  py-10 md:flex-row flex flex-col">
+          <section className=" w-[95%]  md:w-[80%] mx-auto gap-5  py-10 md:flex-row flex flex-col">
             <Slider tab={tab} />
             <ApplicationDashboard
               application={application}

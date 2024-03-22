@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-
 import LoginComponent from "../components/Login/LoginComponent";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import AuthSidebar from "../components/UI/AuthSidebar";
+import Footer from "../components/UI/Footer";
+import Header from "../components/UI/Header";
 const Login = () => {
   return (
-    <section className="px-6 sm:px-0 ">
-      <Toaster position="top-center" reverseOrder />
+    <section>
+      <Toaster position="top-right" reverseOrder />
       <Header />
-      <LoginComponent />
+      <div className="grid px-6 md:px-0 min-w-[70vh] items-center bg-white grid-cols-1 md:grid-cols-2 ">
+        <AuthSidebar />
+        <LoginComponent />
+      </div>
       <Footer />
     </section>
   );

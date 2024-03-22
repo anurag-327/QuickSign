@@ -27,7 +27,7 @@ const Dashboard = ({ tab }) => {
     }
   }
   return (
-    <div className="text-black min-h-screen sm:w-full border-2 rounded-lg py-6 px-4 border-zinc-200 w-[100%-350px] overflow-hidden font-poppins flex flex-col items-center mx-2">
+    <div className="text-black bg-gray-100 min-h-[80vh] sm:w-full py-6 px-2 sm:px-4 w-[100%-350px] overflow-hidden font-poppins flex flex-col items-center mx-2">
       <Toaster position="top-center" reverseOrder />
       {renderSwitch()}
     </div>

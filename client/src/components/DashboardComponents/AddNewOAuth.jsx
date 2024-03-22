@@ -10,7 +10,7 @@ const AddNewOAuth = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting, touchedFields },
   } = useForm();
   const onSubmit = async (data) => {
     setLoading(true);
@@ -37,32 +37,32 @@ const AddNewOAuth = () => {
 
   return (
     <div className="w-full px-3 bg-inherit ">
-      <h2 className=" text-center text-2xl font-bold">Add new OAuth App</h2>
+      <h2 className=" text-center text-xl font-bold">Add new OAuth App</h2>
       <form
         id="Form"
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col mt-10  w-[100%] sm:w-[80%] sm:min-w-[400px] mx-auto  gap-4 loginsection"
       >
         <div className="relative rounded-lg w-full">
-          <h3 className="text-lg font-bold mb-2">
-            Name <span className="text-red-500 text-2xl">*</span>
+          <h3 className="text-base font-semibold">
+            Name <span className="text-red-500 text-lg">*</span>
           </h3>
           <input
             type="name"
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+            className="peer m-0 block h-[48px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-2 text-base font-normal leading-tight text-black "
             id="name"
-            {...register("name", { required: true })}
+            {...register("name", { required: "Required" })}
             placeholder="Ex-QuickSign"
             name="name"
           />
-          {errors.name && (
-            <span className="text-center text-red-400 w-full">
-              This field is required !
+          {touchedFields.name && errors.name && (
+            <span className="text-center text-sm text-red-600 w-full">
+              {errors.name.message}
             </span>
           )}
         </div>
         <div className="relative mt-5 rounded-lg w-full">
-          <h3 className="text-lg font-bold mb-2">Description</h3>
+          <h3 className="text-base font-semibold mb-1">Description</h3>
           <textarea
             type="text"
             rows={5}
@@ -74,47 +74,53 @@ const AddNewOAuth = () => {
           />
         </div>
         <div className="relative mt-5 rounded-lg w-full">
-          <h3 className="text-lg font-bold mb-2">
+          <h3 className="text-base font-semibold mb-1">
             Homepage URL <span className="text-red-500 text-2xl">*</span>
           </h3>
           <input
             type="url"
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+            className="peer m-0 block h-[48px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-2 text-base font-normal leading-tight text-black "
             id="homepageURL"
             {...register("homepageURL", {
-              required: true,
-              pattern:
-                /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
+              required: "Required",
+              // pattern: {
+              //   value:
+              //     /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[a-zA-Z0-9-._?&=/]*)?$/,
+              //   message: "Not a valid url",
+              // },
             })}
             placeholder="https//www.quick-sign.com/"
             name="homepageURL"
           />
-          {errors.homepageURL && (
-            <span className="text-center text-red-400 w-full">
-              Not a valid URL !
+          {touchedFields.homepageURL && errors.homepageURL && (
+            <span className="text-center text-sm text-red-600 w-full">
+              {errors.homepageURL.message}
             </span>
           )}
         </div>
         <div className="relative mt-5 rounded-lg w-full">
-          <h3 className="text-lg font-bold mb-2">
+          <h3 className="text-base font-semibold mb-1">
             Authorization Callback URL{" "}
             <span className="text-red-500 text-2xl">*</span>
           </h3>
           <input
             type="url"
-            className="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-4 text-base font-normal leading-tight text-black "
+            className="peer m-0 block h-[48px] w-full rounded border border-solid border-gray-300 outline-none px-3 py-2 text-base font-normal leading-tight text-black "
             id="callbackURL"
             {...register("callbackURL", {
-              required: true,
-              pattern:
-                /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
+              required: "Required",
+              // pattern: {
+              //   value:
+              //     /^(http?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[a-zA-Z0-9-._?&=/]*)?$/,
+              //   message: "Not a valid url",
+              // },
             })}
             placeholder="https//www.quick-sign.com/login"
             name="callbackURL"
           />
           {errors.callbackURL && (
-            <span className="text-center text-red-400 w-full">
-              Not a valid URL !
+            <span className="text-center text-sm text-red-600 w-full">
+              {errors.callbackURL.message}
             </span>
           )}
         </div>
@@ -131,11 +137,11 @@ const AddNewOAuth = () => {
           <button
             disabled={loading}
             className={`w-[100%] block border-none px-2 py-3 cursor-pointer ${
-              loading ? "bg-green-300" : "bg-green-600"
-            } bg-blue-600 text-black text-lg font-semibold rounded-md`}
+              isSubmitting ? "bg-blue-300" : "bg-brand"
+            } bg-blue-600 text-white text-lg font-semibold rounded-md`}
             type="Submit"
           >
-            Create
+            {isSubmitting ? "Creating" : "Create"}
           </button>
         </div>
       </form>
