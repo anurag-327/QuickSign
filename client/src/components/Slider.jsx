@@ -19,7 +19,7 @@ const Slider = ({ tab }) => {
       <div>
         <h2 className="font-bold ">DASHBOARD</h2>
       </div>
-      <div className="flex flex-col border-gray-500 py-4 gap-2 text-black text-start w-full px-2">
+      <div className="flex flex-col w-full gap-2 px-2 py-4 text-black border-gray-500 text-start">
         <a
           className={`hover:bg-gray-100 ${
             tab == "applications" && "bg-gray-200"
@@ -69,7 +69,7 @@ const Slider = ({ tab }) => {
             removeToken();
             navigate("/");
           }}
-          className=" hover:bg-red-500 text-white bg-red-500 border-gray-400 outline-none flex gap-2 rounded-md px-2 items-center py-2 "
+          className="flex items-center gap-2 px-2 py-2 text-white bg-red-500 border-gray-400 rounded-md outline-none  hover:bg-red-500"
         >
           <SignOut size={25} color="#ffffff" weight="light" />
           LogOut
@@ -77,7 +77,7 @@ const Slider = ({ tab }) => {
         <a
           className={`hover:bg-gray-200  border bg-blue-200 border-zinc-700 flex justify-center mt-0 sm:mt-10 gap-2 rounded-md px-2 items-center py-2`}
           target="blank"
-          href="https://my-vault-pm.vercel.app/"
+          href="https://quicksign-playground.vercel.app/"
         >
           <TestTube size={25} color="#000000" weight="light" />
           Try Now{" "}

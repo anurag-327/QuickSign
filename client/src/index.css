@@ -16,7 +16,7 @@
         left: -115px;
         width: 200px;
         height: 700px;
-        z-index: 10;
+        z-index: 2;
         background-image: conic-gradient(from 0deg at 50% -5%,transparent 45%,rgba(124,145,182,.3) 49%,rgba(124,145,182,.5) 50%,rgba(124,145,182,.3) 51%,transparent 55%);
         opacity: .5;
         border-radius: 9999px;
@@ -86,3 +86,15 @@
   .image-container:hover .image:hover:hover:hover {
     transform: translate(0, -5px); /* Translate upwards */
   }
+
+  @keyframes illuminate {
+    0% {
+        box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 30px rgba(255, 255, 255, 0);
+    }
+}

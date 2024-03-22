@@ -13,13 +13,13 @@ const Header = () => {
     <nav className=" fixed top-0 z-50 font-poppins dark:bg-gradient-to-l dark:from-[#111010] dark:to-[#000000] dark:via-black bg-gray-100 w-full max-w-screen py-3 px-6 dark:text-white  ">
       {/* <div className='flex float-right'>
          <List id="list" className='block sm:hidden' onClick={toggleDrawer} size={32} weight="light" color="#ffffff" />
-         <X id="X" onClick={toggleDrawer} className=" hidden sm:hidden" size={32} weight="light" color="#ffffff"/>
+         <X id="X" onClick={toggleDrawer} className="hidden  sm:hidden" size={32} weight="light" color="#ffffff"/>
       </div> */}
       <div
         id="Drawer"
-        className="flex gap-4 flex-row float-right text-sm sm:text-lg top-0   "
+        className="top-0 flex flex-row float-right gap-4 text-sm sm:text-lg "
       >
-        <a className="hover:underline hover:text-blue-800  " href="/">
+        <a className="hover:underline hover:text-blue-800 " href="/">
           Home
         </a>
         <a
@@ -31,7 +31,7 @@ const Header = () => {
         <a
           className="hover:underline hover:text-blue-800 "
           target="blank"
-          href="https://my-vault-pm.vercel.app/"
+          href="https://quicksign-playground.vercel.app/"
         >
           Try Now ↗
         </a>

@@ -18,7 +18,8 @@ const LoginComponent = () => {
   const queryParams = new URLSearchParams(location.search);
   const redirect_url = queryParams.get("redirect_url") || "";
   let linkref = "/auth/login";
-  if (redirect_url) linkref = `/auth/login?redirect_url=${redirect_url}`;
+  if (redirect_url)
+    linkref = `/auth/login?redirect_url=${encodeURIComponent(redirect_url)}`;
   const {
     register,
     handleSubmit,

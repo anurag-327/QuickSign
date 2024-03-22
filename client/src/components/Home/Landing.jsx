@@ -2,7 +2,7 @@ import React from "react";
 import { ShieldStar } from "phosphor-react";
 const Landing = () => {
   return (
-    <main className="w-full relative py-6 flex flex-col items-center">
+    <main className="relative flex flex-col items-center w-full py-6">
       {/* shadow */}
       <div>
         <div className="relative -mt-20">
@@ -18,22 +18,39 @@ const Landing = () => {
         </span>
       </div>
       {/* Brand name  */}
-      <div className="flex flex-col mt-8 rounded-full p-4 items-center sm:flex-row gap-2 ">
-        <div>
-          <h2 className="text-6xl font-black py-2 sm:text-8xl text-center sm:text-start bg-gradient-to-b from-blue-800 to-pink-200 bg-clip-text text-transparent">
+      <div className="flex flex-col items-center gap-2 p-4 mt-8 rounded-full ">
+        <div className="flex flex-col">
+          <h2 className="py-2 text-6xl font-black text-center text-transparent sm:text-8xl sm:text-start bg-gradient-to-b from-blue-800 to-pink-200 bg-clip-text">
             QuickSign
           </h2>
-          <p className="mt-4 ml-0 sm:ml-8 whitespace-pre-wrap text-center text-sm sm:text-xl font-bold text-brandgray2 ">
+          <p className="mt-4 ml-0 text-sm font-bold text-center whitespace-pre-wrap sm:ml-8 sm:text-xl text-brandgray2 ">
             OAuth Provider for hastle free signups
           </p>
         </div>
+        <a
+          href="https://quicksign-playground.vercel.app/"
+          target="_blank"
+          className=" bg-blue-100 text-center z-10 w-fit text-gray-400 text-xs mt-4 mx-auto sm:text-base bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10  border py-0.5 px-10 border-gray-600 rounded-full"
+        >
+          <span>Try Now</span>
+        </a>
       </div>
+
       {/* Forms  */}
-      <div className="flex gap-2  z-40">
+      <div className="z-40 flex gap-2">
         <Card1 />
         <Card2 />
         <Card3 />
       </div>
+      {/* Try Now btn  */}
+      {/* <div className="mt-10 cursor-pointer">
+        <div className="relative">
+          <img src="./background.webp" className="w-96" alt="try now"></img>
+          <span className="absolute font-bold  text-3xl text-brand z-20 top-[4.8rem] left-[8rem]">
+            Try Now
+          </span>
+        </div>
+      </div> */}
     </main>
   );
 };
@@ -42,47 +59,47 @@ export default Landing;
 
 function Card1() {
   return (
-    <div className="mt-20 z-20 card ">
+    <div className="z-20 mt-20 card ">
       <div>
         <div className="w-[350px] sm:w-[420px] relative translatecard1 bg-branddark rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border-2 border-gray-600">
-          <div className="font-extrabold text-white  absolute top-4 left-6">
+          <div className="absolute font-extrabold text-white top-4 left-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute top-4 right-6">
+          <div className="absolute font-extrabold text-white top-4 right-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute bottom-6 left-6">
+          <div className="absolute font-extrabold text-white bottom-6 left-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute bottom-6 right-6">
+          <div className="absolute font-extrabold text-white bottom-6 right-6">
             .
           </div>
-          <div className="text-blue-100 p-8 w-full flex flex-col mt-6 justify-center">
-            <div className="text-center gap-1 -mt-8 w-full flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center w-full p-8 mt-6 text-blue-100">
+            <div className="flex flex-col items-center justify-center w-full gap-1 -mt-8 text-center">
               <ShieldStar size={50} className="mx-center" />
               <span className="font-semibold">Continue using QuickSign</span>
             </div>
             <div className="flex flex-col gap-4 mt-6">
-              <div className=" text-xs">
+              <div className="text-xs ">
                 <span>Name</span>
-                <div className="w-full bg-gray-900 py-2 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                   John Doe
                 </div>
               </div>
-              <div className=" text-xs">
+              <div className="text-xs ">
                 <span>Email Address</span>
-                <div className="w-full py-2 bg-gray-900 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                   johndoe@gmail.com
                 </div>
               </div>
-              <div className=" text-xs">
+              <div className="text-xs ">
                 <span>Password</span>
-                <div className="w-full py-2 bg-gray-900 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                   ********
                 </div>
               </div>
               <div className="text-xs ">
-                <div className="w-full py-2 bg-brand text-black text-center text-xs font-semibold px-4 mt-1  rounded-full ">
+                <div className="w-full px-4 py-2 mt-1 text-xs font-semibold text-center text-black rounded-full bg-brand ">
                   Register to QuickSign
                 </div>
               </div>
@@ -96,23 +113,23 @@ function Card1() {
 
 function Card2() {
   return (
-    <div className="mt-20 image-container z-40 ">
+    <div className="z-40 mt-20 image-container ">
       <div className="image">
         <div className="w-[350px] image sm:w-[420px] relative  bg-branddark rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border-2 border-gray-600">
-          <div className="font-extrabold text-white  absolute top-4 left-6">
+          <div className="absolute font-extrabold text-white top-4 left-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute top-4 right-6">
+          <div className="absolute font-extrabold text-white top-4 right-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute bottom-6 left-6">
+          <div className="absolute font-extrabold text-white bottom-6 left-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute bottom-6 right-6">
+          <div className="absolute font-extrabold text-white bottom-6 right-6">
             .
           </div>
-          <div className="text-blue-100 image p-8 w-full flex flex-col mt-10 justify-center">
-            <div className="text-center gap-1 -mt-8 w-full flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center w-full p-8 mt-10 text-blue-100 image">
+            <div className="flex flex-col items-center justify-center w-full gap-1 -mt-8 text-center">
               <ShieldStar size={50} className="mx-center" />
               <span className="font-semibold">Sign up using QuickSign</span>
             </div>
@@ -120,20 +137,20 @@ function Card2() {
               <div>
                 <div className="text-xs">
                   <span>Email Address</span>
-                  <div className="w-full bg-gray-900 py-2 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                  <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                     johndoe@gmail.com
                   </div>
-                  <div className="w-full text-sm font-semibold text-center py-2 mt-4 border-gray-600 rounded-full border">
+                  <div className="w-full py-2 mt-4 text-sm font-semibold text-center border border-gray-600 rounded-full">
                     <span className="mt-2">Continue</span>
                   </div>
                 </div>
-                <div className="flex gap-2 text-xs justify-evenly items-center mt-4">
+                <div className="flex items-center gap-2 mt-4 text-xs justify-evenly">
                   <div className="h-px bg-gray-600 w-[30%]"></div>
                   <div>OR</div>
                   <div className="h-px bg-gray-600 w-[30%]"></div>
                 </div>
                 <div className="text-sm">
-                  <div className="w-full text-center py-2 mt-4 border-gray-600 rounded-full border">
+                  <div className="w-full py-2 mt-4 text-center border border-gray-600 rounded-full">
                     <span className="absolute left-16 sm:left-24 sm:-mt-0.5">
                       <ShieldStar size={24} weight="fill" />
                     </span>
@@ -141,7 +158,7 @@ function Card2() {
                       Continue with QuickSign
                     </span>
                   </div>
-                  <div className="w-full text-center py-2 mt-4 border-gray-600 rounded-full border">
+                  <div className="w-full py-2 mt-4 text-center border border-gray-600 rounded-full">
                     <span className="absolute left-16 sm:left-24 sm:-mt-0.5">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +191,7 @@ function Card2() {
                     </span>
                   </div>
                 </div>
-                <div className="text-xs text-center mt-4">
+                <div className="mt-4 text-xs text-center">
                   <span>Don't have an account?Sign up</span>
                 </div>
               </div>
@@ -188,54 +205,54 @@ function Card2() {
 
 function Card3() {
   return (
-    <div className="mt-20 z-20 card ">
+    <div className="z-20 mt-20 card ">
       <div>
         <div className="w-[350px] sm:w-[420px] relative translatecard3 bg-branddark rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border-2 border-gray-600">
-          <div className="font-extrabold text-white  absolute top-4 left-6">
+          <div className="absolute font-extrabold text-white top-4 left-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute top-4 right-6">
+          <div className="absolute font-extrabold text-white top-4 right-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute bottom-6 left-6">
+          <div className="absolute font-extrabold text-white bottom-6 left-6">
             .
           </div>
-          <div className="font-extrabold text-white  absolute bottom-6 right-6">
+          <div className="absolute font-extrabold text-white bottom-6 right-6">
             .
           </div>
-          <div className="text-blue-100 p-8 w-full flex flex-col mt-10 justify-center">
-            <div className="text-center gap-1 -mt-8 w-full flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center w-full p-8 mt-10 text-blue-100">
+            <div className="flex flex-col items-center justify-center w-full gap-1 -mt-8 text-center">
               <span className="font-semibold">
                 Register your app on QuickSign
               </span>
             </div>
-            <div className="flex flex-col mt-6 gap-4">
-              <div className=" text-xs">
+            <div className="flex flex-col gap-4 mt-6">
+              <div className="text-xs ">
                 <span>Name</span>
-                <div className="w-full bg-gray-900 py-2 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                   Quick Sign
                 </div>
               </div>
-              <div className=" text-xs">
+              <div className="text-xs ">
                 <span>Description</span>
-                <div className="w-full bg-gray-900 py-2 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                   OAuth Provider for hastle free signups
                 </div>
               </div>
-              <div className=" text-xs">
+              <div className="text-xs ">
                 <span>Homepage URL</span>
-                <div className="w-full bg-gray-900 py-2 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                   https://quick-sign.vercel.app/
                 </div>
               </div>
-              <div className=" text-xs">
+              <div className="text-xs ">
                 <span>CallbackURL</span>
-                <div className="w-full bg-gray-900 py-2 text-xs px-4 mt-1 border-gray-600 rounded-full border">
+                <div className="w-full px-4 py-2 mt-1 text-xs bg-gray-900 border border-gray-600 rounded-full">
                   https://quick-sign-playgorund.vercel.app/auth/login
                 </div>
               </div>
               <div>
-                <div className="w-full py-2 text-black text-xs cursor-pointer  bg-brand text-center font-semibold px-4 mt-1  rounded-full">
+                <div className="w-full px-4 py-2 mt-1 text-xs font-semibold text-center text-black rounded-full cursor-pointer bg-brand">
                   Register
                 </div>
               </div>

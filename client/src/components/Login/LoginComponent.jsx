@@ -17,11 +17,10 @@ const LoginComponent = () => {
   const [showPassword, SetShowPassword] = useState(false);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  console.log(queryParams.get("redirect_url"));
   const redirect_url = queryParams.get("redirect_url") || "";
-  console.log(redirect_url);
   let linkref = "/auth/register";
-  if (redirect_url) linkref = `/auth/register?redirect_url=${redirect_url}`;
+  if (redirect_url)
+    linkref = `/auth/register?redirect_url=${encodeURIComponent(redirect_url)}`;
   const {
     register,
     handleSubmit,
