@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "concurrently \"cd api && npm run start\" \"cd client && npm run dev\"",
+    "dev": "concurrently \"cd api && npm run start\" \"cd client && npm run dev\" \"cd playground && npm run dev\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

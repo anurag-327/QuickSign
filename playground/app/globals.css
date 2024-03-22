@@ -23,3 +23,25 @@
       transform-origin: 50% 0;
       /* animation: spotlight_opacity__JVCgx calc(var(--duration, 5s) * 1.2) linear infinite var(--delay,0s) alternate,spotlight_scale__o4qjB calc(var(--duration, 5s) * 1.7) infinite var(--delay,0s) both; */
 }
+
+
+.image {
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover .image {
+  transform: translate(5px, 0); /* Translate to right */
+}
+
+.image-container:hover .image:hover {
+  transform: translate(0, 5px); /* Translate downwards */
+}
+
+.image-container:hover .image:hover:hover {
+  transform: translate(-5px, 0); /* Translate to left */
+}
+
+.image-container:hover .image:hover:hover:hover {
+  transform: translate(0, -5px); /* Translate upwards */
+}
