@@ -9,7 +9,7 @@ const Login = () => {
     <section>
       <Toaster position="top-right" reverseOrder />
       <Header />
-      <div className="grid px-6 md:px-0 min-w-[70vh] items-center bg-white grid-cols-1 md:grid-cols-2 ">
+      <div className="grid px-6 md:px-0 min-h-[70vh] items-center bg-white grid-cols-1 md:grid-cols-2 ">
         <AuthSidebar />
         <LoginComponent />
       </div>

@@ -10,7 +10,7 @@ const Register = () => {
     <section>
       <Toaster position="top-center" reverseOrder />
       <Header />
-      <div className="grid  min-w-[70vh] items-center bg-white grid-cols-1 md:grid-cols-2 px-6 md:px-0">
+      <div className="grid  min-h-[70vh] items-center bg-white grid-cols-1 md:grid-cols-2 px-6 md:px-0">
         <AuthSidebar />
         <RegisterComponent />
       </div>

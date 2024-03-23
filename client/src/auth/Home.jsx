@@ -99,18 +99,18 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex font-sans flex-col  w-full h-screen justify-center items-center">
+    <div className="flex flex-col items-center justify-center w-full h-screen font-sans">
       {pageloading ? (
         <>
-          <Loader /> <div className=" mt-2">Verify Application...</div>
+          <Loader /> <div className="mt-2 ">Verify Application...</div>
         </>
       ) : error ? (
         <>
-          <div className="flex flex-col justify-center items-center gap-6">
-            <p className="sm:text-xl font-semibold">{errorMessage}</p>
+          <div className="flex flex-col items-center justify-center gap-6">
+            <p className="font-semibold sm:text-xl">{errorMessage}</p>
             <button
               onClick={redirect}
-              className="bg-zinc-500 px-8 py-2 rounded-lg border border-zinc-500 text-white"
+              className="px-8 py-2 text-white border rounded-lg bg-zinc-500 border-zinc-500"
             >
               Back
             </button>
@@ -127,10 +127,10 @@ const Home = () => {
             />
           ) : (
             <div>
-              <p className="sm:text-xl font-semibold">{errorMessage}</p>
+              <p className="font-semibold sm:text-xl">{errorMessage}</p>
               <button
                 onClick={redirect}
-                className="bg-zinc-500 px-8 py-2 rounded-lg border border-zinc-500 text-white"
+                className="px-8 py-2 text-white border rounded-lg bg-zinc-500 border-zinc-500"
               >
                 Back
               </button>

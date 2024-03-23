@@ -35,9 +35,9 @@ export default function () {
                   <div className="text-sm">
                     <button
                       onClick={initiateQuickSign}
-                      className="w-full py-2 mt-4 text-center border border-gray-600 rounded-full"
+                      className="w-full py-2 mt-4 text-center bg-blue-600 rounded-full"
                     >
-                      <span className="absolute left-24">
+                      <span className="absolute left-16 sm:left-24">
                         <ShieldStar
                           size={20}
                           weight="fill"
@@ -49,13 +49,13 @@ export default function () {
                       </span>
                     </button>
                     <button className="w-full py-2 mt-4 text-center border border-gray-600 rounded-full">
-                      <span className="absolute left-24 -mt-0.5">
+                      <span className="absolute left-16 sm:left-24 -mt-0.5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           x="0px"
                           y="0px"
-                          width="24"
-                          height="24"
+                          width="22"
+                          height="22"
                           viewBox="0 0 48 48"
                         >
                           <path

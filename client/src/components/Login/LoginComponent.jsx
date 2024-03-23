@@ -67,11 +67,11 @@ const LoginComponent = () => {
     }
   });
   return (
-    <div className=" p-0 md:p-12 lg:p-24 xl:p-28 order-2 md:order-1">
+    <div className="order-2 w-full p-0  md:p-12 lg:p-24 xl:p-28 md:order-1">
       <div>
         <div>
           <h3 className="text-4xl font-semibold">Welcome Back</h3>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="mt-2 text-sm text-gray-500">
             Welcome back! Please enter your details
           </p>
         </div>
@@ -79,7 +79,7 @@ const LoginComponent = () => {
           <div className="my-4">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Email Address
             </label>
@@ -87,24 +87,24 @@ const LoginComponent = () => {
               type="email"
               id="email"
               {...register("email")}
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="your@email.com"
             />
             {touchedFields.email && errors.email && (
               <div className="text-sm text-red-600">{errors.email.message}</div>
             )}
           </div>
-          <div className="mb-4 relative">
+          <div className="relative mb-4">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Password
             </label>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               {...register("password")}
               placeholder="Enter your password"
             />
@@ -135,20 +135,20 @@ const LoginComponent = () => {
               <input
                 type="checkbox"
                 id="remember"
-                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none checked:bg-blue-600"
+                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 focus:outline-none checked:bg-blue-600"
                 defaultChecked
                 {...register("remember")}
               />
               <label
                 htmlFor="remember"
-                className="ml-2 block text-sm font-semibold text-gray-500 dark:text-gray-300"
+                className="block ml-2 text-sm font-semibold text-gray-500 dark:text-gray-300"
               >
                 Remember for 30 days
               </label>
             </div>
           </div>
           <div>
-            <div className="text-center mt-6 w-full rounded-lg ">
+            <div className="w-full mt-6 text-center rounded-lg ">
               <button
                 disabled={isSubmitting}
                 className={`w-[100%] block border-none px-2 py-2 cursor-pointe text-white text-lg font-semibold rounded-md ${
@@ -159,8 +159,8 @@ const LoginComponent = () => {
               </button>
             </div>
           </div>
-          <div className="  text-center  my-4">
-            <span className="msg dark:text-white text-sm text-gray-600">
+          <div className="my-4 text-center ">
+            <span className="text-sm text-gray-600 msg dark:text-white">
               Don't have an account?{" "}
               <a href={linkref} className="font-semibold text-blue-500">
                 Sign up
